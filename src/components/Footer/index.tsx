@@ -138,8 +138,8 @@ const Footer = ({ t }: any) => {
                 <SvgIcon
                   src="logo.svg"
                   aria-label="homepage"
-                  width="101px"
-                  height="64px"
+                  width="140px"
+                  height="70px"
                 />
               </LogoContainer>
             </NavLink>

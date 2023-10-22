@@ -38,16 +38,16 @@ const Header = ({ t }: any) => {
     return (
       <>
         <CustomNavLinkSmall onClick={() => scrollTo("about")}>
-          <Span>{t("About")}</Span>
+          <Span>{t("Biz Kimiz?")}</Span>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall onClick={() => scrollTo("mission")}>
-          <Span>{t("Mission")}</Span>
+          <Span>{t("Misyon")}</Span>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall onClick={() => scrollTo("product")}>
-          <Span>{t("Product")}</Span>
+          <Span>{t("Ürünümüz")}</Span>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall onClick={() => scrollTo("contact")}>
-          <Span>{t("Contact")}</Span>
+          <Span>{t("İletişim")}</Span>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall
           style={{ width: "180px" }}
@@ -55,7 +55,7 @@ const Header = ({ t }: any) => {
           <Span>
             <Button  onClick={
               () => window.location.href = window.location.origin + "/login"
-            }>{t("Login")}</Button>
+            }>{t("Giriş Yap")}</Button>
           </Span>
         </CustomNavLinkSmall>
       </>
@@ -67,7 +67,7 @@ const Header = ({ t }: any) => {
       <Container>
         <Row justify="space-between">
           <LogoContainer to="/" aria-label="homepage">
-            <SvgIcon src="logo.svg" width="101px" height="64px" />
+            <SvgIcon src="logo.svg" width="150px" height="80px" />
           </LogoContainer>
           <NotHidden>
             <MenuItem />

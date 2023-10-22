@@ -1,12 +1,9 @@
 {
-  "title": "Landing page template for developers & startups",
-  "text": "Beautifully designed templates using React.js, ant design and styled-components! Save weeks of time and build your landing page in minutes.",
+  "title": "Ücretsiz ve Yenilikçi Bir Model",
+  "text": "Yapay zeka, kişiselleştirilmiş öğrenme ve anlık geri bildirimle öğrencilere ücretsiz eğitim sunuyor. Her yaştan öğrenci, yeni beceriler kazanmak veya bilgilerini genişletmek için bu hızlı ve yenilikçi modelden yararlanabilir. Geleneksel eğitim sınırlarını aşan bu model, geleceğin eğitimini şekillendiriyor.",
   "button": [
     {
-      "title": "Explore"
-    },
-    {
-      "title": "Learn more",
+      "title": "Daha Fazla",
       "color": "#fff"
     }
   ]
