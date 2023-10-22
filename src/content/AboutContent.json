@@ -1,15 +1,15 @@
 {
-  "title": "Light, fast & responsive",
-  "text": "This template is ready to use, so you don't need to change anything at a component level, unless you want to customize the default styling.",
+  "title": "Ücretsiz, Hızlı & Yenilikçi",
+  "text": "Biz, öğrencilere sınavlara daha etkili bir şekilde hazırlanmaları için yardımcı olmayı amaçlayan bir eğitim platformuyuz. Öğrencilerin akademik başarılarını artırmak, sınav stresini azaltmak ve sınav stratejilerini geliştirmek için buradayız.",
   "section": [
     {
-      "title": "Why Antd?",
-      "content": "Ant Design is a React UI library that has a lot of easy-to-use components for building elegant UI.",
+      "title": "Neden Biz?",
+      "content": "Yapay zeka destekli analizlerle kişiselleştirilmiş sınav hazırlığı.",
       "icon": "notes.svg"
     },
     {
-      "title": "Why styled-components?",
-      "content": "Styled Components gives you total control over your components.",
+      "title": "Nasıl Yenilikler?",
+      "content": "Yeni yapay zeka teknolojileri ve daha zengin içerikle sınav hazırlığı deneyimini iyileştireceğiz.",
       "icon": "notes.svg"
     }
   ]
