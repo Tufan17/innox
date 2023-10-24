@@ -9,118 +9,134 @@ import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import { CustomNavLinkSmall, Span } from '../../components/Header/styles';
 import { Button } from '../../common/Button';
-import { Center} from '@mantine/core';
+import { Center } from '@mantine/core';
+import { Row } from 'antd';
+import { Image } from '@mantine/core';
 const LoginView = () => {
-    const [showPassword, setShowPassword] = useState(false);
-  
-    const handleClick = () => {
-    };
-  
+  const [showPassword, setShowPassword] = useState(false);
 
-    const fullScreen={
-        width:window.innerWidth,
-        height:window.innerHeight,
-        display:'flex',
-        justifyContent:'center',
-        alignItems:'center',
-        backgroundSize:'cover',
-      }
+  const handleClick = () => {
+  };
 
-    const renderForm = (
-        <>
-          <Stack spacing={3}>
-            <TextField name="email" label="
+
+  const fullScreen = {
+    width: window.innerWidth,
+    height: window.innerHeight,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundSize: 'cover',
+    backgroundImage: 'url("/assets/transparent.png")',
+  }
+
+  const renderForm = (
+    <>
+      <Stack spacing={3} sx={{
+        width: '100%',
+      }}>
+        <TextField name="email" label="
             E-posta Adresi
             " />
-    
-            <TextField
-              name="password"
-              label="Şifre"
-              type={showPassword ? 'text' : 'password'}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Stack>
-    
-          <Stack direction="row" alignItems="center" justifyContent="flex-end" sx={{ my: 3 }}>
-            <Link variant="subtitle2" underline="hover">
-              Şifremi Unuttum
-            </Link>
-          </Stack>
-    
-          <Center style={{
-            display:'flex',
-            justifyContent:'center',
-            alignItems:'center',
-          }}>
-          <CustomNavLinkSmall
+
+        <TextField
+          name="password"
+          label="Şifre"
+          type={showPassword ? 'text' : 'password'}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
+      </Stack>
+
+      <Stack direction="row" alignItems="center" justifyContent="flex-end" sx={{ my: 3 }}>
+        <Link variant="subtitle2" underline="hover">
+          Şifremi Unuttum
+        </Link>
+      </Stack>
+
+      <Center style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+        <CustomNavLinkSmall
           style={{ width: "180px" }}
         >
           <Span>
-            <Button  onClick={
+            <Button onClick={
               () => window.location.href = window.location.origin + "/login"
             }>{"Giriş Yap"}</Button>
           </Span>
         </CustomNavLinkSmall>
-          </Center>
-        </>
-      );
-    return ( <div 
+      </Center>
+    </>
+  );
+  return (<div
     style={fullScreen}>
-      <Box
+    <Box
       sx={{
         height: 1,
       }}
     >
-      <Stack alignItems="center" justifyContent="center" sx={{ height: 1 }}>
+      <Stack alignItems="center" justifyContent="center" sx={{ height: 1, }}>
+
         <Card
           sx={{
-            p: 5,
+            p: 1,
             width: 1,
-            maxWidth: 420,
           }}
         >
-          <h2>
-            <span style={{color:"#18216d"}}>I</span>
-            <span style={{color:"rgb(254 118 37)"}}>nno</span>X<span style={{
-              fontWeight:'500',
-              fontSize:'1.0rem',
-            }}>'e Hoşgeldiniz</span></h2>
-         
+          <Row>
+          <div             style={{
+              margin: 'auto',
+            }}>
+            <Image 
+            src="/assets/illustrations/illustration_login.png"
+            alt="Login"
+            width={400}
 
-          
-
-          {/* <Divider sx={{ my: 3 }}>
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              OR
-            </Typography>
-          </Divider> */}
-
-          {renderForm}
-
-          <Typography variant="body2" sx={{
-            mt: 3,
-            textAlign: 'center',
-            color: 'text.secondary',
+            />
+          </div>
+          <div style={{
+            minWidth: '300px',
+            display: 'flex',
+            flexDirection: 'column',
+            padding: '20px',
           
           }}>
-            Hesabınız yok mu?
-            <Link variant="subtitle2" sx={{ml:1}} >
-              Kayıt Ol
-            </Link>
-          </Typography>
+            <h2 >
+              <span style={{ color: "#18216d" }}>I</span>
+              <span style={{ color: "rgb(254 118 37)" }}>nno</span>X<span style={{
+                fontWeight: '500',
+                fontSize: '1.0rem',
+              }}>'e Hoşgeldiniz</span></h2>
+
+            {renderForm}
+
+            <Typography variant="body2" sx={{
+              mt: 3,
+              textAlign: 'center',
+              color: 'text.secondary',
+
+            }}>
+              Hesabınız yok mu?
+              <Link variant="subtitle2" sx={{ ml: 1 }} >
+                Kayıt Ol
+              </Link>
+            </Typography>
+          </div>
+          </Row>
         </Card>
       </Stack>
     </Box>
 
-    
-    </div> );
+
+  </div>);
 }
- 
+
 export default LoginView;
