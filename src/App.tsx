@@ -1,10 +1,10 @@
 import { useRoutes } from "react-router-dom"
-import { lazy, Suspense } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Suspense } from "react";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { Styles } from "./styles/styles";
 import Index from "./pages";
+import LoginView from "./pages/Login/login_view";
 export default function App() {
 
   const routes=useRoutes([
@@ -20,13 +20,9 @@ export default function App() {
     </Suspense>
     },
     {
-      path:'dashboard',
-      element:<div>2</div>
+      path:'/login',
+      element:<LoginView />
     },
-    {
-      path:'*',
-      element:<>3</>
-    }
   ]);
 
   return routes;
