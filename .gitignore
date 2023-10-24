@@ -1,10 +1,12 @@
 # node_modules klasörünü görmezden gel
 node_modules/
+/node_modules
+/.pnp
+.pnp.js
 
 # npm'in oluşturduğu dosyaları görmezden gel
 package-lock.json
 npm-debug.log
 
 # Yedeğlenmiş veya derlenmiş dosyaları görmezden gel
-public/
-*.log
+

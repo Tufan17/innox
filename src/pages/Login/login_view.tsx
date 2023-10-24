@@ -1,22 +1,16 @@
-import { Badge, Group, Image, Text } from '@mantine/core';
 import { useState } from 'react';
-
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import Divider from '@mui/material/Divider';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import LoadingButton from '@mui/lab/LoadingButton';
-import { alpha, useTheme } from '@mui/material/styles';
 import InputAdornment from '@mui/material/InputAdornment';
+import { CustomNavLinkSmall, Span } from '../../components/Header/styles';
+import { Button } from '../../common/Button';
+import { Center} from '@mantine/core';
 const LoginView = () => {
-    const theme = useTheme();
-
-  
     const [showPassword, setShowPassword] = useState(false);
   
     const handleClick = () => {
@@ -28,17 +22,20 @@ const LoginView = () => {
         height:window.innerHeight,
         display:'flex',
         justifyContent:'center',
-        alignItems:'center'
-    }
+        alignItems:'center',
+        backgroundSize:'cover',
+      }
 
     const renderForm = (
         <>
           <Stack spacing={3}>
-            <TextField name="email" label="Email address" />
+            <TextField name="email" label="
+            E-posta Adresi
+            " />
     
             <TextField
               name="password"
-              label="Password"
+              label="Şifre"
               type={showPassword ? 'text' : 'password'}
               InputProps={{
                 endAdornment: (
@@ -53,32 +50,34 @@ const LoginView = () => {
     
           <Stack direction="row" alignItems="center" justifyContent="flex-end" sx={{ my: 3 }}>
             <Link variant="subtitle2" underline="hover">
-              Forgot password?
+              Şifremi Unuttum
             </Link>
           </Stack>
     
-          <LoadingButton
-            fullWidth
-            size="large"
-            type="submit"
-            variant="contained"
-            color="inherit"
-            onClick={handleClick}
-          >
-            Login
-          </LoadingButton>
+          <Center style={{
+            display:'flex',
+            justifyContent:'center',
+            alignItems:'center',
+          }}>
+          <CustomNavLinkSmall
+          style={{ width: "180px" }}
+        >
+          <Span>
+            <Button  onClick={
+              () => window.location.href = window.location.origin + "/login"
+            }>{"Giriş Yap"}</Button>
+          </Span>
+        </CustomNavLinkSmall>
+          </Center>
         </>
       );
     return ( <div 
     style={fullScreen}>
       <Box
       sx={{
-      
         height: 1,
       }}
     >
-      
-
       <Stack alignItems="center" justifyContent="center" sx={{ height: 1 }}>
         <Card
           sx={{
@@ -87,24 +86,35 @@ const LoginView = () => {
             maxWidth: 420,
           }}
         >
-          <Typography variant="h4">Sign in to Minimal</Typography>
-
-          <Typography variant="body2" sx={{ mt: 2, mb: 5 }}>
-            Don’t have an account?
-            <Link variant="subtitle2" sx={{ ml: 0.5 }}>
-              Get started
-            </Link>
-          </Typography>
+          <h2>
+            <span style={{color:"#18216d"}}>I</span>
+            <span style={{color:"rgb(254 118 37)"}}>nno</span>X<span style={{
+              fontWeight:'500',
+              fontSize:'1.0rem',
+            }}>'e Hoşgeldiniz</span></h2>
+         
 
           
 
-          <Divider sx={{ my: 3 }}>
+          {/* <Divider sx={{ my: 3 }}>
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
               OR
             </Typography>
-          </Divider>
+          </Divider> */}
 
           {renderForm}
+
+          <Typography variant="body2" sx={{
+            mt: 3,
+            textAlign: 'center',
+            color: 'text.secondary',
+          
+          }}>
+            Hesabınız yok mu?
+            <Link variant="subtitle2" sx={{ml:1}} >
+              Kayıt Ol
+            </Link>
+          </Typography>
         </Card>
       </Stack>
     </Box>
