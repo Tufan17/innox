@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import { Styles } from "./styles/styles";
 import Index from "./pages";
 import LoginView from "./pages/Login/login_view";
+import NotFoundView from "./pages/404";
 export default function App() {
 
   useEffect(() => {
@@ -31,6 +32,10 @@ export default function App() {
       path: '/login',
       element: <LoginView />
     },
+    {
+      path: '*',
+      element: <NotFoundView />
+    }
   ]);
 
   return routes;
