@@ -72,37 +72,57 @@ const LoginView = () => {
       </Center>
     </>
   );
+  const row=
+    {
+      display: 'flex',
+      flexFlow: window.innerWidth<900?'row wrap':'inherit',
+   }
+  
   return (<div
     style={fullScreen}>
     <Box
+      
       sx={{
         height: 1,
       }}
+
     >
       <Stack alignItems="center" justifyContent="center" sx={{ height: 1, }}>
 
         <Card
-          sx={{
-            p: 1,
-            width: 1,
+       
+          style={{
+            maxWidth: '900px',
           }}
         >
-          <Row>
+          <Row style={row}>
           <div             style={{
-              margin: 'auto',
+              maxWidth: '400px',
+              width: '100%',
+              display: 'flex',
+              flexFlow: 'inherit',
+              justifyContent: 'center',
+              alignItems: 'center',
             }}>
             <Image 
             src="/assets/images/log-in.svg"
             alt="Login"
-            width={400}
-
+            width={
+              window.innerWidth<900?200:300}
+            style={{
+            margin: 'auto',
+            }}
             />
           </div>
           <div style={{
             minWidth: '300px',
+            maxWidth: '400px',
+            width: '100%',
             display: 'flex',
             flexDirection: 'column',
             padding: '20px',
+            justifyContent: 'center',
+            alignItems: 'center',
           
           }}>
             <h2 >
@@ -122,7 +142,7 @@ const LoginView = () => {
             }}>
               Hesabınız yok mu?
               <Link variant="subtitle2" sx={{ ml: 1 }} >
-                Kayıt Ols
+                Kayıt Ol
               </Link>
             </Typography>
           </div>
