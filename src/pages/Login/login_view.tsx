@@ -96,7 +96,7 @@ const LoginView = () => {
               margin: 'auto',
             }}>
             <Image 
-            src="/assets/illustrations/illustration_login.png"
+            src="/assets/images/log-in.svg"
             alt="Login"
             width={400}
 

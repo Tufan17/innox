@@ -11,6 +11,8 @@ export const LeftContentSection = styled("section")`
 
 export const Content = styled("p")`
   margin: 1.5rem 0 2rem 0;
+  color: #000;
+
 `;
 
 export const ContentWrapper = styled("div")`
@@ -39,4 +41,6 @@ export const MinTitle = styled("h6")`
 
 export const MinPara = styled("p")`
   font-size: 13px;
+  color: #000;
+
 `;

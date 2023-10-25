@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export const Content = styled("p")`
   margin-top: 1.5rem;
+  color: #000;
+
 `;
 
 export const Container = styled("div")`
