@@ -122,7 +122,7 @@ const LoginView = () => {
             }}>
               Hesabınız yok mu?
               <Link variant="subtitle2" sx={{ ml: 1 }} >
-                Kayıt Ol
+                Kayıt Ols
               </Link>
             </Typography>
           </div>
