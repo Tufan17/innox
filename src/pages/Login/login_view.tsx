@@ -15,10 +15,6 @@ import { Image } from '@mantine/core';
 const LoginView = () => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleClick = () => {
-  };
-
-
   const fullScreen = {
     width: window.innerWidth,
     height: window.innerHeight,
