@@ -1,17 +1,9 @@
+import { Center, Image } from '@mantine/core';
+import { IconButton, InputAdornment, Link, Stack, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
-import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
-import Card from '@mui/material/Card';
-import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import InputAdornment from '@mui/material/InputAdornment';
 import { CustomNavLinkSmall, Span } from '../../components/Header/styles';
-import { Button } from '../../common/Button';
-import { Center } from '@mantine/core';
-import { Row } from 'antd';
-import { Image } from '@mantine/core';
+import {Button} from '../../common/Button';
+
 const LoginView = () => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -27,8 +19,10 @@ const LoginView = () => {
 
   const renderForm = (
     <>
-      <Stack spacing={3} sx={{
-        width: '100%',
+      <Stack spacing={3} sx={window.innerWidth<900?{
+        width: '80%',
+      }:{
+        width: '100%',   
       }}>
         <TextField name="email" label="
             E-posta Adresi
@@ -74,83 +68,72 @@ const LoginView = () => {
   );
   const row=
     {
+      maxWidth: '90%',
       display: 'flex',
       flexFlow: window.innerWidth<900?'row wrap':'inherit',
+      borderRadius: '10px',
+      backgroundColor: 'white',
+      boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.1)',
+      padding: window.innerWidth<900?"0px 0px 20px": '20px',
    }
   
   return (<div
     style={fullScreen}>
-    <Box
-      
-      sx={{
-        height: 1,
-      }}
-
-    >
-      <Stack alignItems="center" justifyContent="center" sx={{ height: 1, }}>
-
-        <Card
+        <div style={row}>
+       <div             
+       style={{
+        minWidth: '300px',
+        maxWidth: '350px',
+        width: '100%',
+           display: 'flex',
+           flexFlow: 'inherit',
+           justifyContent: 'center',
+           alignItems: 'center',
+         }}>
+         {window.innerWidth>700&&<Image
+         src="/assets/images/log-in.svg"
+         alt="Login"
+         width={
+           window.innerWidth<900?200:300}
+         style={{
+         margin: 'auto',
+         }}
+         />}
+       </div>
+       <div style={{
+         minWidth: '300px',
+         maxWidth: '350px',
+         width: '100%',
+         display: 'flex',
+         flexDirection: 'column',
+         justifyContent: 'center',
+         alignItems: 'center',
        
-          style={{
-            maxWidth: '900px',
-          }}
-        >
-          <Row style={row}>
-          <div             style={{
-              maxWidth: '400px',
-              width: '100%',
-              display: 'flex',
-              flexFlow: 'inherit',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <Image 
-            src="/assets/images/log-in.svg"
-            alt="Login"
-            width={
-              window.innerWidth<900?200:300}
-            style={{
-            margin: 'auto',
-            }}
-            />
-          </div>
-          <div style={{
-            minWidth: '300px',
-            maxWidth: '400px',
-            width: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            padding: '20px',
-            justifyContent: 'center',
-            alignItems: 'center',
-          
-          }}>
-            <h2 >
-              <span style={{ color: "#18216d" }}>I</span>
-              <span style={{ color: "rgb(254 118 37)" }}>nno</span>X<span style={{
-                fontWeight: '500',
-                fontSize: '1.0rem',
-              }}>'e Hoşgeldiniz</span></h2>
+       }}>
+         <h2 >
+           <span style={{ color: "#18216d" }}>I</span>
+           <span style={{ color: "rgb(254 118 37)" }}>nno</span>X<span style={{
+             fontWeight: '500',
+             fontSize: '1.0rem',
+           }}>'e Hoşgeldiniz</span></h2>
 
-            {renderForm}
+         {renderForm}
 
-            <Typography variant="body2" sx={{
-              mt: 3,
-              textAlign: 'center',
-              color: 'text.secondary',
+         <Typography variant="body2" sx={{
+           mt: 3,
+           textAlign: 'center',
+           color: 'text.secondary',
 
-            }}>
-              Hesabınız yok mu?
-              <Link variant="subtitle2" sx={{ ml: 1 }} >
-                Kayıt Ol
-              </Link>
-            </Typography>
-          </div>
-          </Row>
-        </Card>
-      </Stack>
-    </Box>
-
+         }}>
+           Hesabınız yok mu?
+           <Link variant="subtitle2" sx={{ ml: 1 }} >
+             Kayıt Ol
+           </Link>
+         </Typography>
+       </div>
+       </div>
+    
+        
 
   </div>);
 }
