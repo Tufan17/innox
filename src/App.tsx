@@ -6,6 +6,7 @@ import { Styles } from "./styles/styles";
 import Index from "./pages";
 import LoginView from "./pages/Login/login_view";
 import NotFoundView from "./pages/404";
+import RegisterView from "./pages/Login/register_view";
 export default function App() {
 
   useEffect(() => {
@@ -31,6 +32,10 @@ export default function App() {
     {
       path: '/login',
       element: <LoginView />
+    },
+    {
+      path: '/register',
+      element: <RegisterView />
     },
     {
       path: '*',

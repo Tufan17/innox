@@ -4,11 +4,11 @@ import { useState } from 'react';
 import { CustomNavLinkSmall, Span } from '../../components/Header/styles';
 import {Button} from '../../common/Button';
 
-const LoginView = () => {
+const RegisterView = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const [nickname, setNickname] = useState('');
   const fullScreen = {
     width: window.innerWidth,
     height: window.innerHeight,
@@ -26,6 +26,12 @@ const LoginView = () => {
       }:{
         width: '100%',   
       }}>
+        <TextField 
+        value={nickname}
+        onChange={(e) => setNickname(e.currentTarget.value)}
+        name="email" 
+        label="Kullanıcı Adı" 
+        />
         <TextField 
         value={email}
         onChange={(e) => setEmail(e.currentTarget.value)}
@@ -50,12 +56,6 @@ const LoginView = () => {
         />
       </Stack>
 
-      <Stack direction="row" alignItems="center" justifyContent="flex-end" sx={{ my: 3 }}>
-        <Link variant="subtitle2" underline="hover">
-          Şifremi Unuttum
-        </Link>
-      </Stack>
-
       <Center style={{
         display: 'flex',
         justifyContent: 'center',
@@ -67,9 +67,9 @@ const LoginView = () => {
           <Span>
             <Button onClick={
               () => {
-                login(email, password);
+                register(email, password, nickname);
               }
-            }>{"Giriş Yap"}</Button>
+            }>{"Kayıt Ol"}</Button>
           </Span>
         </CustomNavLinkSmall>
       </Center>
@@ -86,8 +86,8 @@ const LoginView = () => {
       padding: window.innerWidth<900?"0px 0px 20px": '20px',
    }
   
-  function login(email: string, password: string) {
-    console.log(email, password);
+  function register(email: string, password: string, nickname: string) {
+    console.log(email, password, nickname);
   }
 
   return (<div
@@ -104,7 +104,7 @@ const LoginView = () => {
            alignItems: 'center',
          }}>
          {window.innerWidth>700&&<Image
-         src="/assets/images/log-in.svg"
+         src="/img/svg/register.svg"
          alt="Login"
          width={
            window.innerWidth<900?200:300}
@@ -128,7 +128,8 @@ const LoginView = () => {
            <span style={{ color: "rgb(254 118 37)" }}>nno</span>X<span style={{
              fontWeight: '500',
              fontSize: '1.0rem',
-           }}>'e Hoşgeldiniz</span></h2>
+           }}>'e Kayıt Ol
+           </span></h2>
 
          {renderForm}
 
@@ -138,11 +139,11 @@ const LoginView = () => {
            color: 'text.secondary',
 
          }}>
-           Hesabınız yok mu?
+           Zaten bir hesabın var mı?{' '}
            <Link variant="subtitle2" sx={{ ml: 1 }}
-              href="/register"
+              href="/login"
            >
-             Kayıt Ol
+             Giriş Yap
            </Link>
          </Typography>
        </div>
@@ -153,4 +154,4 @@ const LoginView = () => {
   </div>);
 }
 
-export default LoginView;
+export default RegisterView;
