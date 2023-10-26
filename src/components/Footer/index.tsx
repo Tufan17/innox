@@ -44,28 +44,25 @@ const Footer = ({ t }: any) => {
           <Row justify="space-between">
             <Col lg={4} md={10} sm={12} xs={12}>
               <Language>{t("İletişim")}</Language>
-              <Large to="/">{t("Tell us everything")}</Large>
+              <Large to="/">{t("Bize Herşeyi Anlatabilirsiniz")}</Large>
               <Para>
-                {t(`Do you have any question? Feel free to reach out.`)}
+                {t(`Herhangi bir sorun var mı? Bize ulaşmaktan çekinmeyin.`)}
               </Para>
               
             </Col>
             <Col lg={4} md={8} sm={12} xs={12}>
               <Title>{t("Politika")}</Title>
               <Large to="/" left="true">
-                {t("Application Security")}
+                {t("Gizlilik Politikası")}
               </Large>
               <Large left="true" to="/">
-                {t("Software Principles")}
+                {t("Kullanım Koşulları")}
               </Large>
             </Col>
             <Col lg={4} md={8} sm={12} xs={12}>
               <Title>{t("Adres")}</Title>
               <Large to="/" left="true">
-                {t("Application Security")}
-              </Large>
-              <Large left="true" to="/">
-                {t("Software Principles")}
+                {t("Ankara / Türkiye")}
               </Large>
             </Col>
             
