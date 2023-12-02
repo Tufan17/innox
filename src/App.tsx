@@ -9,8 +9,10 @@ import NotFoundView from "./pages/404";
 import RegisterView from "./pages/Login/register_view";
 import { auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { Container, Spinner } from "react-bootstrap";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Container } from "react-bootstrap";
+import { Route, Routes } from "react-router-dom";
+import { Center } from "@mantine/core";
+import { FallingLines } from 'react-loader-spinner'
 export default function App() {
   const [login, setLogin] = useState<boolean | null>(null);
   useEffect(() => {
@@ -21,8 +23,7 @@ export default function App() {
     }
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user);
-        if(window.location.pathname === "/login" || window.location.pathname === "/register"){
+        if (window.location.pathname === "/login" || window.location.pathname === "/register") {
           window.location.href = "/dashboard";
         }
         setLogin(true);
@@ -33,7 +34,22 @@ export default function App() {
     });
   }, []);
   if (login === null) {
-    return <Spinner animation="border" role="status"><span className="visually-hidden">Loading...</span></Spinner>;
+    return <Center
+      style={{
+        width: "100%",
+        height: window.innerHeight,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+
+      }}
+    >
+      <FallingLines
+        color="#18216d"
+        width="100"
+        visible={true}
+      />
+    </Center>;
   }
 
 
@@ -49,7 +65,7 @@ export default function App() {
           <Footer />
         </Suspense>} />
         {
-         
+
           !login && (<>
             <Route path="/login" element={<LoginView />} />
             <Route path="/register" element={<RegisterView />} />
@@ -62,6 +78,8 @@ export default function App() {
           </>
           )
         }
+        {/* Var olan bir sayfa olmadığında 404 sayfasına yönlendirme yapma geri dönder */}
+        
         <Route path="*" element={<NotFoundView />} />
 
       </Routes>

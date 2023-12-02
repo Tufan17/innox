@@ -3,6 +3,8 @@ import { IconButton, InputAdornment, Link, Stack, TextField, Typography } from '
 import { useState } from 'react';
 import { CustomNavLinkSmall, Span } from '../../components/Header/styles';
 import {Button} from '../../common/Button';
+import { login } from '../../../service/auth_service';
+import { toast } from 'react-toastify';
 
 const LoginView = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -67,7 +69,7 @@ const LoginView = () => {
           <Span>
             <Button onClick={
               () => {
-                login(email, password);
+                loginFun(email, password);
               }
             }>{"Giriş Yap"}</Button>
           </Span>
@@ -86,8 +88,18 @@ const LoginView = () => {
       padding: window.innerWidth<900?"0px 0px 20px": '20px',
    }
   
-  function login(email: string, password: string) {
-    console.log(email, password);
+  const loginFun=async(email: string, password: string) =>{
+    console.log(new Date());
+    
+    const res=await login(email, password);
+    if(res?.status==true){
+      toast.success("Giriş Başarılı");
+      window.location.href="/dashboard";
+    }else{
+      toast.error("Giriş Başarısız");
+    }
+
+
   }
 
   return (<div

@@ -3,19 +3,15 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth,db } from "../firebase";
 import {
   getFirestore,
   doc,
-  getDoc,
   query,
-  deleteDoc,
   collection,
   where,
   getDocs,
-  updateDoc,
   setDoc,
-  orderBy,
 } from "firebase/firestore";
 
 const nicknameAndEmail = async (email: string, nickname: string) => {
@@ -81,14 +77,19 @@ const createUser = async (
     };
   }
 };
-const login = async (email: string, password: string) => {
-  const userCredential = await signInWithEmailAndPassword(
-    auth,
-    email,
-    password
-  );
-  const user = userCredential.user;
-  return user;
-};
 
+const login = async (email: string, password: string) => {
+    try{
+      const data=await signInWithEmailAndPassword(auth, email, password);
+      console.log(data);
+      return {
+        status: true,
+      };
+    }catch(error){
+      return {
+        status: false,
+        error: error,
+      };
+    } 
+};
 export { nicknameAndEmail, createUser, login };

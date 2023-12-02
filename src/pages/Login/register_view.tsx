@@ -93,42 +93,44 @@ const RegisterView = () => {
 
   const register = async (email: string, password: string, nickname: string) => {
     //kullanıcı adında boşluk olmamalı
-    if(nickname.includes(" ")) {
+    if (nickname.includes(" ")) {
       toast.error("Kullanıcı adında boşluk olmamalıdır.");
-    }else if (nickname.length < 5) {
+    } else if (nickname.length < 5) {
       toast.error("Kullanıcı adı en az 5 karakter olmalıdır.");
-    }else if(nickname.length > 15) {
+    } else if (nickname.length > 15) {
       toast.error("Kullanıcı adı en fazla 15 karakter olmalıdır.");
-    }else if(!email.includes("@") || !email.includes(".")) {
+    } else if (email.includes(" ")) {
+      toast.error("E-posta adresinde boşluk olmamalıdır.");
+    } else if (!email.includes("@") || !email.includes(".")) {
       toast.error("E-posta adresi formata uygun değil.");
-    }else if (email.length < 5) {
+    } else if (email.length < 5) {
       toast.error("E-posta adresi en az 5 karakter olmalıdır.");
-    }else if (password.length < 6) {
+    } else if (password.length < 6) {
       toast.error("Şifre en az 6 karakter olmalıdır.");
-    }else if(email.length > 15) {
+    } else if (email.length > 30) {
       toast.error("E-posta adresi en fazla 15 karakter olmalıdır.");
-    }else if(password.length > 15) {
+    } else if (password.length > 15) {
       toast.error("Şifre en fazla 15 karakter olmalıdır.");
-    }else if(nickname.length > 4 || nickname.length < 15 || email.length > 5 || email.length < 15 || password.length > 6 || password.length < 15) {
-
-      const res: NicknameAndEmailResponse = await nicknameAndEmail(nickname, email);
-
+    } else {
+      const res: NicknameAndEmailResponse = await nicknameAndEmail(email, nickname);
+      toast(res.email);
+      toast(res.nickname);
       if (!res.nickname) {
         setNicknameError(true);
         toast.error("Bu kullanıcı adı zaten kullanılıyor.");
-      }else if (!res.email) {
+      } else if (!res.email) {
         setEmailError(true);
         toast.error("Bu e-posta adresi zaten kullanılıyor.");
-      }else if (res.email && res.nickname) {
-        createUser(email, password, nickname).then((res) => {
-         if(res){
+      } else if (res.email && res.nickname) {
+        const data: any = await createUser(email, password, nickname);
+        if (data.status) {
           toast.success("Kayıt başarılı. Giriş yapılıyor.");
-         }
-        }).catch((err) => {
+          window.location.replace("/dashboard");
+
+        } else {
           toast.error("Kayıt olurken bir hata oluştu.");
-          console.log(err);
         }
-        );
+
       }
 
 
