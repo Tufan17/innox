@@ -1,5 +1,5 @@
 // App.tsx
-import React, { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { Styles } from "./styles/styles";
@@ -9,13 +9,10 @@ import NotFoundView from "./pages/404";
 import RegisterView from "./pages/Login/register_view";
 import { auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { Container } from "react-bootstrap";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { AuthProvider } from "./contexts/AuthContext";
-import PrivateRoute from "./components/Router/PrivateRoute";
+import { Container, Spinner } from "react-bootstrap";
+import { Navigate, Route, Routes } from "react-router-dom";
 export default function App() {
-  const [login, setLogin] = useState(false);
-
+  const [login, setLogin] = useState<boolean | null>(null);
   useEffect(() => {
     document.title = `InnoX`;
     const link = document.querySelector("link[rel*='icon']") as HTMLLinkElement | null;
@@ -25,6 +22,9 @@ export default function App() {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         console.log(user);
+        if(window.location.pathname === "/login" || window.location.pathname === "/register"){
+          window.location.href = "/dashboard";
+        }
         setLogin(true);
       } else {
         console.log("no user");
@@ -32,29 +32,41 @@ export default function App() {
       }
     });
   }, []);
+  if (login === null) {
+    return <Spinner animation="border" role="status"><span className="visually-hidden">Loading...</span></Spinner>;
+  }
+
 
   return (
-    <AuthProvider>
-       
-    <Routes>
-    
-      <Route path="/" element={<Suspense fallback={null}>
-        <Styles />
-        <Header />
-        <Index />
-        <Footer />
-      </Suspense>} />
-      <Route path="/login" element={<LoginView />} />
-      <Route path="/register" element={<RegisterView />} />
-      {
-      login&&(<>
-          <Route path="/dashboard" element={<Container>Dashboard</Container>}/>
-      </>
-      )
-      }
-      <Route path="*" element={<NotFoundView />}/>
+    <>
 
-    </Routes>
-    
-  </AuthProvider>);
+
+      <Routes>
+        <Route path="/" element={<Suspense fallback={null}>
+          <Styles />
+          <Header />
+          <Index />
+          <Footer />
+        </Suspense>} />
+        {
+         
+          !login && (<>
+            <Route path="/login" element={<LoginView />} />
+            <Route path="/register" element={<RegisterView />} />
+          </>
+          )
+        }
+        {
+          login && (<>
+            <Route path="/dashboard" element={<Container>Dashboard</Container>} />
+          </>
+          )
+        }
+        <Route path="*" element={<NotFoundView />} />
+
+      </Routes>
+
+    </>
+
+  );
 }
