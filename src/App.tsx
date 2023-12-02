@@ -35,7 +35,9 @@ export default function App() {
 
   return (
     <AuthProvider>
+       
     <Routes>
+    
       <Route path="/" element={<Suspense fallback={null}>
         <Styles />
         <Header />
@@ -44,10 +46,15 @@ export default function App() {
       </Suspense>} />
       <Route path="/login" element={<LoginView />} />
       <Route path="/register" element={<RegisterView />} />
-      {/* <PrivateRoute login={login} path="/dashboard" element={<Container>Dashboard</Container>} /> */}
-  
+      {
+      login&&(<>
+          <Route path="/dashboard" element={<Container>Dashboard</Container>}/>
+      </>
+      )
+      }
       <Route path="*" element={<NotFoundView />}/>
 
     </Routes>
+    
   </AuthProvider>);
 }
