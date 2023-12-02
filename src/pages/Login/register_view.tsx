@@ -3,7 +3,7 @@ import { IconButton, InputAdornment, Link, Stack, TextField, Typography } from '
 import { useState } from 'react';
 import { CustomNavLinkSmall, Span } from '../../components/Header/styles';
 import {Button} from '../../common/Button';
-
+import { createUser } from '../../../service/auth_service';
 const RegisterView = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
@@ -88,6 +88,7 @@ const RegisterView = () => {
   
   function register(email: string, password: string, nickname: string) {
     console.log(email, password, nickname);
+    createUser(email, password, nickname);
   }
 
   return (<div
