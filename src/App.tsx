@@ -27,6 +27,7 @@ export default function App() {
         setLogin(true);
 
         if (window.location.pathname === "/login" || window.location.pathname === "/register") {
+          console.log("object burada");
           window.location.href = "/dashboard";
         }
       } else {

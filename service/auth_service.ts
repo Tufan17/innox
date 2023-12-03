@@ -1,18 +1,18 @@
 import {
-  getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { auth,db } from "../firebase";
+import { auth, db } from "../firebase";
 import {
   getFirestore,
   doc,
-  query,
   collection,
   where,
   getDocs,
   setDoc,
+  query,
+  getDoc,
 } from "firebase/firestore";
 
 const nicknameAndEmail = async (email: string, nickname: string) => {
@@ -57,10 +57,7 @@ const createUser = async (
           user: {
             email: email,
             id: user.uid,
-            profile:"https://firebasestorage.googleapis.com/v0/b/innox-ee22c.appspot.com/o/avatar%2Favatar_24.jpg?alt=media&token=1ce0f757-c4da-4534-9107-ffd0e7b56dab",
             nickname: nickname,
-            status: 1,
-            education: null,
           },
         };
       })
@@ -83,21 +80,21 @@ const createUser = async (
 };
 
 const login = async (email: string, password: string) => {
-    try{
-      const data=await signInWithEmailAndPassword(auth, email, password);
-      console.log(data);
-      return {
-        status: true,
-      };
-    }catch(error){
-      return {
-        status: false,
-        error: error,
-      };
-    } 
+  try {
+    const data = await signInWithEmailAndPassword(auth, email, password);
+    console.log(data);
+    return {
+      status: true,
+    };
+  } catch (error) {
+    return {
+      status: false,
+      error: error,
+    };
+  }
 };
 
- const signout = () => {
+const signout = () => {
   return signOut(auth);
 };
 export { nicknameAndEmail, createUser, login, signout };
