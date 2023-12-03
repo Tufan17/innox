@@ -9,10 +9,11 @@ import NotFoundView from "./pages/404";
 import RegisterView from "./pages/Login/register_view";
 import { auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { Container } from "react-bootstrap";
 import { Route, Routes } from "react-router-dom";
-import { Center } from "@mantine/core";
-import { FallingLines } from 'react-loader-spinner'
+import Dashboard from "./pages/Dashboard";
+import routers from "./constants";
+import Loader from "./pages/Loader";
+
 export default function App() {
   const [login, setLogin] = useState<boolean | null>(null);
   useEffect(() => {
@@ -23,33 +24,21 @@ export default function App() {
     }
     onAuthStateChanged(auth, (user) => {
       if (user) {
+        setLogin(true);
+
         if (window.location.pathname === "/login" || window.location.pathname === "/register") {
           window.location.href = "/dashboard";
         }
-        setLogin(true);
       } else {
-        console.log("no user");
+        if (window.location.pathname !== "/login" && window.location.pathname !== "/register" && window.location.pathname !== "/") {
+          window.location.href = "/";
+        }
         setLogin(false);
       }
     });
   }, []);
   if (login === null) {
-    return <Center
-      style={{
-        width: "100%",
-        height: window.innerHeight,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-
-      }}
-    >
-      <FallingLines
-        color="#18216d"
-        width="100"
-        visible={true}
-      />
-    </Center>;
+    return (<Loader/>);
   }
 
 
@@ -74,13 +63,11 @@ export default function App() {
         }
         {
           login && (<>
-            <Route path="/dashboard" element={<Container>Dashboard</Container>} />
+            <Route path="/dashboard" element={<Dashboard />} />
           </>
           )
         }
-        {/* Var olan bir sayfa olmadığında 404 sayfasına yönlendirme yapma geri dönder */}
-        
-        <Route path="*" element={<NotFoundView />} />
+        <Route path="*" element={routers.includes(window.location.pathname) ? <Loader/> : <NotFoundView />} />
 
       </Routes>
 

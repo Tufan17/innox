@@ -2,6 +2,7 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import { auth,db } from "../firebase";
 import {
@@ -57,6 +58,7 @@ const createUser = async (
             email: email,
             id: user.uid,
             nickname: nickname,
+            status: 1,
           },
         };
       })
@@ -92,4 +94,8 @@ const login = async (email: string, password: string) => {
       };
     } 
 };
-export { nicknameAndEmail, createUser, login };
+
+ const signout = () => {
+  return signOut(auth);
+};
+export { nicknameAndEmail, createUser, login, signout };
