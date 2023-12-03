@@ -19,6 +19,7 @@
   id:string,
   name:string,
   nickname:string,
+  profile:string,
   status:number,
   education:number
   }
