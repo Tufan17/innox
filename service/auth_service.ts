@@ -57,8 +57,10 @@ const createUser = async (
           user: {
             email: email,
             id: user.uid,
+            profile:"https://firebasestorage.googleapis.com/v0/b/innox-ee22c.appspot.com/o/avatar%2Favatar_24.jpg?alt=media&token=1ce0f757-c4da-4534-9107-ffd0e7b56dab",
             nickname: nickname,
             status: 1,
+            education: null,
           },
         };
       })
