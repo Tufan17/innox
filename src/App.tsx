@@ -13,30 +13,35 @@ import { Route, Routes } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import routers from "./constants";
 import Loader from "./pages/Loader";
+import { signout } from "../service/auth_service";
 
 export default function App() {
-  const [login, setLogin] = useState<boolean | null>(null);
+  const [login, setLogin] = useState<boolean | null>(false);
   useEffect(() => {
     document.title = `InnoX`;
     const link = document.querySelector("link[rel*='icon']") as HTMLLinkElement | null;
     if (link) {
       link.href = `/img/logo_IX.png`;
     }
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setLogin(true);
-
-        if (window.location.pathname === "/login" || window.location.pathname === "/register") {
-          console.log("object burada");
-          window.location.href = "/dashboard";
+    console.log(new Date());
+    if(window.location.pathname !== "/register"){
+      console.log("object");
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          setLogin(true);
+  
+          if (window.location.pathname === "/login") {
+            window.location.href = "/dashboard";
+          }
+        } else {
+          if (window.location.pathname !== "/login" && window.location.pathname !== "/register" && window.location.pathname !== "/") {
+            window.location.href = "/";
+          }
+          setLogin(false);
         }
-      } else {
-        if (window.location.pathname !== "/login" && window.location.pathname !== "/register" && window.location.pathname !== "/") {
-          window.location.href = "/";
-        }
-        setLogin(false);
+      });}else{
+        signout();
       }
-    });
   }, []);
   if (login === null) {
     return (<Loader/>);
