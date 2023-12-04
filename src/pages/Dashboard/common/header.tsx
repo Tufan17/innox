@@ -1,6 +1,10 @@
 import { Button } from 'react-bootstrap';
 import './index.css';
 import { signout } from '../../../../service/auth_service';
+import Stack from '@mui/material/Stack';
+import LanguagePopover from './language';
+import NotificationsPopover from './notification';
+
 const Header = () => {
     return (
         <div className='main'>
@@ -14,6 +18,12 @@ const Header = () => {
             >
                 Çıkış Yap
             </Button>
+
+                <Stack direction="row" alignItems="center" spacing={1}>
+                <LanguagePopover />
+                <NotificationsPopover />
+                {/* <AccountPopover /> */}
+            </Stack>
         </div >
     );
 }

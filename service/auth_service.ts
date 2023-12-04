@@ -1,18 +1,17 @@
 import {
-  getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { auth,db } from "../firebase";
+import { auth, db } from "../firebase";
 import {
   getFirestore,
-  doc,
-  query,
   collection,
   where,
+  doc,
   getDocs,
   setDoc,
+  query,
 } from "firebase/firestore";
 
 const nicknameAndEmail = async (email: string, nickname: string) => {
@@ -35,69 +34,58 @@ const nicknameAndEmail = async (email: string, nickname: string) => {
   };
 };
 
-const createUser = async (
-  email: string,
-  password: string,
-  nickname: string
-) => {
+const createUser = async (email: string, password: string, nickname: string) => {
   try {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-       
-        const user = userCredential.user;
-        const db = getFirestore();
-        const docRef = doc(db, "users", user.uid);
-        setDoc(docRef, {
-          email: email,
-          id: user.uid,
-          nickname: nickname,
-        });
-        return {
-          status: true,
-          user: {
-            email: email,
-            id: user.uid,
-            profile:"https://firebasestorage.googleapis.com/v0/b/innox-ee22c.appspot.com/o/avatar%2Favatar_24.jpg?alt=media&token=1ce0f757-c4da-4534-9107-ffd0e7b56dab",
-            nickname: nickname,
-            status: 1,
-            education: null,
-          },
-        };
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        return {
-          status: false,
-          errorCode: errorCode,
-          error: errorMessage,
-        };
-      });
+    const docRef = doc(db, "demo", "1");
+    await setDoc(docRef, {
+      email: email,
+      id: 1,
+      nickname: nickname,
+    });
+  
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    await  create(userCredential,nickname);
+    return {
+      status: true,
+    };
   } catch (error) {
-    console.log(error);
+    return {
+      status: false,
+    };
+  }
+};
+
+
+const login = async (email: string, password: string) => {
+  try {
+    const data = await signInWithEmailAndPassword(auth, email, password);
+    console.log(data);
+    return {
+      status: true,
+    };
+  } catch (error) {
     return {
       status: false,
       error: error,
     };
   }
 };
+const create = async (userCredential: any,nickname:string) => {
+  const user = userCredential.user;
+  console.log(2);
+  const docRefUser = doc(db, "users", user.uid);
+  await setDoc(docRefUser, {
+    email: user.email,
+    id: user.uid,
+    profile:"https://firebasestorage.googleapis.com/v0/b/innox-ee22c.appspot.com/o/avatar%2Favatar_24.jpg?alt=media&token=1ce0f757-c4da-4534-9107-ffd0e7b56dab",
+    nickname: nickname,
+    status: 1,
+    education: null,
+  });
+  console.log(3);
 
-const login = async (email: string, password: string) => {
-    try{
-      const data=await signInWithEmailAndPassword(auth, email, password);
-      console.log(data);
-      return {
-        status: true,
-      };
-    }catch(error){
-      return {
-        status: false,
-        error: error,
-      };
-    } 
-};
-
- const signout = () => {
+}
+const signout = () => {
   return signOut(auth);
 };
 export { nicknameAndEmail, createUser, login, signout };

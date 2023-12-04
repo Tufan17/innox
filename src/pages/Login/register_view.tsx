@@ -5,6 +5,7 @@ import { CustomNavLinkSmall, Span } from '../../components/Header/styles';
 import { Button } from '../../common/Button';
 import { createUser, nicknameAndEmail } from '../../../service/auth_service';
 import { toast } from 'react-toastify';
+import { Bars } from 'react-loader-spinner';
 const RegisterView = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
@@ -12,6 +13,8 @@ const RegisterView = () => {
   const [nickname, setNickname] = useState('');
   const [nicknameError, setNicknameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
+  const [loader, setLoader] = useState(false);
+
   type NicknameAndEmailResponse = { email: boolean; nickname: boolean };
   const fullScreen = {
     width: window.innerWidth,
@@ -74,7 +77,15 @@ const RegisterView = () => {
               () => {
                 register(email, password, nickname);
               }
-            }>{"Kayıt Ol"}</Button>
+            }>{ loader ?  <Bars
+              height="20"
+              width="80"
+              color="white"
+              ariaLabel="bars-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+            /> : "Kayıt Ol"}</Button>
           </Span>
         </CustomNavLinkSmall>
       </Center>
@@ -108,10 +119,11 @@ const RegisterView = () => {
     } else if (password.length < 6) {
       toast.error("Şifre en az 6 karakter olmalıdır.");
     } else if (email.length > 30) {
-      toast.error("E-posta adresi en fazla 15 karakter olmalıdır.");
+      toast.error("E-posta adresi en fazla 30 karakter olmalıdır.");
     } else if (password.length > 15) {
       toast.error("Şifre en fazla 15 karakter olmalıdır.");
     } else {
+    setLoader(true);
       const res: NicknameAndEmailResponse = await nicknameAndEmail(email, nickname);
       toast(res.email);
       toast(res.nickname);
@@ -123,10 +135,11 @@ const RegisterView = () => {
         toast.error("Bu e-posta adresi zaten kullanılıyor.");
       } else if (res.email && res.nickname) {
         const data: any = await createUser(email, password, nickname);
+    setLoader(false);
+
         if (data.status) {
           toast.success("Kayıt başarılı. Giriş yapılıyor.");
           window.location.replace("/dashboard");
-
         } else {
           toast.error("Kayıt olurken bir hata oluştu.");
         }
