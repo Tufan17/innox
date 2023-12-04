@@ -69,11 +69,11 @@ export default function App() {
         }
         {
           login && (<>
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard/*" element={<Dashboard />} />
           </>
           )
         }
-        <Route path="*" element={routers.includes(window.location.pathname) ? <Loader/> : <NotFoundView />} />
+        <Route path="*" element={routers.includes(window.location.pathname.split("/")[1]) ? <Loader/> : <NotFoundView />} />
 
       </Routes>
 

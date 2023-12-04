@@ -1,8 +1,8 @@
 const routers=[
-    "/",
-    "/login",
-    "/register",
-    "/dashboard"
+    "",
+    "login",
+    "register",
+    "dashboard",
 ];
 
 export default routers;

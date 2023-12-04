@@ -4,6 +4,7 @@ import { signout } from '../../../../service/auth_service';
 import Stack from '@mui/material/Stack';
 import LanguagePopover from './language';
 import NotificationsPopover from './notification';
+import AccountPopover from './account';
 
 const Header = () => {
     return (
@@ -22,7 +23,7 @@ const Header = () => {
                 <Stack direction="row" alignItems="center" spacing={1}>
                 <LanguagePopover />
                 <NotificationsPopover />
-                {/* <AccountPopover /> */}
+                <AccountPopover />
             </Stack>
         </div >
     );
