@@ -5,6 +5,8 @@ import { BrowserRouter } from 'react-router-dom'
 import { MantineProvider, createTheme } from '@mantine/core';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import '@mantine/core/styles.css';
+import '@mantine/dates/styles.css';
 
 const theme = createTheme({
   /** Your theme override here */

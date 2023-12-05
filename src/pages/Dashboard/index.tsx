@@ -1,33 +1,92 @@
 import Header from "./common/header.tsx";
-import { useState } from 'react';
-import PropTypes from 'prop-types';
-
-import Box from '@mui/material/Box';
+import { Suspense, useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import Box from "@mui/material/Box";
 import Nav from "./nav.tsx";
 import Main from "./main.tsx";
+import Footer from "../../components/Footer";
+import Header1 from "../../components/Header";
+import { Styles } from "../../styles/styles";
+import Index from "../../pages";
+import LoginView from "../../pages/Login/login_view";
+import NotFoundView from "../../pages/404";
+import RegisterView from "../../pages/Login/register_view";
 const Dashboard = () => {
-  const [openNav, setOpenNav] = useState<boolean>(false);
+  const [openNav, setOpenNav] = useState<boolean>(true);
+  const [mobile, setMobile] = useState<boolean>(false);
+  useEffect(() => {
+    const userAgent = navigator.userAgent;
 
-    return ( 
-        <div style={{
-            backgroundColor: 'red',
-            width:window.innerWidth,
-            height:window.innerHeight
-        }}>
-            <Header/>
-            <Box
+    if (/Android/i.test(userAgent) || /iPhone|iPad|iPod/i.test(userAgent)) {
+      setMobile(true);
+    }
+  }, []);
+  return (
+    <div
+      style={{
+        overflowY: "hidden",
+        width: "100%",
+        height: window.innerHeight,
+      }}
+    >
+      <Header mobile={mobile} onOpenNav={() => setOpenNav(true)} />
+      <Box
         sx={{
           minHeight: 1,
-          display: 'flex',
-          flexDirection: { xs: 'column', lg: 'row' },
+          display: "flex",
+          flexDirection: { xs: "column", lg: "row" },
         }}
       >
-        <Nav openNav={openNav} onCloseNav={() => setOpenNav(false)} />
-
-        <Main children={"children"}/>
+        <Nav
+          openNav={openNav}
+          mobile={mobile}
+          onCloseNav={() => setOpenNav(false)}
+        />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Main
+                children={
+                  <Suspense fallback={null}>
+                    <Styles />
+                    <Header1 />
+                    <Index />
+                    <Footer />
+                  </Suspense>
+                }
+                mobile={mobile}
+              />
+            }
+          />
+          {
+            <>
+              <Route
+                path="/login"
+                element={<Main children={<LoginView />} mobile={mobile} />}
+              />
+              <Route
+                path="/register"
+                element={<Main children={<RegisterView />} mobile={mobile} />}
+              />
+            </>
+          }
+          {
+            <>
+              <Route
+                path="/dashboard/*"
+                element={<Main children={<Dashboard />} mobile={mobile} />}
+              />
+            </>
+          }
+          <Route
+            path="*"
+            element={<Main children={<NotFoundView />} mobile={mobile} />}
+          />
+        </Routes>
       </Box>
-        </div>
-     );
-}
- 
+    </div>
+  );
+};
+
 export default Dashboard;

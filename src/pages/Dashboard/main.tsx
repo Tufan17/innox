@@ -1,28 +1,34 @@
-import React, { ReactNode } from 'react';
-import PropTypes from 'prop-types';
+import React, { ReactNode } from "react";
+import PropTypes from "prop-types";
 
-import Box from '@mui/material/Box';
+import { ScrollArea, Space } from "@mantine/core";
 
 interface MainProps {
   children: ReactNode;
+  mobile: boolean;
 }
 
-const Main: React.FC<MainProps> = ({ children }) => {
-  const main: React.CSSProperties = {
-    marginTop: 72,
-    marginLeft: 250,
-    marginRight: 5,
-    width: "100%",
-    backgroundColor: "white",
-    height: window.innerHeight - 100,
-    borderRadius: 10,
-    padding: 10,
-  };
+const Main: React.FC<MainProps> = ({ children, mobile }) => {
+  const main: React.CSSProperties = mobile
+    ? {
+        borderRadius: 10,
+        width: "100%",
+        height: window.innerHeight,
+        padding: 10,
+      }
+    : {
+        marginLeft: 240,
+        borderRadius: 10,
+        width: "100%",
+        height: window.innerHeight,
+        padding: 10,
+      };
 
   return (
-    <Box style={main}>
+    <ScrollArea scrollbarSize={20} scrollHideDelay={6000} style={main}>
+      <Space h={70}></Space>
       {children}
-    </Box>
+      </ScrollArea>
   );
 };
 
