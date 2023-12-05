@@ -44,8 +44,7 @@ export default function AccountPopover() {
 
   const handleClose = () => {
     setOpen(null);
-    window.location.href = '/login';
-    signout();
+   
   };
 
   return (
@@ -112,7 +111,11 @@ export default function AccountPopover() {
         <MenuItem
           disableRipple
           disableTouchRipple
-          onClick={handleClose}
+          onClick={() => {
+            setOpen(null);
+            window.location.href = '/login';
+            signout();
+            }}
           sx={{ typography: 'body2', color: 'error.main', py: 1.5 }}
         >
           Logout
