@@ -5,7 +5,13 @@ import Drawer from "@mui/material/Drawer";
 import Typography from "@mui/material/Typography";
 import { Container, } from "@mantine/core";
 import "./common/index.css";
+import ListItemButton from '@mui/material/ListItemButton';
+import { Link as RouterLink, useLocation } from "react-router-dom";
+import { forwardRef } from "react";
+import { alpha } from "@mui/material";
+import SvgColor from '../../components/svg-color';
 
+import Link from '@mui/material/Link';
 interface NavProps {
   openNav: boolean;
   mobile: boolean;
@@ -36,7 +42,48 @@ const Nav: React.FC<NavProps> = ({ openNav, mobile, onCloseNav }) => {
       </Stack>
     </Box>
   );
-
+  const icon = (name:string) => (
+    <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{ width: 1, height: 1 }} />
+  );
+  const navConfig = [
+    {
+      title: 'dashboard',
+      path: '/',
+      icon: icon('ic_analytics'),
+    },
+    {
+      title: 'user',
+      path: '/user',
+      icon: icon('ic_user'),
+    },
+    {
+      title: 'product',
+      path: '/products',
+      icon: icon('ic_cart'),
+    },
+    {
+      title: 'blog',
+      path: '/blog',
+      icon: icon('ic_blog'),
+    },
+    {
+      title: 'login',
+      path: '/login',
+      icon: icon('ic_lock'),
+    },
+    {
+      title: 'Not found',
+      path: '/404',
+      icon: icon('ic_disabled'),
+    },
+  ];
+  const renderMenu = (
+    <Stack component="nav" spacing={0.5} sx={{ px: 2 }}>
+      {navConfig.map((item) => (
+        <NavItem key={item.title} item={item} />
+      ))}
+    </Stack>
+  );
   const renderContent = (
     <Container>
       <Box sx={{ flexGrow: 1 }} />
@@ -81,6 +128,7 @@ const Nav: React.FC<NavProps> = ({ openNav, mobile, onCloseNav }) => {
       }}
     >
       {
+        
         <Box className="nav"
           sx={{
             
@@ -91,7 +139,7 @@ const Nav: React.FC<NavProps> = ({ openNav, mobile, onCloseNav }) => {
             borderRight: (theme) => `dashed 1px ${theme.palette.divider}`,
           }}
         >
-          {renderContent}
+             {renderMenu}
         </Box>
       }
     </Box>
@@ -99,3 +147,48 @@ const Nav: React.FC<NavProps> = ({ openNav, mobile, onCloseNav }) => {
 };
 
 export default Nav;
+
+interface NavItemProps {
+  item: {
+    path: string;
+    icon: React.ReactNode;
+    title: string;
+  };
+}
+
+const NavItem: React.FC<NavItemProps> = ({ item }) => {
+  const pathname = useLocation().pathname;
+  const active = item.path === pathname;
+
+  return (
+    <ListItemButton
+      component={forwardRef<HTMLDivElement, any>((props, ref) => (
+        <Link {...props} to={item.path} component={RouterLink} ref={ref} />
+      ))}
+      href={item.path}
+      sx={{
+        minHeight: 44,
+        borderRadius: 0.75,
+        typography: 'body2',
+        color: 'text.secondary',
+        textTransform: 'capitalize',
+        fontWeight: 'fontWeightMedium',
+        ...(active && {
+          color: 'primary.main',
+          fontWeight: 'fontWeightSemiBold',
+          bgcolor: (theme) => alpha(theme.palette.primary.main, 0.08),
+          '&:hover': {
+            bgcolor: (theme) => alpha(theme.palette.primary.main, 0.16),
+          },
+        }),
+      }}
+    >
+      <Box component="span" sx={{ width: 24, height: 24, mr: 2 }}>
+        {item.icon}
+      </Box>
+
+      <Box component="span">{item.title} </Box>
+    </ListItemButton>
+  );
+};
+
