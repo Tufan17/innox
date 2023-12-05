@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import Box from '@mui/material/Box';
 import Nav from "./nav.tsx";
+import Main from "./main.tsx";
 const Dashboard = () => {
   const [openNav, setOpenNav] = useState<boolean>(false);
 
@@ -23,7 +24,7 @@ const Dashboard = () => {
       >
         <Nav openNav={openNav} onCloseNav={() => setOpenNav(false)} />
 
-        {/* <Main>{children}</Main> */}
+        <Main children={"children"}/>
       </Box>
         </div>
      );
