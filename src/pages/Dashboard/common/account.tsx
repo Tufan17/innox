@@ -8,6 +8,7 @@ import { alpha, Theme } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
+import { signout } from '../../../../service/auth_service';
 
 
 // ----------------------------------------------------------------------
@@ -36,13 +37,15 @@ export default function AccountPopover() {
     displayName: 'Emre',
     email: 'tufan@gmail.com',
     photoURL: '/static/mock-images/avatars/avatar_default.jpg',
-    };
+  };
   const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
     setOpen(event.currentTarget);
   };
 
   const handleClose = () => {
     setOpen(null);
+    window.location.href = '/login';
+    signout();
   };
 
   return (
@@ -114,7 +117,7 @@ export default function AccountPopover() {
         >
           Logout
         </MenuItem>
-      </Popover>
+      </Popover >
     </>
   );
 }

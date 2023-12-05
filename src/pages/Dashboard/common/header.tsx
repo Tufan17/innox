@@ -5,27 +5,22 @@ import Stack from '@mui/material/Stack';
 import LanguagePopover from './language';
 import NotificationsPopover from './notification';
 import AccountPopover from './account';
+import { Flex, Group } from '@mantine/core';
 
 const Header = () => {
     return (
-        <div className='main'>
-            ssad
-            <Button
-                onClick={() => {
-                    window.location.href = '/login';
-                    signout();
-
-                }}
-            >
-                Çıkış Yap
-            </Button>
-
-                <Stack direction="row" alignItems="center" spacing={1}>
+        <Flex className='main'  gap="xl"
+        justify="flex-end"
+        align="center"
+        direction="row"
+        wrap="wrap"
+        >
+                <Stack mr={"10px"} direction="row" alignItems="center" spacing={1}>
                 <LanguagePopover />
                 <NotificationsPopover />
                 <AccountPopover />
             </Stack>
-        </div >
+        </Flex >
     );
 }
 
