@@ -2,17 +2,17 @@
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Drawer from "@mui/material/Drawer";
-import { Center, } from "@mantine/core";
-import "./common/index.css";
+import { Center } from "@mantine/core";
+import "./index.css";
 import ListItemButton from '@mui/material/ListItemButton';
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import { forwardRef } from "react";
 import { alpha } from "@mui/material";
-import SvgColor from '../../components/svg-color';
+import SvgColor from '../../../components/svg-color';
 
 import Link from '@mui/material/Link';
-import { SvgIcon } from "../../common/SvgIcon";
-import {NAV_WIDTH} from "../../constants/index";
+import { SvgIcon } from "../../../common/SvgIcon";
+import {NAV_WIDTH} from "../../../constants/index";
 interface NavProps {
   openNav: boolean;
   mobile: boolean;

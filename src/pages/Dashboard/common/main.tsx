@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import PropTypes from "prop-types";
 
 import { ScrollArea, Space } from "@mantine/core";
-import {NAV_WIDTH} from "../../constants";
+import {NAV_WIDTH} from "../../../constants";
 interface MainProps {
   children: ReactNode;
   mobile: boolean;
