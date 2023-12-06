@@ -32,8 +32,8 @@ const Nav: React.FC<NavProps> = ({ openNav, mobile, onCloseNav }) => {
       icon: icon('ic_analytics'),
     },
     {
-      title: 'user',
-      path: nav_path+'/user',
+      title: 'users',
+      path: nav_path+'/users',
       icon: icon('ic_user'),
     },
     {
