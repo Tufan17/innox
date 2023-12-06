@@ -5,7 +5,7 @@ import { CustomNavLinkSmall, Span } from '../../components/Header/styles';
 import { Button } from '../../common/Button';
 import { login } from '../../../service/auth_service';
 import { toast } from 'react-toastify';
-import { Bars, InfinitySpin } from 'react-loader-spinner';
+import { Bars } from 'react-loader-spinner';
 
 const LoginView = () => {
   const [showPassword, setShowPassword] = useState(false);

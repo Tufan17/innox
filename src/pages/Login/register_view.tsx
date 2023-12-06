@@ -11,8 +11,6 @@ const RegisterView = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [nickname, setNickname] = useState('');
-  const [nicknameError, setNicknameError] = useState(false);
-  const [emailError, setEmailError] = useState(false);
   const [loader, setLoader] = useState(false);
 
   type NicknameAndEmailResponse = { email: boolean; nickname: boolean };
@@ -128,10 +126,8 @@ const RegisterView = () => {
       toast(res.email);
       toast(res.nickname);
       if (!res.nickname) {
-        setNicknameError(true);
         toast.error("Bu kullanıcı adı zaten kullanılıyor.");
       } else if (!res.email) {
-        setEmailError(true);
         toast.error("Bu e-posta adresi zaten kullanılıyor.");
       } else if (res.email && res.nickname) {
         const data: any = await createUser(email, password, nickname);

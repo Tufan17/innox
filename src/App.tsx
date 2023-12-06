@@ -23,9 +23,7 @@ export default function App() {
     if (link) {
       link.href = `/img/logo_IX.png`;
     }
-    console.log(new Date());
     if(window.location.pathname !== "/register"){
-      console.log("object");
       onAuthStateChanged(auth, (user) => {
         if (user) {
           setLogin(true);

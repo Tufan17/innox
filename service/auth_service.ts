@@ -58,8 +58,7 @@ const createUser = async (email: string, password: string, nickname: string) => 
 
 const login = async (email: string, password: string) => {
   try {
-    const data = await signInWithEmailAndPassword(auth, email, password);
-    console.log(data);
+    await signInWithEmailAndPassword(auth, email, password);
     return {
       status: true,
     };
@@ -72,7 +71,6 @@ const login = async (email: string, password: string) => {
 };
 const create = async (userCredential: any,nickname:string) => {
   const user = userCredential.user;
-  console.log(2);
   const docRefUser = doc(db, "users", user.uid);
   await setDoc(docRefUser, {
     email: user.email,
@@ -82,8 +80,6 @@ const create = async (userCredential: any,nickname:string) => {
     status: 1,
     education: null,
   });
-  console.log(3);
-
 }
 const signout = () => {
   return signOut(auth);
