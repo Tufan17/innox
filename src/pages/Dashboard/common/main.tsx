@@ -19,7 +19,7 @@ const Main: React.FC<MainProps> = ({ children, mobile }) => {
         width: "100%",
         height: window.innerHeight,
         padding: 10,
-        marginLeft:NAV_WIDTH,
+        // marginLeft:NAV_WIDTH,
       };
 
   return (

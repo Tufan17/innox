@@ -11,6 +11,7 @@ import Index from "../../pages";
 import LoginView from "../../pages/Login/login_view";
 import NotFoundView from "../../pages/404";
 import RegisterView from "../../pages/Login/register_view";
+import AnalysisView from "./analysis.tsx";
 const Dashboard = () => {
   const [openNav, setOpenNav] = useState<boolean>(true);
   const [mobile, setMobile] = useState<boolean>(false);
@@ -32,7 +33,6 @@ const Dashboard = () => {
       <Header mobile={mobile} onOpenNav={() => setOpenNav(true)} />
       <Box
         sx={{
-          minHeight: 1,
           display: "flex",
           flexDirection: { xs: "column", lg: "row" },
         }}
@@ -47,14 +47,7 @@ const Dashboard = () => {
             path="/"
             element={
               <Main
-                children={
-                  <Suspense fallback={null}>
-                    <Styles />
-                    <Header1 />
-                    <Index />
-                    <Footer />
-                  </Suspense>
-                }
+                children={<AnalysisView/>}
                 mobile={mobile}
               />
             }

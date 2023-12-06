@@ -75,7 +75,7 @@ const Nav: React.FC<NavProps> = ({ openNav, mobile, onCloseNav }) => {
     return (<Box
       sx={{
         flexShrink: { lg: 0 },
-        width: { lg: 100 },
+        width: { lg: NAV_WIDTH },
       }}
     >
       {
