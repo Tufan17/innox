@@ -1,4 +1,4 @@
-import { Center, Container, Title } from "@mantine/core";
+import {  Container, Title } from "@mantine/core";
 import Grid from '@mui/material/Unstable_Grid2';
 
 import Box from '@mui/material/Box';
@@ -15,7 +15,7 @@ const chartsParams = {
     height: 300,
 };
 const AnalysisView = () => {
-    const [color, setColor] = useState('#4e79a7');
+    const [color] = useState('#4e79a7');
 
 
 
