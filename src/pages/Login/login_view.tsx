@@ -3,7 +3,7 @@ import { IconButton, InputAdornment, Link, Stack, TextField, Typography } from '
 import { useState } from 'react';
 import { CustomNavLinkSmall, Span } from '../../components/Header/styles';
 import { Button } from '../../common/Button';
-import { login } from '../../../service/auth_service';
+import { login } from '../../../database/service/auth_service';
 import { toast } from 'react-toastify';
 import { Bars } from 'react-loader-spinner';
 

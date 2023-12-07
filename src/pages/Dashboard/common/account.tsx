@@ -8,7 +8,7 @@ import { alpha, Theme } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import { signout } from '../../../../service/auth_service';
+import { signout } from '../../../../database/service/auth_service';
 
 
 // ----------------------------------------------------------------------

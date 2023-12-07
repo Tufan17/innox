@@ -13,7 +13,7 @@ import { Route, Routes } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import routers from "./constants";
 import Loader from "./pages/Loader";
-import { signout } from "../service/auth_service";
+import { signout } from "../database/service/auth_service";
 
 export default function App() {
   const [login, setLogin] = useState<boolean | null>(false);

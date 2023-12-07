@@ -3,7 +3,7 @@ import { IconButton, InputAdornment, Link, Stack, TextField, Typography } from '
 import { useState } from 'react';
 import { CustomNavLinkSmall, Span } from '../../components/Header/styles';
 import { Button } from '../../common/Button';
-import { createUser, nicknameAndEmail } from '../../../service/auth_service';
+import { createUser, nicknameAndEmail } from '../../../database/service/auth_service';
 import { toast } from 'react-toastify';
 import { Bars } from 'react-loader-spinner';
 const RegisterView = () => {
