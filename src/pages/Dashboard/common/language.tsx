@@ -13,28 +13,10 @@ interface Language {
   icon: string;
 }
 
-const LANGS: Language[] = [
-  {
-    value: 'en',
-    label: 'English',
-    icon: '/assets/icons/ic_flag_en.svg',
-  },
-  {
-    value: 'de',
-    label: 'German',
-    icon: '/assets/icons/ic_flag_de.svg',
-  },
-  {
-    value: 'fr',
-    label: 'French',
-    icon: '/assets/icons/ic_flag_fr.svg',
-  },
-];
-
-// ----------------------------------------------------------------------
 
 export default function LanguagePopover() {
   const [open, setOpen] = useState<HTMLElement | null>(null);
+  const LANGS: Language[]|null=JSON.parse(window.localStorage.getItem("languages")!);
 
   const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
     setOpen(event.currentTarget);
@@ -56,7 +38,7 @@ export default function LanguagePopover() {
           }),
         }}
       >
-        <img src={LANGS[0].icon} alt={LANGS[0].label} />
+        <img src={LANGS![0].icon} alt={LANGS![0].label} width={30} />
       </IconButton>
 
       <Popover
@@ -74,10 +56,10 @@ export default function LanguagePopover() {
           },
         }}
       >
-        {LANGS.map((option) => (
+        {LANGS!.map((option) => (
           <MenuItem
             key={option.value}
-            selected={option.value === LANGS[0].value}
+            selected={option.value === LANGS![0].value}
             onClick={() => handleClose()}
             sx={{ typography: 'body2', py: 1 }}
           >
