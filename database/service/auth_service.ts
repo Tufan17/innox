@@ -44,7 +44,11 @@ const createUser = async (email: string, password: string, nickname: string) => 
       nickname: nickname,
       status: 1,
       role: "user",
+      language: "tr",
       education: null,
+      created_at: new Date(),
+      updated_at: new Date(),
+      deleted_at: null,
     });
     return {
       status: true,

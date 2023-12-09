@@ -8,6 +8,10 @@ const getUser= async (id:string) => {
   const data = await new UserModel().getById(id);
 return data;
 }
+const update = async (id:string, data:any) => {
+  const result = await new UserModel().update(id,data);
+  return result;
+}
 
 
 
@@ -15,4 +19,4 @@ return data;
 
 
 
-export default  {index,getUser};
+export default  {index,getUser,update};

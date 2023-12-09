@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Popover from '@mui/material/Popover';
 import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
+import userController from '../../../../database/db/controller/userController';
 
 // ----------------------------------------------------------------------
 
@@ -16,15 +17,22 @@ interface Language {
 
 export default function LanguagePopover() {
   const [open, setOpen] = useState<HTMLElement | null>(null);
+  const user=JSON.parse(window.localStorage.getItem("user")!);
   const LANGS: Language[]|null=JSON.parse(window.localStorage.getItem("languages")!);
-
+  const userLang=LANGS!.filter((lang)=>lang.value===user.language)[0];
+  
   const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
     setOpen(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = (value:string) => {
+    
+    user.language=value;
+    window.localStorage.setItem("user",JSON.stringify(user));
+    userController.update(user.id,user);
     setOpen(null);
   };
+  
 
   return (
     <>
@@ -38,7 +46,7 @@ export default function LanguagePopover() {
           }),
         }}
       >
-        <img src={LANGS![0].icon} alt={LANGS![0].label} width={30} />
+        <img src={userLang.icon} alt={userLang.label} width={30} />
       </IconButton>
 
       <Popover
@@ -59,8 +67,8 @@ export default function LanguagePopover() {
         {LANGS!.map((option) => (
           <MenuItem
             key={option.value}
-            selected={option.value === LANGS![0].value}
-            onClick={() => handleClose()}
+            selected={option.value === userLang.value}
+            onClick={() => handleClose(option.value)}
             sx={{ typography: 'body2', py: 1 }}
           >
             <Box component="img" alt={option.label} src={option.icon} sx={{ width: 28, mr: 2 }} />

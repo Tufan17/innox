@@ -9,6 +9,7 @@ import {
   DocumentData,
   query,
   getDoc,
+  updateDoc,
 } from "firebase/firestore";
 import { auth, db } from "../../../firebase";
 
@@ -31,14 +32,16 @@ class BaseModel {
 
   async update(id: string, data): Promise<boolean> {
     try {
-      await setDoc(doc(db, this.moduleName, id), data);
-      await setDoc(doc(db, this.moduleName, id), { updated_at: new Date() });
+      const docRef = doc(db, this.moduleName, id);
+      await updateDoc(docRef, data);
+      await updateDoc(docRef, { updated_at: new Date() });
       return true;
     } catch (error) {
       console.error("Error updating document:", error);
       return false;
     }
   }
+  
 
   async delete(id: string): Promise<boolean> {
     try {
