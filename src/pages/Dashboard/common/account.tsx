@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
-import Divider from '@mui/material/Divider';
 import Popover from '@mui/material/Popover';
 import { alpha, Theme } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
@@ -11,31 +10,12 @@ import IconButton from '@mui/material/IconButton';
 import { signout } from '../../../../database/service/auth_service';
 
 
-// ----------------------------------------------------------------------
-
-const MENU_OPTIONS = [
-  {
-    label: 'Home',
-    icon: 'eva:home-fill',
-  },
-  {
-    label: 'Profile',
-    icon: 'eva:person-fill',
-  },
-  {
-    label: 'Settings',
-    icon: 'eva:settings-2-fill',
-  },
-];
-
-// ----------------------------------------------------------------------
-
 export default function AccountPopover() {
   const [open, setOpen] = useState<HTMLElement | null>(null);
-
+  const user=JSON.parse(window.localStorage.getItem("user")!);
   const account = {
-    displayName: 'Emre',
-    email: 'tufan@gmail.com',
+    displayName: 'user',
+    email: 'user@gmail.com',
     photoURL: '/static/mock-images/avatars/avatar_default.jpg',
   };
   const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -62,15 +42,15 @@ export default function AccountPopover() {
         }}
       >
         <Avatar
-          src={account.photoURL}
-          alt={account.displayName}
+          src={user.avatar??account.photoURL}
+          alt={user.nickname??account.displayName}
           sx={{
             width: 36,
             height: 36,
             border: (theme: Theme) => `solid 2px ${theme.palette.background.default}`,
           }}
         >
-          {account.displayName.charAt(0).toUpperCase()}
+          {user.nickname.charAt(0).toUpperCase()??account.displayName.charAt(0).toUpperCase()}
         </Avatar>
       </IconButton>
 
@@ -91,13 +71,13 @@ export default function AccountPopover() {
       >
         <Box sx={{ my: 1.5, px: 2 }}>
           <Typography variant="subtitle2" noWrap>
-            {account.displayName}
+            {user.nickname??account.displayName}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            {account.email}
+            {user.email??account.email}
           </Typography>
         </Box>
-
+ {/*
         <Divider sx={{ borderStyle: 'dashed' }} />
 
         {MENU_OPTIONS.map((option) => (
@@ -106,7 +86,7 @@ export default function AccountPopover() {
           </MenuItem>
         ))}
 
-        <Divider sx={{ borderStyle: 'dashed', m: 0 }} />
+        <Divider sx={{ borderStyle: 'dashed', m: 0 }} /> */}
 
         <MenuItem
           disableRipple

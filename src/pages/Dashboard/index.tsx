@@ -8,6 +8,7 @@ import NotFoundView from "../../pages/404";
 import RegisterView from "../../pages/Login/register_view";
 import AnalysisView from "./analysis.tsx";
 import UsersView from "./users";
+import SettingView from "./settings.tsx";
 const Dashboard = () => {
   const [openNav, setOpenNav] = useState<boolean>(true);
   const [mobile, setMobile] = useState<boolean>(false);
@@ -49,16 +50,17 @@ const Dashboard = () => {
             }
           />
           
-            <>
+            
               <Route
                 path="/users"
                 element={<Main children={<UsersView />} mobile={mobile} />}
               />
               <Route
-                path="/register"
-                element={<Main children={<RegisterView />} mobile={mobile} />}
+                path="/settings"
+                element={<Main children={<SettingView />} mobile={mobile} />}
               />
-            </>
+              
+            
           
           <Route
             path="*"

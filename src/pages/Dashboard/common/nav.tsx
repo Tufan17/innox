@@ -9,7 +9,7 @@ import { Link as RouterLink, useLocation } from "react-router-dom";
 import { forwardRef } from "react";
 import { alpha } from "@mui/material";
 import SvgColor from '../../../components/svg-color';
-
+import { FcSettings } from "react-icons/fc";
 import Link from '@mui/material/Link';
 import { SvgIcon } from "../../../common/SvgIcon";
 import {NAV_WIDTH} from "../../../constants/index";
@@ -55,6 +55,11 @@ const Nav: React.FC<NavProps> = ({ openNav, mobile, onCloseNav }) => {
       title: 'Not found',
       path: nav_path+'/404',
       icon: icon('ic_disabled'),
+    },
+    {
+      title: 'Ayarlar',
+      path: nav_path+'/settings',
+      icon: <FcSettings size={25}/>,
     },
   ];
   const renderMenu = (

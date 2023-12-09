@@ -13,7 +13,7 @@ import { Route, Routes } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import routers from "./constants";
 import Loader from "./pages/Loader";
-import { signout } from "../database/service/auth_service";
+import userController from "../database/db/controller/userController";
 
 export default function App() {
   const [login, setLogin] = useState<boolean | null>(false);
@@ -27,7 +27,10 @@ export default function App() {
       onAuthStateChanged(auth, (user) => {
         if (user) {
           setLogin(true);
-  
+          userController.getUser(user.uid!).then((res) => {
+            window.localStorage.setItem("user", JSON.stringify(res));
+          });
+          
           if (window.location.pathname === "/login") {
             window.location.href = "/dashboard";
           }
@@ -37,9 +40,7 @@ export default function App() {
           }
           setLogin(false);
         }
-      });}else{
-        signout();
-      }
+      });}
   }, []);
   if (login === null) {
     return (<Loader/>);

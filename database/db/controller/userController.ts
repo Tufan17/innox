@@ -4,11 +4,15 @@ const index = async () => {
   const data = await new UserModel().getAll();
 return data;
 };
-const store = async () => {
-    const data = await new UserModel().create({
-        name: "test",
-        email: ""
-    });
-    console.log(data);
-};
-export default  {index,store};
+const getUser= async (id:string) => {
+  const data = await new UserModel().getById(id);
+return data;
+}
+
+
+
+
+
+
+
+export default  {index,getUser};
