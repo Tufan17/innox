@@ -95,6 +95,7 @@ export default function AccountPopover() {
             setOpen(null);
             window.location.href = '/login';
             signout();
+            localStorage.clear();
             }}
           sx={{ typography: 'body2', color: 'error.main', py: 1.5 }}
         >

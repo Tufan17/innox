@@ -13,6 +13,7 @@ import { FcSettings } from "react-icons/fc";
 import Link from '@mui/material/Link';
 import { SvgIcon } from "../../../common/SvgIcon";
 import {NAV_WIDTH} from "../../../constants/index";
+import { FcPhoneAndroid } from "react-icons/fc";
 interface NavProps {
   openNav: boolean;
   mobile: boolean;
@@ -32,14 +33,14 @@ const Nav: React.FC<NavProps> = ({ openNav, mobile, onCloseNav }) => {
       icon: icon('ic_analytics'),
     },
     {
-      title: 'users',
+      title: 'Kullanıcılar',
       path: nav_path+'/users',
       icon: icon('ic_user'),
     },
     {
-      title: 'product',
+      title: 'Kullanıcı Anasayfası',
       path: nav_path+'/products',
-      icon: icon('ic_cart'),
+      icon: <FcPhoneAndroid size={25}/>,
     },
     {
       title: 'blog',

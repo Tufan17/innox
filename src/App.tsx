@@ -12,14 +12,17 @@ import Dashboard from "./pages/Dashboard";
 import routers from "./constants";
 import Loader from "./pages/Loader";
 import useAuthentication from "./hooks/useAuthentication";
+import UsersView from "./pages/Users";
 
 export default function App() {
-  
+
   const login = useAuthentication();
+  const user = JSON.parse(window.localStorage.getItem("user")!);
   if (login === null) {
-    return (<Loader/>);
+    return (<Loader />);
   }
 
+  console.log(login);
 
   return (
     <>
@@ -27,28 +30,32 @@ export default function App() {
 
       <Routes>
         <Route path="/" element={
-        
-        <Suspense fallback={null}>
-          <Styles />
-          <Header />
-          <Index />
-          <Footer />
-        </Suspense>} />
+
+          <Suspense fallback={null}>
+            <Styles />
+            <Header />
+            <Index />
+            <Footer />
+          </Suspense>} />
         {
 
-          !login && (<>
+          !login ? (<>
             <Route path="/login" element={<LoginView />} />
             <Route path="/register" element={<RegisterView />} />
           </>
-          )
+          ) :
+
+            user!.role === "admin" ?
+              (<>
+                <Route path="/dashboard/*" element={<Dashboard />} />
+              </>
+              ) : (
+                <>
+                  <Route path="/dashboard" element={<UsersView />} />
+                </>
+              )
         }
-        {
-          login && (<>
-            <Route path="/dashboard/*" element={<Dashboard />} />
-          </>
-          )
-        }
-        <Route path="*" element={routers.includes(window.location.pathname.split("/")[1]) ? <Loader/> : <NotFoundView />} />
+        <Route path="*" element={routers.includes(window.location.pathname.split("/")[1]) ? <Loader /> : <NotFoundView />} />
 
       </Routes>
 

@@ -10,19 +10,24 @@ const useAuthentication = () => {
   useEffect(() => {
     document.title = `InnoX`;
     const link = document.querySelector("link[rel*='icon']") as HTMLLinkElement | null;
-    
+
     if (link) {
       link.href = `/img/logo_IX.png`;
     }
 
     const handleAuthStateChange = (user: any) => {
       if (user) {
-        setLogin(true);
+
         userController.getUser(user.uid!).then((res) => {
           window.localStorage.setItem("user", JSON.stringify(res));
-        });
-        languageController.index().then((res) => {
-          window.localStorage.setItem("languages", JSON.stringify(res));
+          if(res.role === "admin"){
+            languageController.index().then((res) => {
+              window.localStorage.setItem("languages", JSON.stringify(res));
+              setLogin(true);
+            });
+          }else{
+            setLogin(true);
+          }
         });
 
         if (window.location.pathname === "/login") {
