@@ -1,4 +1,4 @@
 export const primaryColor= "#18216d";
 export const secondaryColor= "#fe7624";
 export const tertiaryColor= "black";
-export const quaternaryColor= "#e4e0e0";
+export const quaternaryColor= "whitesmoke";
