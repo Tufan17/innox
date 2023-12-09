@@ -135,7 +135,9 @@ const RegisterView = () => {
 
         if (data.status) {
           toast.success("Kayıt başarılı. Giriş yapılıyor.");
-          window.location.replace("/dashboard");
+          setTimeout(() => {
+            window.location.href = "/login";
+          }, 2000);
         } else {
           toast.error("Kayıt olurken bir hata oluştu.");
         }
