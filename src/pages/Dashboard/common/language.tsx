@@ -17,22 +17,26 @@ interface Language {
 
 export default function LanguagePopover() {
   const [open, setOpen] = useState<HTMLElement | null>(null);
-  const user=JSON.parse(window.localStorage.getItem("user")!);
-  const LANGS: Language[]|null=JSON.parse(window.localStorage.getItem("languages")!);
-  const userLang=LANGS!.filter((lang)=>lang.value===user.language)[0];
-  
+  const user = JSON.parse(window.localStorage.getItem("user")!);
+  const LANGS: Language[] | null = JSON.parse(window.localStorage.getItem("languages")!);
+  const userLang = LANGS!.filter((lang) => lang.value === user.language)[0];
+
   const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
     setOpen(event.currentTarget);
   };
 
-  const handleClose = (value:string) => {
-    
-    user.language=value;
-    window.localStorage.setItem("user",JSON.stringify(user));
-    userController.update(user.id,user);
+  const handleClose = (value: string) => {
+
+
+    if (value.length < 4) {
+      user.language = value;
+      window.localStorage.setItem("user", JSON.stringify(user));
+      userController.update(user.id, user);
+    }
+
     setOpen(null);
   };
-  
+
 
   return (
     <>
