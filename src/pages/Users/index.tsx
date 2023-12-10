@@ -6,23 +6,25 @@ import { FcAssistant, FcManager, FcPhoneAndroid, FcSettings } from "react-icons/
 import { useEffect, useState } from "react";
 import Loader from "../Loader";
 import bannerController from "../../../database/db/controller/bannerController";
+import contentsController from "../../../database/db/controller/contentsController";
 const UsersView = () => {
     const user = JSON.parse(window.localStorage.getItem("user")!);
-    const [homeData, setHomeData] = useState<{ banner: any } | null>(null);
+    const [homeData, setHomeData] = useState<{ banner: any, contents: ContentType[] } | null>(null);
 
     const getAllData = async () => {
         const banner = await bannerController.index();
+        const contents = await contentsController.index();
         const data = {
             banner: banner[0],
-            list: [],
+            contents: contents,
         };
         setHomeData(data);
     };
-    
+
 
     useEffect(() => {
         getAllData();
-    
+
     }, []);
 
 
@@ -59,6 +61,44 @@ const UsersView = () => {
                 boxShadow: '1px 1px 10px 1px whitesmoke',
             }}>
             </Container>
+
+            <Grid gutter="sm" style={{
+                width: '100%',
+            }} >
+                {
+                    homeData?.contents.map((content: any) => {
+                        return (
+                            <Grid.Col span={content.width}> <Card
+                                style={{
+                                    backgroundColor: quaternaryColor,
+                                    height: window.innerWidth * content.height/12,
+                                    boxShadow: 'none',
+                                }}>
+                                <Container style={{
+                                    width: '100%',
+                                    height: '100%',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+
+                                }}>
+                                    <FcSettings size={35} />
+                                    <Text fw={700}>
+                                        {content.title}
+                                    </Text>
+                                </Container>
+
+                            </Card>
+
+                            </Grid.Col>
+                        );
+                    })
+                }
+
+
+            </Grid>
+
 
             <Grid gutter="sm" style={{
                 width: '100%',
