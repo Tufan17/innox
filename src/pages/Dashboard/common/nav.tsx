@@ -38,8 +38,8 @@ const Nav: React.FC<NavProps> = ({ openNav, mobile, onCloseNav }) => {
       icon: icon('ic_user'),
     },
     {
-      title: 'Kullanıcı Anasayfası',
-      path: nav_path+'/products',
+      title: 'İçerikler',
+      path: nav_path+'/contents',
       icon: <FcPhoneAndroid size={25}/>,
     },
     {
@@ -123,7 +123,7 @@ interface NavItemProps {
 
 const NavItem: React.FC<NavItemProps> = ({ item }) => {
   const pathname = useLocation().pathname;
-  const active = item.path === pathname;
+  const active = item.path === "/dashboard" ? pathname === item.path : pathname.includes(item.path);
 
   return (
     <ListItemButton

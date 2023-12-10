@@ -5,10 +5,10 @@ import Box from "@mui/material/Box";
 import Nav from "./common/nav.tsx";
 import Main from "./common/main.tsx";
 import NotFoundView from "../../pages/404";
-import RegisterView from "../../pages/Login/register_view";
 import AnalysisView from "./analysis.tsx";
 import UsersView from "./users";
 import SettingView from "./settings.tsx";
+import ContentsView from "./contents.tsx";
 const Dashboard = () => {
   const [openNav, setOpenNav] = useState<boolean>(true);
   const [mobile, setMobile] = useState<boolean>(false);
@@ -58,6 +58,10 @@ const Dashboard = () => {
               <Route
                 path="/settings"
                 element={<Main children={<SettingView />} mobile={mobile} />}
+              />
+              <Route
+                path="/contents"
+                element={<Main children={<ContentsView />} mobile={mobile} />}
               />
               
             

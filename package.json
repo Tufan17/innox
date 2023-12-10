@@ -27,6 +27,7 @@
     "@mantine/nprogress": "^7.3.0",
     "@mantine/spotlight": "^7.3.0",
     "@mantine/tiptap": "^7.3.0",
+    "@mui/icons-material": "^5.14.19",
     "@mui/lab": "^5.0.0-alpha.147",
     "@mui/material": "^5.14.14",
     "@mui/x-charts": "^6.18.3",
