@@ -11,7 +11,7 @@ import {
   getDoc,
   updateDoc,
 } from "firebase/firestore";
-import { auth, db } from "../../../firebase";
+import {  db } from "../../../firebase";
 
 class BaseModel {
   moduleName: string;
@@ -20,7 +20,7 @@ class BaseModel {
     this.moduleName = moduleName;
   }
 
-  async create(data): Promise<boolean> {
+  async create(data:any): Promise<boolean> {
     try {
       await addDoc(collection(db, this.moduleName), data);
       return true;
@@ -30,7 +30,7 @@ class BaseModel {
     }
   }
 
-  async update(id: string, data): Promise<boolean> {
+  async update(id: string, data:any): Promise<boolean> {
     try {
       const docRef = doc(db, this.moduleName, id);
       await updateDoc(docRef, data);

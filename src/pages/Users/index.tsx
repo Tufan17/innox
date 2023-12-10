@@ -3,11 +3,37 @@ import { Avatar } from "antd";
 import { quaternaryColor } from "../../constants/color";
 import { Card } from "@mui/material";
 import { FcAssistant, FcManager, FcPhoneAndroid, FcSettings } from "react-icons/fc";
+import { useEffect, useState } from "react";
+import Loader from "../Loader";
+import bannerController from "../../../database/db/controller/bannerController";
 const UsersView = () => {
     const user = JSON.parse(window.localStorage.getItem("user")!);
+    const [homeData, setHomeData] = useState<{ banner: any } | null>(null);
+
+    const getAllData = async () => {
+        const banner = await bannerController.index();
+        const data = {
+            banner: banner[0],
+            list: [],
+        };
+        setHomeData(data);
+    };
+    
+
+    useEffect(() => {
+        getAllData();
+    
+    }, []);
+
+
+    if (!homeData) {
+        return (<Loader />);
+    }
+
     return (<div style={{
         padding: '10px',
     }}>
+
         <Group>
             <Avatar size={64} src={user.avatar} />
             <Container
@@ -28,10 +54,12 @@ const UsersView = () => {
                 height: window.innerWidth / 2,
                 backgroundColor: quaternaryColor,
                 borderRadius: '10px',
+                backgroundImage: `url(${homeData.banner.url})`,
+                backgroundSize: 'cover',
+                boxShadow: '1px 1px 10px 1px whitesmoke',
             }}>
-                Banner
             </Container>
-            
+
             <Grid gutter="sm" style={{
                 width: '100%',
                 height: window.innerWidth / 2,
@@ -125,7 +153,7 @@ const UsersView = () => {
                     }}>
                         <FcManager size={35} />
                         <Text fw={700}>
-                            Destek
+                            Profil
                         </Text>
                     </Container>
 
