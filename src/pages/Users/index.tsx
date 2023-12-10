@@ -66,6 +66,7 @@ const UsersView = () => {
                 width: '100%',
             }} >
                 {
+                    homeData?.contents.length > 0 &&
                     homeData?.contents.map((content: any) => {
                         return (
                             <Grid.Col span={content.width}> <Card
@@ -83,9 +84,12 @@ const UsersView = () => {
                                     justifyContent: 'center',
 
                                 }}>
-                                    <FcSettings size={35} />
+                                   {content.icon&& <Avatar src={content.icon} size={35} />}
                                     <Text fw={700}>
                                         {content.title}
+                                    </Text>
+                                    <Text fw={300}>
+                                        {content.subtitle}
                                     </Text>
                                 </Container>
 

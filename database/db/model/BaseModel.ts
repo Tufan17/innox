@@ -10,6 +10,8 @@ import {
   query,
   getDoc,
   updateDoc,
+  orderBy,
+  OrderByDirection,
 } from "firebase/firestore";
 import {  db } from "../../../firebase";
 
@@ -106,6 +108,28 @@ class BaseModel {
       throw error;
     }
   }
+  async getOrderBy(orderField: string,orderValue: OrderByDirection): Promise<DocumentData[]> {
+    try {
+      const q = query(
+        collection(db, this.moduleName),
+        orderBy(orderField, orderValue)
+      );
+
+      const querySnapshot = await getDocs(q);
+      console.log(querySnapshot.docs);
+      const data: DocumentData[] = [];
+
+      querySnapshot.forEach((doc) => {
+        data.push(doc.data());
+      });
+
+      return data;
+    } catch (error) {
+      console.error("Error getting documents:", error);
+      throw error;
+    }
+  }
+
 }
 
 export default BaseModel;

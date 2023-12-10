@@ -1,7 +1,7 @@
 import ContentsModel from "../model/ContentsModel";
 
 const index = async () => {
-  const data = await new ContentsModel().getAll();
+  const data = await new ContentsModel().getOrderBy("index", "asc");
   return data;
 };
 
