@@ -18,7 +18,6 @@ import { useTheme, Theme } from '@mui/material/styles';
 import TableHead from '@mui/material/TableHead';
 import { Avatar, Button, Flex } from "@mantine/core";
 import { primaryColor, secondaryColor } from "../../constants/color";
-import { set } from "lodash";
 import { Link } from "react-router-dom";
 
 
@@ -144,10 +143,10 @@ const ContentsView: React.FC = () => {
 
                 <Button
                     bg={mauseOver ? secondaryColor : primaryColor}
-                    onMouseOver={(e) => {
+                    onMouseOver={() => {
                         setMauseOver(true);
                     }}
-                    onMouseOut={(e) => {
+                    onMouseOut={() => {
                         setMauseOver(false);
                     }}
 
