@@ -1,4 +1,4 @@
-import { Container, Grid, Group, Text, Title } from "@mantine/core";
+import { Container, Grid, Group, Space, Text, Title } from "@mantine/core";
 import { Avatar } from "antd";
 import { quaternaryColor } from "../../constants/color";
 import { Card } from "@mui/material";
@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import Loader from "../Loader";
 import bannerController from "../../../database/db/controller/bannerController";
 import contentsController from "../../../database/db/controller/contentsController";
+type ContentType = /*unresolved*/ any
 const UsersView = () => {
     const user = JSON.parse(window.localStorage.getItem("user")!);
     const [homeData, setHomeData] = useState<{ banner: any, contents: ContentType[] } | null>(null);
@@ -51,6 +52,8 @@ const UsersView = () => {
                     {user?.nickname}
                 </Text>
             </Container>
+        </Group>
+
             <Container style={{
                 width: '100%',
                 height: window.innerWidth / 2,
@@ -61,6 +64,7 @@ const UsersView = () => {
                 boxShadow: '1px 1px 10px 1px whitesmoke',
             }}>
             </Container>
+            <Space h="sm" />
 
             <Grid gutter="sm" style={{
                 width: '100%',
@@ -102,7 +106,7 @@ const UsersView = () => {
 
 
             </Grid>
-
+            <Space h="sm" />
 
             <Grid gutter="sm" style={{
                 width: '100%',
@@ -205,7 +209,6 @@ const UsersView = () => {
 
                 </Grid.Col>
             </Grid>
-        </Group>
     </div>);
 }
 
