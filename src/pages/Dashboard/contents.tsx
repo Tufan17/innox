@@ -226,20 +226,15 @@ const ContentsView: React.FC = () => {
                             </TableRow>
                         )}
                     </TableBody>
-                    <TableFooter>
-                        <TableRow>
+                    <TableFooter >
+                        <TableRow >
                             <TablePagination
+                                labelRowsPerPage="Sayfa başına satır:"
                                 rowsPerPageOptions={[5, 10, 25, { label: 'Tümü', value: -1 }]}
-                                colSpan={3}
+                                colSpan={12}
                                 count={contents.length}
                                 rowsPerPage={rowsPerPage}
                                 page={page}
-                                SelectProps={{
-                                    inputProps: {
-                                        'aria-label': 'Sayfa başına satır sayısı',
-                                    },
-                                    native: true,
-                                }}
                                 onPageChange={handleChangePage}
                                 onRowsPerPageChange={handleChangeRowsPerPage}
                                 ActionsComponent={TablePaginationActions}

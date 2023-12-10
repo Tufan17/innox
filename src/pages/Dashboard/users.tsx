@@ -105,6 +105,7 @@ const UsersView: React.FC = () => {
         </Table>
       </TableContainer>
       <TablePagination
+        labelRowsPerPage="Sayfa başına satır:"
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
         count={users.length}
