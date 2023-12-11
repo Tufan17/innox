@@ -24,7 +24,8 @@ class BaseModel {
 
   async create(data:any): Promise<boolean> {
     try {
-      await addDoc(collection(db, this.moduleName), data);
+      const val=await addDoc(collection(db, this.moduleName), data);
+      await updateDoc(val, { id: val.id ,created_at: new Date(),updated_at: new Date(),deleted_at: null});
       return true;
     } catch (error) {
       console.error("Error creating document:", error);
