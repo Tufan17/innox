@@ -16,11 +16,11 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import { useTheme, Theme } from '@mui/material/styles';
 import TableHead from '@mui/material/TableHead';
-import { Avatar, Button, Flex } from "@mantine/core";
+import { Avatar, Button, Flex, Group } from "@mantine/core";
 import { primaryColor, secondaryColor } from "../../constants/color";
 import { Link } from "react-router-dom";
-
-
+import { FaEdit, FaEye } from "react-icons/fa";
+import "./index.css";
 interface TablePaginationActionsProps {
     count: number;
     page: number;
@@ -126,6 +126,7 @@ const ContentsView: React.FC = () => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
+   
 
     return (
         <div
@@ -160,7 +161,7 @@ const ContentsView: React.FC = () => {
                     >
                         Ekle
                     </Link>
-                    </Button>
+                </Button>
             </Flex>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
@@ -215,7 +216,15 @@ const ContentsView: React.FC = () => {
                                     {content?.height}
                                 </TableCell>
                                 <TableCell style={{ width: 160 }} align="right">
-                                    {content?.id}
+                                    <Group>
+                                        <Link to={`/dashboard/contents/edit/${content?.id}`}
+                                        >
+                                            <FaEdit className="icon"/>
+                                        </Link>
+                                        <Link to={`/dashboard/contents/show/${content?.id}`}>
+                                            <FaEye  className="icon"/>
+                                        </Link>
+                                    </Group>
                                 </TableCell>
                             </TableRow>
                         ))}
