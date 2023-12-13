@@ -21,6 +21,15 @@ class BaseModel {
   constructor(moduleName: string) {
     this.moduleName = moduleName;
   }
+  async count(){
+    try {
+      const querySnapshot = await getDocs(collection(db, this.moduleName));
+      return querySnapshot.size;
+    } catch (error) {
+      console.error("Error getting document:", error);
+      throw error;
+    }
+  }
 
   async create(data:any): Promise<boolean> {
     try {

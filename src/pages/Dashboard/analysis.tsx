@@ -1,4 +1,4 @@
-import {  Container, Title } from "@mantine/core";
+import { Container, Title } from "@mantine/core";
 import Grid from '@mui/material/Unstable_Grid2';
 
 import Box from '@mui/material/Box';
@@ -7,17 +7,53 @@ import Typography from '@mui/material/Typography';
 import { LineChart } from '@mui/x-charts/LineChart';
 import Stack from '@mui/material/Stack';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PieChart } from '@mui/x-charts/PieChart';
-
+import dashboardController from "../../../database/db/controller/dashboardController.ts";
+import { toast } from "react-toastify";
 const chartsParams = {
     margin: { bottom: 20, left: 25, right: 5 },
     height: 300,
 };
 const AnalysisView = () => {
+    const [animatedData, setAnimatedData] = useState({
+        users: 0,
+        contents: 0,
+    });
+    const [data, setData] = useState<any>(null);
     const [color] = useState('#4e79a7');
+    useEffect(() => {
+        dashboardController.index().then((res) => {
+            setData(res);
+        }).catch((err) => {
+            toast.error(err.message);
+        }
+        );
+    }, []);
+    useEffect(() => {
+        if (data) {
+            const animationDuration = 1000;
+            const animationInterval = 10;
+            const newData = {
+                users: data.users || 0,
+                contents: data.contents || 0,
+            };
 
+            const incrementAmount = {
+                users: newData.users / (animationDuration / animationInterval),
+                contents: newData.contents / (animationDuration / animationInterval),
+            };
 
+            const animationTimer = setInterval(() => {
+                setAnimatedData((prevData) => ({
+                    users: Math.min(prevData.users + incrementAmount.users, newData.users),
+                    contents: Math.min(prevData.contents + incrementAmount.contents, newData.contents),
+                }));
+            }, animationInterval);
+
+            return () => clearInterval(animationTimer);
+        }
+    }, [data]);
 
     return (
         <div>
@@ -42,10 +78,10 @@ const AnalysisView = () => {
                         {<Box sx={{ width: 64, height: 64 }}>{<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}</Box>}
 
                         <Stack spacing={0.5}>
-                            <Typography variant="h4">{(714000)}</Typography>
+                            <Typography variant="h4">{animatedData.contents.toFixed(0)}</Typography>
 
                             <Typography variant="subtitle2" sx={{ color: 'success' }}>
-                                {"Weekly Sales"}
+                                {"İçerik Sayısı"}
                             </Typography>
                         </Stack>
                     </Card>
@@ -64,10 +100,10 @@ const AnalysisView = () => {
                         {<Box sx={{ width: 64, height: 64 }}>{<img alt="icon" src="/assets/icons/glass/ic_glass_users.png" />}</Box>}
 
                         <Stack spacing={0.5}>
-                            <Typography variant="h4">{(714000)}</Typography>
+                            <Typography variant="h4">{animatedData.users.toFixed(0)}</Typography>
 
                             <Typography variant="subtitle2" sx={{ color: 'success' }}>
-                                {"Weekly Sales"}
+                                {"Kullanıcı Sayısı"}
                             </Typography>
                         </Stack>
                     </Card>
@@ -161,17 +197,17 @@ const AnalysisView = () => {
                                 series={[
                                     {
                                         data: [
-                                            { id: 0, value: 10,label:"elma" },
-                                            { id: 1, value: 15, label:"elma"},
-                                            { id: 2, value: 15, label:"elma"},
-                                            { id: 3, value: 15, label:"elma"},
-                                            { id: 4, value: 20, label:"elma"},
+                                            { id: 0, value: 10, label: "elma" },
+                                            { id: 1, value: 15, label: "elma" },
+                                            { id: 2, value: 15, label: "elma" },
+                                            { id: 3, value: 15, label: "elma" },
+                                            { id: 4, value: 20, label: "elma" },
                                         ],
                                     },
                                 ]}
                                 width={300}
                                 height={300}
-                                
+
 
                             />
                         </Container>
