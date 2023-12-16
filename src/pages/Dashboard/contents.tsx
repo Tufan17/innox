@@ -103,7 +103,7 @@ const ContentsView: React.FC = () => {
     const [mauseOver, setMauseOver] = useState<boolean>(false);
     const getAllData = async () => {
         try {
-            const data: any[] = await contentsController.index();
+            const data: any[] = await contentsController.index("main");
             setContents(data);
             const value = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
             setEmptyRows(value);

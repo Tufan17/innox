@@ -15,7 +15,7 @@ const UsersView = () => {
 
     const getAllData = async () => {
         const banner = await bannerController.index();
-        const contents = await contentsController.index();
+        const contents = await contentsController.index("main");
         const data = {
             banner: banner[0],
             contents: contents,

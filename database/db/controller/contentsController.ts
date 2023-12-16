@@ -2,8 +2,8 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "../../../firebase";
 import ContentsModel from "../model/ContentsModel";
 
-const index = async () => {
-  const data = await new ContentsModel().getOrderBy("index", "asc");
+const index = async (type:string) => {
+  const data = await new ContentsModel().getContent(type,"index", "asc");
   return data;
 };
 
