@@ -8,6 +8,8 @@ import Loader from "../Loader";
 import bannerController from "../../../database/db/controller/bannerController";
 import contentsController from "../../../database/db/controller/contentsController";
 import AccountPopover from "../Dashboard/common/account";
+import { Link } from "react-router-dom";
+import userController from "../../../database/db/controller/userController";
 type ContentType = /*unresolved*/ any
 const UsersView = () => {
     const user = JSON.parse(window.localStorage.getItem("user")!);
@@ -76,7 +78,15 @@ const UsersView = () => {
                     homeData?.contents.length > 0 &&
                     homeData?.contents.map((content: any) => {
                         return (
-                            <Grid.Col span={content.width}> <Card
+                            <Grid.Col span={content.width}> 
+                            <Link to={`/app/home`} style={{ textDecoration: 'none' }}
+                                onClick={()=>{
+                                    user.education=content.id;
+                                    window.localStorage.setItem("user",JSON.stringify(user));
+                                    userController.update(user.id,{education:content.id});
+                                }}
+                            >
+                            <Card
                                 style={{
                                     backgroundColor: quaternaryColor,
                                     height: window.innerWidth * content.height/12,
@@ -105,6 +115,8 @@ const UsersView = () => {
                                 </Container>
 
                             </Card>
+                            </Link>
+                          
 
                             </Grid.Col>
                         );

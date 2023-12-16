@@ -13,16 +13,18 @@ import routers from "./constants";
 import Loader from "./pages/Loader";
 import useAuthentication from "./hooks/useAuthentication";
 import UsersView from "./pages/Users";
+import EducationView from "./pages/Users/Education";
 
 export default function App() {
 
   const login = useAuthentication();
   const user = JSON.parse(window.localStorage.getItem("user")!);
+  
+  
   if (login === null) {
     return (<Loader />);
   }
 
-  console.log(login);
 
   return (
     <>
@@ -49,11 +51,15 @@ export default function App() {
               (<>
                 <Route path="/dashboard/*" element={<Dashboard />} />
               </>
-              ) : (
+              ) :
+              (
                 <>
                   <Route path="/dashboard" element={<UsersView />} />
+                  <Route path={"/app/*"} element={<EducationView />} />
                 </>
+                
               )
+
         }
         <Route path="*" element={routers.includes(window.location.pathname.split("/")[1]) ? <Loader /> : <NotFoundView />} />
 

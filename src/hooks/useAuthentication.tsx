@@ -31,7 +31,11 @@ const useAuthentication = () => {
         });
 
         if (window.location.pathname === "/login") {
-          window.location.href = "/dashboard";
+          if(user.role !== "admin"&&user.education){
+            window.location.href = "/app/home";
+          }else{
+            window.location.href = "/dashboard";
+          }
         }
       } else {
         if (
