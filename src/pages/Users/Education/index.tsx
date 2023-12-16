@@ -5,9 +5,10 @@ import { FaUserAlt } from "react-icons/fa";
 import { MdSettings } from "react-icons/md";
 import { Link, Route, Routes } from "react-router-dom";
 import HomeView from "./HomeView";
+import { useState } from "react";
 const EducationView = () => {
     const nav_path="/app";
-    const path=window.location.pathname;
+    const [path, setPath] = useState(window.location.pathname);
     return (
         <div style={{
             width: "100%",
@@ -50,6 +51,11 @@ const EducationView = () => {
                 <Container>
                     <Link to={nav_path+"/home"} style={{
                         textDecoration:"none",
+                    }}
+                    onClick={()=>
+                    {
+                        setPath(nav_path+"/home");
+                
                     }}>
                     <Center>
                     <FaBookBookmark size={25} color={path.includes("home")?secondaryColor:quinaryColor} />
@@ -69,7 +75,12 @@ const EducationView = () => {
                 <Container>
                 <Link to={nav_path+"/profile"} style={{
                         textDecoration:"none",
-                    }}>
+                    }}
+                    onClick={()=>{
+                        setPath(nav_path+"/profile");
+                    }
+                    }
+                    >
                     <Center>
                     <FaUserAlt size={25} color={path.includes("profile")?secondaryColor:quinaryColor} />
                     </Center>
@@ -87,7 +98,11 @@ const EducationView = () => {
                 <Container>
                 <Link to={nav_path+"/settings"} style={{
                         textDecoration:"none",
-                    }}>
+                    }}
+                    onClick={()=>{
+                        setPath(nav_path+"/settings");
+                    }
+                    }>
                 <Center>
                     <MdSettings size={25} color={path.includes("settings")?secondaryColor:quinaryColor} />
                     </Center>
