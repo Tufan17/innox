@@ -3,7 +3,7 @@ import contentsController from "../../../../database/db/controller/contentsContr
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Loader from "../../Loader";
-import { Avatar, Button, Container, Divider, Group, Title } from "@mantine/core";
+import { Avatar, Button, Divider, Group, Title } from "@mantine/core";
 import BackButton from "../../../components/Button/BackButton";
 import { FaEdit, FaEye } from "react-icons/fa";
 import { primaryColor, secondaryColor } from "../../../constants/color";
@@ -90,11 +90,6 @@ TablePaginationActions.propTypes = {
     rowsPerPage: PropTypes.number.isRequired,
 };
 
-interface Row {
-    name: string;
-    calories: number;
-    fat: number;
-}
 const ShowContentView = () => {
     const { id } = useParams();
     const [content, setContent] = useState<any>(null);

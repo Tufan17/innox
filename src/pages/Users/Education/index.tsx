@@ -3,12 +3,10 @@ import { FaBookBookmark } from "react-icons/fa6";
 import { primaryColor, quinaryColor, secondaryColor } from "../../../constants/color";
 import { FaUserAlt } from "react-icons/fa";
 import { MdSettings } from "react-icons/md";
-import { Link, Route, Routes, useParams } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import HomeView from "./HomeView";
 const EducationView = () => {
-    const { id } = useParams<{ id: string }>();
     const nav_path="/app";
-    const user=JSON.parse(window.localStorage.getItem("user")!);
     const path=window.location.pathname;
     return (
         <div style={{

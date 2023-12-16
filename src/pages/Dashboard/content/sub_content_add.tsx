@@ -4,7 +4,7 @@ import { Bars } from "react-loader-spinner";
 import { toast } from "react-toastify";
 import { Button } from "../../../common/Button";
 import contentsController from "../../../../database/db/controller/contentsController";
-import { Link, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import Loader from "../../Loader";
 import BackButton from "../../../components/Button/BackButton";
 import { Card } from "@mui/material";
