@@ -69,7 +69,7 @@ const HomeView = () => {
 
                 </Group>
                 <Input
-                    placeholder="Clearable input"
+                    placeholder="Ders Ara"
                     value={value}
                     onChange={(event) => setValue(event.currentTarget.value)}
                     rightSectionPointerEvents="all"
