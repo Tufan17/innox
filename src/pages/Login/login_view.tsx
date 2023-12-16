@@ -107,7 +107,7 @@ const LoginView = () => {
     if (res?.status == true) {
       toast.success("Giriş Başarılı.");
       setTimeout(() => {
-        window.location.href = "/dashboard";
+        window.location.reload();
       }, 1000);
     }else{
         toast.error("Giriş Başarısız. Lütfen bilgilerinizi kontrol ediniz.");

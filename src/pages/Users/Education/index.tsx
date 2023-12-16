@@ -42,6 +42,7 @@ const EducationView = () => {
                     borderTopLeftRadius: 30,
                     boxShadow: "0px 0px 5px 0px " + quinaryColor,
                     paddingBottom: 10,
+                    backgroundColor: "white",
                 }}
                 justify="center"
                 align="center"

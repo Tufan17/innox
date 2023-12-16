@@ -41,10 +41,10 @@ const SubContentAddView = () => {
             });
             if (res) {
                 if(res.success){
-                    toast.success(res.message);
+                    toast.success(res.success);
                 }
                 else{
-                    toast.error(res.message);
+                    toast.error(res.error);
                 }
                 setIndex("");
                 setIcon(null);
