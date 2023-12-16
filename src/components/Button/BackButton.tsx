@@ -11,6 +11,7 @@ const BackButton = () => {
         alignItems:"center",
         borderRadius:"20%",
         width:"50px",
+        height:"36.5px",
         color:"white",
     }}
     onClick={()=>{
