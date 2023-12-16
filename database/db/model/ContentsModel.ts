@@ -28,7 +28,6 @@ class ContentsModel extends BaseModel {
             );
       
             const querySnapshot = await getDocs(q);
-            console.log(querySnapshot.docs);
             const data: DocumentData[] = [];
       
             querySnapshot.forEach((doc) => {

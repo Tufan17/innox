@@ -31,7 +31,8 @@ const useAuthentication = () => {
         });
 
         if (window.location.pathname === "/login") {
-          if(user.role !== "admin"&&user.education){
+          const data= JSON.parse(window.localStorage.getItem("user")!);
+          if(data.role=== "user"&&data.education){
             window.location.href = "/app/home";
           }else{
             window.location.href = "/dashboard";

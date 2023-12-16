@@ -76,9 +76,9 @@ const UsersView = () => {
             }} >
                 {
                     homeData?.contents.length > 0 &&
-                    homeData?.contents.map((content: any) => {
+                    homeData?.contents.map((content: any,index) => {
                         return (
-                            <Grid.Col span={content.width}> 
+                            <Grid.Col key={index} span={content.width}> 
                             <Link to={`/app/home`} style={{ textDecoration: 'none' }}
                                 onClick={()=>{
                                     user.education=content.id;
