@@ -126,7 +126,7 @@ const ContentsView: React.FC = () => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
-   
+
 
     return (
         <div
@@ -141,26 +141,26 @@ const ContentsView: React.FC = () => {
                 align="center"
                 direction="row"
             >
-<Link to="/dashboard/contents/add"
-                        style={{
-                            textDecoration: 'none',
-                            color: 'white',
-                        }}
-                    >
-                <Button
-                    bg={mauseOver ? secondaryColor : primaryColor}
-                    onMouseOver={() => {
-                        setMauseOver(true);
+                <Link to="/dashboard/contents/add"
+                    style={{
+                        textDecoration: 'none',
+                        color: 'white',
                     }}
-                    onMouseOut={() => {
-                        setMauseOver(false);
-                    }}
-
-
                 >
-                    
+                    <Button
+                        bg={mauseOver ? secondaryColor : primaryColor}
+                        onMouseOver={() => {
+                            setMauseOver(true);
+                        }}
+                        onMouseOut={() => {
+                            setMauseOver(false);
+                        }}
+
+
+                    >
+
                         Ekle
-                </Button>
+                    </Button>
                 </Link>
 
             </Flex>
@@ -220,10 +220,10 @@ const ContentsView: React.FC = () => {
                                     <Group>
                                         <Link to={`/dashboard/contents/edit/${content?.id}`}
                                         >
-                                            <FaEdit className="icon"/>
+                                            <FaEdit className="icon" />
                                         </Link>
                                         <Link to={`/dashboard/contents/show/${content?.id}`}>
-                                            <FaEye  className="icon"/>
+                                            <FaEye className="icon" />
                                         </Link>
                                     </Group>
                                 </TableCell>
