@@ -1,11 +1,11 @@
-import { FileInput, Grid, TextInput } from "@mantine/core";
+import { FileInput, Grid, Group, TextInput } from "@mantine/core";
 import { Button } from "../../../common/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import contentsController from "../../../../database/db/controller/contentsController";
 import { toast } from 'react-toastify';
 import { Bars } from "react-loader-spinner";
-
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { Avatar } from "antd";
 
 const EditContentView = () => {
     const [index, setIndex] = useState("");
@@ -15,42 +15,85 @@ const EditContentView = () => {
     const [width, setWidth] = useState("");
     const [height, setHeight] = useState("");
     const [loading, setLoading] = useState(false);
+    const [iconUrl, setIconUrl] = useState<string | null>(null); // [1
     const { id } = useParams<{ id: string }>();
+    const [content, setContent] = useState<any>(null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        contentsController.getById(id ?? "").then((res) => {
+            setContent(res);
+            setIndex(res.index);
+            setName(res.title);
+            setSubtitle(res.subtitle);
+            setWidth(res.width);
+            setHeight(res.height);
+            setIconUrl(res.icon);
+        }).catch((err) => {
+            toast.error(err.message);
+        }
+        );
+    }
+        , []);
 
 
-    
     async function editContent() {
-        if (index === "" || icon === null || name === "" || subtitle === "" || width === "" || height === "") {
-            toast.error("Lütfen tüm alanları doldurunuz!");
+        if (
+            index === content.index &&
+            icon === null &&
+            name === content.title &&
+            subtitle === content.subtitle &&
+            width === content.width &&
+            height === content.height
+        ) {
+            toast.error("Hiçbir değişiklik yapmadınız");
+            navigate(-1);
             return;
         } else {
             setLoading(true);
-            contentsController.create({
-                index: parseInt(index, 10),
-                icon,
-                title:name,
-                subtitle,
-                width: parseInt(width, 10),
-                height: parseInt(height, 10),
-            }).then((res) => {
-                setLoading(false);
-                if (res?.error) {
-                    toast.error(res.error);
-                }
-                if (res?.success) {
-                    toast.success(res.success);
-                    setIndex("");
-                    setIcon(null);
-                    setName("");
-                    setSubtitle("");
-                    setWidth("");
-                    setHeight("");
+            const data:any = {};
 
-                }
-            });
+            if (index !== content.index) {
+                data.index = parseInt(index, 10);
+            }
 
+            if (icon !== null) {
+                data.icon = icon;
+            }
+
+            if (name !== content.title) {
+                data.title = name;
+            }
+
+            if (subtitle !== content.subtitle) {
+                data.subtitle = subtitle;
+            }
+
+            if (width !== content.width) {
+                data.width = parseInt(width, 10);
+            }
+
+            if (height !== content.height) {
+                data.height = parseInt(height, 10);
+            }
+
+            contentsController
+                .update(id ?? "", data)
+                .then((res) => {
+                    if(res.success){
+                        toast.success(res.success);
+                    }else{
+                        toast.error(res.error);
+                    }
+                    navigate(-1);
+                })
+                .catch((err) => {
+                    toast.error(err.message);
+                })
+                .finally(() => {
+                    setLoading(false);
+                });
         }
-
     }
 
     return (
@@ -66,14 +109,20 @@ const EditContentView = () => {
                 />
             </Grid.Col>
             <Grid.Col span={6}>
-                <FileInput
-                    label="İcon"
-                    accept="image/*"
-                    value={icon}
-                    onChange={(e) => {
-                        setIcon(e);
-                    }}
-                />
+                <Group>
+                    <FileInput
+                        style={{ width: "80%" }}
+                        label="İcon"
+                        accept="image/*"
+                        placeholder="Select file"
+                        value={icon}
+                        onChange={(e) => {
+                            setIcon(e);
+                        }}
+                    />
+                    <Avatar src={iconUrl} size={50} />
+
+                </Group>
             </Grid.Col>
             <Grid.Col span={6}>
                 <TextInput
@@ -116,22 +165,25 @@ const EditContentView = () => {
                 />
             </Grid.Col>
             <Grid.Col span={12} style={{ display: "flex", justifyContent: "center" }}>
-                <Button onClick={editContent}>
+                <Button onClick={editContent}
+
+                >
+
                     {
                         loading ? <Bars
-                        height="20"
-                        width="80"
-                        color="white"
-                        ariaLabel="bars-loading"
-                        wrapperStyle={{}}
-                        wrapperClass=""
-                        visible={true}
-                      /> :"Kaydet"
+                            height="20"
+                            width="80"
+                            color="white"
+                            ariaLabel="bars-loading"
+                            wrapperStyle={{}}
+                            wrapperClass=""
+                            visible={true}
+                        /> : "Kaydet"
                     }
-                    </Button>
+                </Button>
             </Grid.Col>
         </Grid>
     );
 }
- 
+
 export default EditContentView;
