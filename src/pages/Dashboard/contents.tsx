@@ -141,7 +141,12 @@ const ContentsView: React.FC = () => {
                 align="center"
                 direction="row"
             >
-
+<Link to="/dashboard/contents/add"
+                        style={{
+                            textDecoration: 'none',
+                            color: 'white',
+                        }}
+                    >
                 <Button
                     bg={mauseOver ? secondaryColor : primaryColor}
                     onMouseOver={() => {
@@ -153,15 +158,11 @@ const ContentsView: React.FC = () => {
 
 
                 >
-                    <Link to="/dashboard/contents/add"
-                        style={{
-                            textDecoration: 'none',
-                            color: 'white',
-                        }}
-                    >
+                    
                         Ekle
-                    </Link>
                 </Button>
+                </Link>
+
             </Flex>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">

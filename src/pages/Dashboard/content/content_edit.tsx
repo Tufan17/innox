@@ -1,4 +1,4 @@
-import { FileInput, Grid, Group, TextInput } from "@mantine/core";
+import { FileInput, Grid, Group, TextInput, Title, Divider } from "@mantine/core";
 import { Button } from "../../../common/Button";
 import { useEffect, useState } from "react";
 import contentsController from "../../../../database/db/controller/contentsController";
@@ -6,6 +6,8 @@ import { toast } from 'react-toastify';
 import { Bars } from "react-loader-spinner";
 import { useNavigate, useParams } from "react-router-dom";
 import { Avatar } from "antd";
+import BackButton from "../../../components/Button/BackButton";
+import Loader from "../../Loader";
 
 const EditContentView = () => {
     const [index, setIndex] = useState("");
@@ -96,8 +98,14 @@ const EditContentView = () => {
         }
     }
 
-    return (
-        <Grid>
+    return content ? (<div>
+         <Group justify="space-between">
+            <Title  order={2}>{content.index + ". " + content.title}</Title>
+            <BackButton/>
+        </Group>
+        <Divider mt={5} />
+        <Grid mt={"xl"}>
+            
             <Grid.Col span={6}>
                 <TextInput
                     label="Sıra"
@@ -183,7 +191,11 @@ const EditContentView = () => {
                 </Button>
             </Grid.Col>
         </Grid>
-    );
+    </div>
+       
+    ): (
+        <Loader />
+    );;
 }
 
 export default EditContentView;

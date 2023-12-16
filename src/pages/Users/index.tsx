@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import Loader from "../Loader";
 import bannerController from "../../../database/db/controller/bannerController";
 import contentsController from "../../../database/db/controller/contentsController";
+import AccountPopover from "../Dashboard/common/account";
 type ContentType = /*unresolved*/ any
 const UsersView = () => {
     const user = JSON.parse(window.localStorage.getItem("user")!);
@@ -37,8 +38,10 @@ const UsersView = () => {
         padding: '10px',
     }}>
 
-        <Group>
-            <Avatar size={64} src={user.avatar} />
+        <Group style={{
+            padding: '10px',
+        }}>
+            <AccountPopover />
             <Container
                 style={{
                     marginLeft: '0px',
@@ -54,7 +57,7 @@ const UsersView = () => {
             </Container>
         </Group>
 
-            <Container style={{
+            <Container mt={"md"} style={{
                 width: '100%',
                 height: window.innerWidth / 2,
                 backgroundColor: quaternaryColor,
@@ -89,10 +92,14 @@ const UsersView = () => {
 
                                 }}>
                                    {content.icon&& <Avatar src={content.icon} size={35} />}
-                                    <Text fw={700}>
+                                    <Text fw={700} style={{
+                                        textAlign: 'center',
+                                    }}>
                                         {content.title}
                                     </Text>
-                                    <Text fw={300}>
+                                    <Text fw={300} style={{
+                                        textAlign: 'center',
+                                    }}>
                                         {content.subtitle}
                                     </Text>
                                 </Container>

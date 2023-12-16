@@ -45,8 +45,8 @@ export default function AccountPopover() {
           src={user.avatar??account.photoURL}
           alt={user.nickname??account.displayName}
           sx={{
-            width: 36,
-            height: 36,
+            width: user.role=="admin"?36:64,
+            height: user.role=="admin"?36:64,
             border: (theme: Theme) => `solid 2px ${theme.palette.background.default}`,
           }}
         >
