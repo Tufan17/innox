@@ -6,6 +6,11 @@ const index = async (type:string) => {
   const data = await new ContentsModel().getContent(type,"index", "asc");
   return data;
 };
+const subIndex = async (id:string) => {
+  const data = await new ContentsModel().getContentSub(id);
+  return data;
+};
+
 
 const create = async (data: any) => {
   const index = await new ContentsModel().getByWhere("index", data.index);
@@ -67,4 +72,34 @@ const remove = async (id: string) => {
   return result;
 };
 
-export default { index, create, getById, update, remove };
+
+const addSubContent = async (data: any) => {
+  const path = "contents/" + data.icon.name;
+  const fileRef = ref(storage, path);
+  try {
+    await uploadBytes(fileRef, data.icon);
+    const downloadURL = await getDownloadURL(fileRef);
+
+    await new ContentsModel().create({
+      index: 0,
+      title: data.name,
+      subtitle: data.subtitle,
+      icon: downloadURL,
+      main_id: data.content_id,
+      type: "sub",
+      card_type: data.type,
+      width: data.width,
+      height: data.height,
+    });
+    return { success: "İçerik başarıyla eklendi." };
+  } catch (e) {
+    return { error: "İçerik eklenirken bir hata oluştu." };
+  }
+
+};
+
+
+
+
+
+export default { index, create, getById, update, remove,addSubContent,subIndex };

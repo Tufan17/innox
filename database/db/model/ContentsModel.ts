@@ -2,15 +2,9 @@ import BaseModel from "./BaseModel";
 import {
     collection,
     where,
-    doc,
     getDocs,
-    setDoc,
-    addDoc,
-    DocumentReference,
     DocumentData,
     query,
-    getDoc,
-    updateDoc,
     orderBy,
     OrderByDirection,
   } from "firebase/firestore";
@@ -39,6 +33,27 @@ class ContentsModel extends BaseModel {
             console.error("Error getting documents:", error);
             throw error;
           }
+    }
+  async getContentSub(id:string): Promise<DocumentData[]> {
+    try {
+        const q = query(
+          collection(db, this.moduleName),
+          where("main_id", "==", id),
+          orderBy("index", "asc")
+        );
+  
+        const querySnapshot = await getDocs(q);
+        const data: DocumentData[] = [];
+  
+        querySnapshot.forEach((doc) => {
+          data.push(doc.data());
+        });
+  
+        return data;
+      } catch (error) {
+        console.error("Error getting documents:", error);
+        throw error;
+      }
     }
 }
 export default ContentsModel;
