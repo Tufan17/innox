@@ -23,6 +23,8 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import PropTypes from 'prop-types';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import { MdOutlineContentPaste } from "react-icons/md";
+import { FaRegQuestionCircle } from "react-icons/fa";
 interface TablePaginationActionsProps {
     count: number;
     page: number;
@@ -187,7 +189,8 @@ const ShowContentView = () => {
                             <TableCell>
                                 Yükseklik(X)
                             </TableCell>
-                            <TableCell>
+                            <TableCell  align="center"
+                           >
                                 İşlemler
                             </TableCell>
 
@@ -224,7 +227,10 @@ const ShowContentView = () => {
                                             <FaEdit className="icon" />
                                         </Link>
                                         <Link to={`/dashboard/contents/subject/${content.id}`}>
-                                            <FaEye className="icon" />
+                                            <MdOutlineContentPaste className="icon" />
+                                        </Link>
+                                        <Link to={`/dashboard/contents/subject/${content.id}`}>
+                                            <FaRegQuestionCircle className="icon" />
                                         </Link>
                                     </Group>
                                 </TableCell>
