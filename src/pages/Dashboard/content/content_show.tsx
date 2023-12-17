@@ -219,11 +219,11 @@ const ShowContentView = () => {
                                 </TableCell>
                                 <TableCell style={{ width: 160 }} align="right">
                                     <Group>
-                                        <Link to={`#`}
+                                        <Link to={`/dashboard/contents/show/${id}/edit/${content.id}`}
                                         >
                                             <FaEdit className="icon" />
                                         </Link>
-                                        <Link to={`#`}>
+                                        <Link to={`/dashboard/contents/subject/${content.id}`}>
                                             <FaEye className="icon" />
                                         </Link>
                                     </Group>

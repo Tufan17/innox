@@ -13,6 +13,8 @@ import AddContentView from "./content/content_add.tsx";
 import EditContentView from "./content/content_edit.tsx";
 import ShowContentView from "./content/content_show.tsx";
 import SubContentAddView from "./content/sub_content_add.tsx";
+import SubjectDetail from "./content/subject_detail.tsx";
+import SubContentEditView from "./content/sub_content_edit.tsx";
 const Dashboard = () => {
   const [openNav, setOpenNav] = useState<boolean>(true);
   const [mobile, setMobile] = useState<boolean>(false);
@@ -83,7 +85,14 @@ const Dashboard = () => {
                 path="/contents/show/:id/add"
                 element={<Main children={<SubContentAddView />} mobile={mobile} />}
               />
-            
+              <Route
+                path="/contents/show/:id/edit/:sub_id"
+                element={<Main children={<SubContentEditView />} mobile={mobile} />}
+              />
+             <Route
+                path="/contents/subject/:id"
+                element={<Main children={<SubjectDetail />} mobile={mobile} />}
+              />
           
           <Route
             path="*"
