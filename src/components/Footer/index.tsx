@@ -11,31 +11,31 @@ import {
   LogoContainer,
   Para,
   Large,
-  FooterContainer,
+  // FooterContainer,
   Language,
 } from "./styles";
 
-interface SocialLinkProps {
-  href: string;
-  src: string;
-}
+// interface SocialLinkProps {
+//   href: string;
+//   src: string;
+// }
 
 const Footer = ({ t }: any) => {
  
 
-  const SocialLink = ({ href, src }: SocialLinkProps) => {
-    return (
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        key={src}
-        aria-label={src}
-      >
-        <SvgIcon src={src} width="25px" height="25px" />
-      </a>
-    );
-  };
+  // const SocialLink = ({ href, src }: SocialLinkProps) => {
+  //   return (
+  //     <a
+  //       href={href}
+  //       target="_blank"
+  //       rel="noopener noreferrer"
+  //       key={src}
+  //       aria-label={src}
+  //     >
+  //       <SvgIcon src={src} width="25px" height="25px" />
+  //     </a>
+  //   );
+  // };
 
   return (
     <>
@@ -88,7 +88,7 @@ const Footer = ({ t }: any) => {
                 />
               </LogoContainer>
             </NavLink>
-            <FooterContainer>
+            {/* <FooterContainer>
               <SocialLink
                 href="#"
                 src="github.svg"
@@ -106,7 +106,7 @@ const Footer = ({ t }: any) => {
                 src="medium.svg"
               />
              
-            </FooterContainer>
+            </FooterContainer> */}
           </Row>
         </Container>
       </Extra>
