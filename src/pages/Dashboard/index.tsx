@@ -13,7 +13,7 @@ import AddContentView from "./content/content_add.tsx";
 import EditContentView from "./content/content_edit.tsx";
 import ShowContentView from "./content/content_show.tsx";
 import SubContentAddView from "./content/sub_content_add.tsx";
-import SubjectDetail from "./content/subject_detail.tsx";
+import SubjectDetail from "./subject/index.tsx";
 import SubContentEditView from "./content/sub_content_edit.tsx";
 const Dashboard = () => {
   const [openNav, setOpenNav] = useState<boolean>(true);
