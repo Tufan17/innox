@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import Loader from "../../Loader";
 import { Avatar, Button, Divider, Group, Title } from "@mantine/core";
 import BackButton from "../../../components/Button/BackButton";
-import { FaEdit, FaEye } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
 import { primaryColor, secondaryColor } from "../../../constants/color";
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useMemo, useEffect } from 'react';
-import JoditEditor, { IJoditEditorProps } from 'jodit-react';
+import JoditEditor from 'jodit-react';
 
 import { Link, useParams } from 'react-router-dom';
 import { Button, Container, Divider, Flex, Group, Space, Textarea, Title } from '@mantine/core';
@@ -23,13 +23,8 @@ const SubjectDetail: React.FC<SubjectDetailProps> = () => {
     readonly: false,
     placeholder: 'içerik ekleyin...',
   }), []);
-  const editorTitle = useRef<any>(null);
   const [title, setTitle] = useState<string>('');
 
-  const configTitle = useMemo(() => ({
-    readonly: false,
-    placeholder: 'Başlık Ekleyin...',
-  }), []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -156,7 +151,7 @@ const SubjectDetail: React.FC<SubjectDetailProps> = () => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                
+
                
               }}>{<div>İçerik Gelecek</div>}</div>
 
