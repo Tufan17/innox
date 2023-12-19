@@ -8,7 +8,7 @@ const useAuthentication = () => {
   const [login, setLogin] = useState<boolean | null>(false);
 
   useEffect(() => {
-    document.title = `InnoX`;
+    document.title = `InnoX | Dijital Eğitim Platformu`;
     const link = document.querySelector("link[rel*='icon']") as HTMLLinkElement | null;
 
     if (link) {
