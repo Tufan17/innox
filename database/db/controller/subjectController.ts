@@ -1,19 +1,30 @@
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import SubjectModel from "../model/SubjectModel";
-
-const index = async (id:string) => {
-  const data = await new SubjectModel().getByWhere("sub_id",id,);
+import { storage } from "../../../firebase";
+const index = async (id: string) => {
+  const data = await new SubjectModel().getByWhere("sub_id", id);
   return data;
 };
 
 const create = async (data: any) => {
-  try{
+  try {
     //data içerisinde sub_id content title olmak zorunda değilse hata ver
     if (!data?.sub_id || !data?.content || !data?.title) {
       return { error: "Konu oluşturulurken bir hata oluştu." };
+    } else {
+      if (data.icon) {
+        const path = "subjects/" + data.icon.name;
+        const fileRef = ref(storage, path);
+        await uploadBytes(fileRef, data.icon);
+        const downloadURL = await getDownloadURL(fileRef);
+        data.icon = downloadURL;
+      } else {
+        data.icon = "https://firebasestorage.googleapis.com/v0/b/innox-ee22c.appspot.com/o/icons%2F6329.jpg?alt=media&token=bcf9f1f3-eacc-4968-b648-b42b8fc7228b";
+      }
+      await new SubjectModel().create(data);
     }
-    await new SubjectModel().create(data);
     return { success: "Konu başarıyla oluşturuldu." };
-  }catch(e){
+  } catch (e) {
     return { error: "Konu oluşturulurken bir hata oluştu." };
   }
 };

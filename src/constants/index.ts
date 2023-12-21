@@ -3,7 +3,8 @@ const routers=[
     "login",
     "register",
     "dashboard",
-    "app"
+    "app",
+    "mobile"
 ];
 export const NAV_WIDTH=240;
 export default routers;

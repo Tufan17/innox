@@ -6,6 +6,7 @@ import { MdSettings } from "react-icons/md";
 import { Link, Route, Routes } from "react-router-dom";
 import HomeView from "./HomeView";
 import { useState } from "react";
+import SubjectView from "./SubjectView";
 const EducationView = () => {
     const nav_path="/app";
     const [path, setPath] = useState(window.location.pathname);
@@ -27,6 +28,7 @@ const EducationView = () => {
                 path="/home"
                 element={<HomeView/>}
               />
+               
                
         </Routes> 
 

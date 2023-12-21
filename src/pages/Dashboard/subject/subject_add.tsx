@@ -2,7 +2,7 @@ import React, { useState, useRef, useMemo, useEffect } from 'react';
 import JoditEditor from 'jodit-react';
 
 import { Link, useParams } from 'react-router-dom';
-import {  Center, Divider, Group, Space, Textarea, Title } from '@mantine/core';
+import {  Center, Divider, FileInput, Group, Space, TextInput, Textarea, Title } from '@mantine/core';
 import BackButton from '../../../components/Button/BackButton';
 import contentsController from '../../../../database/db/controller/contentsController';
 import Loader from '../../Loader';
@@ -19,6 +19,7 @@ const SubjectAddView: React.FC<SubjectAddViewProps> = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const editor = useRef<any>(null);
   const [content, setContent] = useState<string>('');
+  const [icon, setIcon] = useState<File | null>(null);
 
   const config = useMemo(() => ({
     readonly: false,
@@ -56,6 +57,7 @@ const SubjectAddView: React.FC<SubjectAddViewProps> = () => {
   const addContent=async()=>{
     setLoading(true);
         await subjectController.create({
+            icon,
             title:title,
             content:content,
             sub_id:id
@@ -91,13 +93,24 @@ const SubjectAddView: React.FC<SubjectAddViewProps> = () => {
         </Group>
       </Group>
       <Divider mt="sm" mb="xl" />
-       
-        <Textarea
-            placeholder="Başlık Ekleyin..."
+       <Group grow>
+       <FileInput
+                    label="İcon"
+                    placeholder='İcon Seçin'
+                    accept="image/*"
+                    value={icon}
+                    onChange={(e) => {
+                        setIcon(e);
+                    }}
+                />
+        <TextInput
+            label="Başlık Ekleyin"
+            placeholder="Başlık Ekleyin"
             onChange={(e) => setTitle(e.currentTarget.value)}
             value={title}
             
-          />   
+          />   </Group>
+       
           <Space h="xl" />
         <JoditEditor
             

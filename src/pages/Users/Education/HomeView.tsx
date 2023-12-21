@@ -4,6 +4,7 @@ import { RiNotification2Line } from "react-icons/ri";
 import { CiSearch } from "react-icons/ci";
 import { useEffect, useState } from "react";
 import contentsController from "../../../../database/db/controller/contentsController";
+import { Link } from "react-router-dom";
 
 const HomeView = () => {
     const user = JSON.parse(window.localStorage.getItem("user")!);
@@ -94,7 +95,12 @@ const HomeView = () => {
 
             >
                 {contents.map((content, index) => (
-                    <Grid
+                            <Link to={"/mobile/subject/"+content.id} style={{
+                                textDecoration: 'none',
+                                color: 'black',
+                            
+                            }}>
+                            <Grid
                         key={index}
                         style={{
                             borderRadius: '15px',
@@ -127,6 +133,7 @@ const HomeView = () => {
                             </Text>
                         </Grid.Col>
                     </Grid>
+                    </Link>
                 ))}
             </ScrollArea>
         </div>

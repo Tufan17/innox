@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Button, Divider, Grid, GridCol, Group, Title } from '@mantine/core';
+import { Avatar, Button, Container, Divider, Grid, Group, Title } from '@mantine/core';
 import BackButton from '../../../components/Button/BackButton';
 import contentsController from '../../../../database/db/controller/contentsController';
 import Loader from '../../Loader';
 import { primaryColor, secondaryColor } from '../../../constants/color';
 import subjectController from '../../../../database/db/controller/subjectController';
-import { FaEdit } from 'react-icons/fa';
+import { FaEdit, FaEye, FaTrash } from 'react-icons/fa';
 import "../index.css";
 interface SubjectDetailProps {
   // Add any required props here
@@ -19,7 +19,7 @@ const SubjectDetail: React.FC<SubjectDetailProps> = () => {
   const [subjects, setSubjects] = useState<any[]>([]);
 
   const getData = async () => {
-    const res = await subjectController.index(id??"");
+    const res = await subjectController.index(id ?? "");
     setSubjects(res);
   }
 
@@ -38,7 +38,7 @@ const SubjectDetail: React.FC<SubjectDetailProps> = () => {
 
     fetchData();
 
-  
+
   }, [id]);
 
   if (loading) {
@@ -46,7 +46,7 @@ const SubjectDetail: React.FC<SubjectDetailProps> = () => {
   }
 
   return (
-    subjects?<div style={{ padding: '10px' }}>
+    subjects ? <div style={{ padding: '10px' }}>
       <Group justify="space-between">
         <Title order={2}>{data.title}</Title>
         <Group>
@@ -65,30 +65,44 @@ const SubjectDetail: React.FC<SubjectDetailProps> = () => {
       <Divider mt="sm" mb="xl" />
       <Grid>
         {subjects.map((item) => (
-          <Grid.Col span={5}>
+          <Grid.Col span={4}>
             <div style={{
-              height: "400px",
               width: "100%",
               padding: "10px",
-              boxShadow: "whitesmoke",
+              border: "1px solid #ccc",
+              borderRadius: "15px",
             }}>
               <Group justify="space-between">
-              <Title order={3}>{item.title}</Title>
-              <Link to={`#`}>
-                                                                                     <FaEdit className="icon" />
-                                        </Link>
+                <Avatar size="xl" radius={"sm"} src={item.icon} />
+                <Container style={{
+                  paddingLeft: "0px",
+                  marginLeft: "0px",
+                }}>
+                  <Title order={3}>{item.title}</Title>
+                </Container>
+                <Group>
+                <Link to={`#`}>
+                  <FaEdit className="icon" />
+                </Link>
+                
+                <Link to={`#`}>
+                  <FaEye className="icon" />
+                </Link>
+                
+                
                 </Group>
-              <div dangerouslySetInnerHTML={{ __html: item.content }}></div>
-              
+              </Group>
+
+
             </div>
           </Grid.Col>
         ))}
 
       </Grid>
-       
-       
-      
-    </div>:<Loader/>
+
+
+
+    </div> : <Loader />
   );
 };
 
