@@ -6,7 +6,6 @@ import { primaryColor, secondaryColor } from "../../../constants/color";
 
 const QuestionBankView = () => {
     const [mauseOver, setMauseOver] = useState<boolean>(false);
-    const [subjects, setSubjects] = useState<any[]>([]);  
     return (
     <>
     <Group justify="space-between">
