@@ -153,7 +153,7 @@ const AnalysisView = () => {
                             <Typography variant="h4">{animatedData.questions.toFixed(0)}</Typography>
 
                             <Typography variant="subtitle2" sx={{ color: 'success' }}>
-                                {"Soru Sayısı"}
+                                {"Soru Bankası"}
                             </Typography>
                         </Stack>
                     </Card>
@@ -200,19 +200,27 @@ const AnalysisView = () => {
                         <Container>
 
                             <PieChart
+
                                 series={[
                                     {
                                         data: [
-                                            { id: 0, value: 10, label: "elma" },
-                                            { id: 1, value: 15, label: "elma" },
-                                            { id: 2, value: 15, label: "elma" },
-                                            { id: 3, value: 15, label: "elma" },
-                                            { id: 4, value: 20, label: "elma" },
+                                            { id: 0, value: animatedData.users ,label:"Kullanıcı"},
+                                            { id: 1, value: animatedData.contents ,label:"İçerik"},
+                                            { id: 2, value: animatedData.subjects,label:"Konu"},
+                                            { id: 3, value: animatedData.questions,  
+                                            label:"Soru Bankası"},
                                         ],
+                                        highlightScope: { faded: 'global', highlighted: 'item' },
+                                        
+                                        faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' },
                                     },
                                 ]}
-                                width={300}
-                                height={300}
+                                
+                                width={450}
+  height={320}
+  slotProps={{
+    legend: { hidden: true },
+  }}
 
 
                             />

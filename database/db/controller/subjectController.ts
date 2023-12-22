@@ -49,4 +49,9 @@ const getById = async (id: string) => {
   return result;
 };
 
-export default { index, create, update, getById };
+const getAll = async () => {
+  const result = await new SubjectModel().getAll();
+  return result;
+}
+
+export default { index, create, update, getById,getAll };

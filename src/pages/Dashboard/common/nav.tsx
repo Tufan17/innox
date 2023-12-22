@@ -13,7 +13,7 @@ import { FcSettings } from "react-icons/fc";
 import Link from '@mui/material/Link';
 import { SvgIcon } from "../../../common/SvgIcon";
 import {NAV_WIDTH} from "../../../constants/index";
-import { FcPhoneAndroid } from "react-icons/fc";
+import { FcBriefcase,FcFile,FcConferenceCall,FcQuestions } from "react-icons/fc";
 interface NavProps {
   openNav: boolean;
   mobile: boolean;
@@ -35,22 +35,22 @@ const Nav: React.FC<NavProps> = ({ openNav, mobile, onCloseNav }) => {
     {
       title: 'Kullanıcılar',
       path: nav_path+'/users',
-      icon: icon('ic_user'),
+      icon: <FcConferenceCall size={25}/>,
     },
     {
-      title: 'İçerikler',
+      title: 'İçerikler (Dönemler,Dersler)',
       path: nav_path+'/contents',
-      icon: <FcPhoneAndroid size={25}/>,
+      icon: <FcBriefcase size={25}/>,
     },
     {
-      title: 'blog',
-      path: nav_path+'/blog',
-      icon: icon('ic_blog'),
+      title: 'Konular',
+      path: nav_path+'/subjects',
+      icon: <FcFile size={25}/>,
     },
     {
-      title: 'login',
-      path: nav_path+'/login',
-      icon: icon('ic_lock'),
+      title: 'Soru Bankası',
+      path: nav_path+'/questionbank',
+      icon: <FcQuestions size={25}/>,
     },
     {
       title: 'Not found',
