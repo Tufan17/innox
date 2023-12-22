@@ -1,8 +1,8 @@
 import React, { useState, useRef, useMemo, useEffect } from 'react';
 import JoditEditor from 'jodit-react';
 
-import { Link, useParams } from 'react-router-dom';
-import {  Center, Divider, FileInput, Group, Space, TextInput, Textarea, Title } from '@mantine/core';
+import {  useParams } from 'react-router-dom';
+import {  Center, Divider, FileInput, Group, Space, TextInput, Title } from '@mantine/core';
 import BackButton from '../../../components/Button/BackButton';
 import contentsController from '../../../../database/db/controller/contentsController';
 import Loader from '../../Loader';

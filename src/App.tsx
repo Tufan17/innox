@@ -14,7 +14,7 @@ import Loader from "./pages/Loader";
 import useAuthentication from "./hooks/useAuthentication";
 import UsersView from "./pages/Users";
 import EducationView from "./pages/Users/Education";
-import SubjectView from "./pages/Users/Education/SubjectView";
+import SubjectsView from "./pages/Users/Education/subjects";
 
 export default function App() {
 
@@ -58,8 +58,8 @@ export default function App() {
                   <Route path="/dashboard" element={<UsersView />} />
                   <Route path={"/app/*"} element={<EducationView />} />
                   <Route
-                    path="mobile/subject/:id"
-                    element={<SubjectView />}
+                    path="mobile/subject/*"
+                    element={<SubjectsView />}
                   />
                 </>
 

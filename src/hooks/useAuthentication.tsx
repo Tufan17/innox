@@ -5,7 +5,7 @@ import userController from "../../database/db/controller/userController";
 import languageController from "../../database/db/controller/languageController";
 
 const useAuthentication = () => {
-  const [login, setLogin] = useState<boolean | null>(false);
+  const [login, setLogin] = useState<boolean | null>(null);
 
   useEffect(() => {
     document.title = `InnoX | Dijital Eğitim Platformu`;

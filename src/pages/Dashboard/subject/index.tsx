@@ -6,7 +6,7 @@ import contentsController from '../../../../database/db/controller/contentsContr
 import Loader from '../../Loader';
 import { primaryColor, secondaryColor } from '../../../constants/color';
 import subjectController from '../../../../database/db/controller/subjectController';
-import { FaEdit, FaEye, FaTrash } from 'react-icons/fa';
+import { FaEdit, FaEye } from 'react-icons/fa';
 import "../index.css";
 interface SubjectDetailProps {
   // Add any required props here
