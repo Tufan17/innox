@@ -19,6 +19,8 @@ const AnalysisView = () => {
     const [animatedData, setAnimatedData] = useState({
         users: 0,
         contents: 0,
+        subjects: 0,
+        questions: 0,
     });
     const [data, setData] = useState<any>(null);
     const [color] = useState('#4e79a7');
@@ -37,6 +39,8 @@ const AnalysisView = () => {
             const newData = {
                 users: data.users || 0,
                 contents: data.contents || 0,
+                subjects: data.subjects || 0,
+                questions: data.questions || 0,
             };
 
             const incrementAmount = {
@@ -48,6 +52,8 @@ const AnalysisView = () => {
                 setAnimatedData((prevData) => ({
                     users: Math.min(prevData.users + incrementAmount.users, newData.users),
                     contents: Math.min(prevData.contents + incrementAmount.contents, newData.contents),
+                    subjects: Math.min(prevData.subjects + incrementAmount.contents, newData.subjects),
+                    questions: Math.min(prevData.questions + incrementAmount.contents, newData.questions),
                 }));
             }, animationInterval);
 
@@ -119,13 +125,13 @@ const AnalysisView = () => {
                             borderRadius: 2,
                         }}
                     >
-                        {<Box sx={{ width: 64, height: 64 }}>{<img alt="icon" src="/assets/icons/glass/ic_glass_buy.png" />}</Box>}
+                        {<Box sx={{ width: 64, height: 64 }}>{<img alt="icon" src="/assets/icons/glass/6920933.png" style={{maxWidth:"100%"}} />}</Box>}
 
                         <Stack spacing={0.5}>
-                            <Typography variant="h4">{(714000)}</Typography>
+                            <Typography variant="h4">{animatedData.subjects.toFixed(0)}</Typography>
 
                             <Typography variant="subtitle2" sx={{ color: 'success' }}>
-                                {"Weekly Sales"}
+                                {"Konu Sayısı"}
                             </Typography>
                         </Stack>
                     </Card>
@@ -144,10 +150,10 @@ const AnalysisView = () => {
                         {<Box sx={{ width: 64, height: 64 }}>{<img alt="icon" src="/assets/icons/glass/ic_glass_message.png" />}</Box>}
 
                         <Stack spacing={0.5}>
-                            <Typography variant="h4">{(714000)}</Typography>
+                            <Typography variant="h4">{animatedData.questions.toFixed(0)}</Typography>
 
                             <Typography variant="subtitle2" sx={{ color: 'success' }}>
-                                {"Weekly Sales"}
+                                {"Soru Sayısı"}
                             </Typography>
                         </Stack>
                     </Card>
