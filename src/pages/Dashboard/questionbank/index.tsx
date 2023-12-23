@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { primaryColor, secondaryColor } from "../../../constants/color";
 import questionBankController from "../../../../database/db/controller/questionBankController";
 import Loader from "../../Loader";
-import { FaEdit, FaEye, FaRegQuestionCircle } from "react-icons/fa";
+import { FaEdit, FaRegQuestionCircle } from "react-icons/fa";
 import { MdOutlineContentPaste } from "react-icons/md";
 
 const QuestionBankView = () => {
