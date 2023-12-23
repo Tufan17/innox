@@ -31,12 +31,18 @@ const useAuthentication = () => {
         });
 
         if (window.location.pathname === "/login") {
-          const data= JSON.parse(window.localStorage.getItem("user")!);
-          if(data.role=== "user"&&data.education){
-            window.location.href = "/app/home";
+          const data= JSON.parse(window.localStorage.getItem("user")!);          
+          if(data.role=== "user"){
+            const userAgent = navigator.userAgent;
+            if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent)) {
+              window.location.href = data.education === null ? "/dashboard" : "/app/home";
+          } else {
+              window.location.href = "/user_dashboard";
+          }
           }else{
             window.location.href = "/dashboard";
           }
+          
         }
       } else {
         if (
@@ -50,13 +56,11 @@ const useAuthentication = () => {
       }
     };
 
-    if (window.location.pathname !== "/register") {
       const unsubscribe = onAuthStateChanged(auth, handleAuthStateChange);
 
       return () => {
         unsubscribe();
       };
-    }
   }, []);
 
   return login;

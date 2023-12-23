@@ -15,6 +15,7 @@ import useAuthentication from "./hooks/useAuthentication";
 import UsersView from "./pages/Users/mobile";
 import EducationView from "./pages/Users/mobile/Education";
 import SubjectsView from "./pages/Users/mobile/subjects";
+import UserDashBoard from "./pages/Users/web";
 
 export default function App() {
 
@@ -56,6 +57,8 @@ export default function App() {
               (
                 <>
                   <Route path="/dashboard" element={<UsersView />} />
+                  <Route path="/user_dashboard" element={<UserDashBoard />} />
+
                   <Route path={"/app/*"} element={<EducationView />} />
                   <Route
                     path="mobile/subject/*"

@@ -99,7 +99,7 @@ const HomeView = () => {
                                 textDecoration: 'none',
                                 color: 'black',
                             
-                            }}>
+                            }} key={index}>
                             <Grid
                         key={index}
                         style={{
