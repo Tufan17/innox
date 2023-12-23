@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import Loader from "../../Loader";
+import Loader from "../../../Loader";
 import { AppShell, Button, Center, Container, Group, Modal, Text, Title } from "@mantine/core";
 import { Avatar } from "antd";
-import { primaryColor, secondaryColor } from "../../../constants/color";
-import contentsController from "../../../../database/db/controller/contentsController";
+import { primaryColor, secondaryColor } from "../../../../constants/color";
+import contentsController from "../../../../../database/db/controller/contentsController";
 import { MdChangeCircle } from "react-icons/md";
 import { useDisclosure } from "@mantine/hooks";
 import { Link } from "react-router-dom";
 import { IoIosLogOut } from "react-icons/io";
-import { signout } from "../../../../database/service/auth_service";
+import { signout } from "../../../../../database/service/auth_service";
 const ProfileView = () => {
 
   const [opened, { open, close }] = useDisclosure(false);

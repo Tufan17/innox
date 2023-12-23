@@ -1,6 +1,6 @@
 import { Center, Container, Flex, Text } from "@mantine/core";
 import { FaBookBookmark } from "react-icons/fa6";
-import { primaryColor, quinaryColor, secondaryColor } from "../../../constants/color";
+import { primaryColor, quinaryColor, secondaryColor } from "../../../../constants/color";
 import { FaUserAlt } from "react-icons/fa";
 import { MdSettings } from "react-icons/md";
 import { Link, Route, Routes } from "react-router-dom";

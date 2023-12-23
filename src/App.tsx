@@ -12,9 +12,9 @@ import Dashboard from "./pages/Dashboard";
 import routers from "./constants";
 import Loader from "./pages/Loader";
 import useAuthentication from "./hooks/useAuthentication";
-import UsersView from "./pages/Users";
-import EducationView from "./pages/Users/Education";
-import SubjectsView from "./pages/Users/Education/subjects";
+import UsersView from "./pages/Users/mobile";
+import EducationView from "./pages/Users/mobile/Education";
+import SubjectsView from "./pages/Users/mobile/subjects";
 
 export default function App() {
 

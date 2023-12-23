@@ -1,9 +1,9 @@
 import { Container, Grid, Group, Input, ScrollArea, Text, Title } from "@mantine/core";
-import { senaryColor } from "../../../constants/color";
+import { senaryColor } from "../../../../constants/color";
 import { RiNotification2Line } from "react-icons/ri";
 import { CiSearch } from "react-icons/ci";
 import { useEffect, useState } from "react";
-import contentsController from "../../../../database/db/controller/contentsController";
+import contentsController from "../../../../../database/db/controller/contentsController";
 import { Link } from "react-router-dom";
 
 const HomeView = () => {

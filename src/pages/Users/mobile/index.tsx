@@ -1,15 +1,15 @@
 import { Container, Grid, Group, Space, Text, Title } from "@mantine/core";
 import { Avatar } from "antd";
-import { quaternaryColor } from "../../constants/color";
+import { quaternaryColor } from "../../../constants/color";
 import { Card } from "@mui/material";
 import { FcAssistant, FcManager, FcPhoneAndroid, FcSettings } from "react-icons/fc";
 import { useEffect, useState } from "react";
-import Loader from "../Loader";
-import bannerController from "../../../database/db/controller/bannerController";
-import contentsController from "../../../database/db/controller/contentsController";
-import AccountPopover from "../Dashboard/common/account";
+import Loader from "../../Loader";
+import bannerController from "../../../../database/db/controller/bannerController";
+import contentsController from "../../../../database/db/controller/contentsController";
+import AccountPopover from "../../Dashboard/common/account";
 import { Link } from "react-router-dom";
-import userController from "../../../database/db/controller/userController";
+import userController from "../../../../database/db/controller/userController";
 type ContentType = /*unresolved*/ any
 const UsersView = () => {
     const user = JSON.parse(window.localStorage.getItem("user")!);

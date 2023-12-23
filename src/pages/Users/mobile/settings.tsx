@@ -1,5 +1,5 @@
 import { Container, Flex, Group, Text, Title } from "@mantine/core";
-import { quinaryColor } from "../../constants/color";
+import { quinaryColor } from "../../../constants/color";
 import { IoIosArrowForward } from "react-icons/io";
 const SettingsView = () => {
     return (<>
