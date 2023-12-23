@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { PieChart } from '@mui/x-charts/PieChart';
 import dashboardController from "../../../database/db/controller/dashboardController.ts";
 import { toast } from "react-toastify";
+import { FcConferenceCall } from "react-icons/fc";
 const chartsParams = {
     margin: { bottom: 20, left: 25, right: 5 },
     height: 300,
@@ -103,7 +104,7 @@ const AnalysisView = () => {
                             borderRadius: 2,
                         }}
                     >
-                        {<Box sx={{ width: 64, height: 64 }}>{<img alt="icon" src="/assets/icons/glass/ic_glass_users.png" />}</Box>}
+                        {<Box sx={{ width: 64, height: 64 }}>{<FcConferenceCall size={70}/>}</Box>}
 
                         <Stack spacing={0.5}>
                             <Typography variant="h4">{animatedData.users.toFixed(0)}</Typography>
