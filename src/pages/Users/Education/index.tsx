@@ -6,6 +6,8 @@ import { MdSettings } from "react-icons/md";
 import { Link, Route, Routes } from "react-router-dom";
 import HomeView from "./HomeView";
 import { useState } from "react";
+import ProfileView from "../Profile";
+import SettingsView from "../settings";
 const EducationView = () => {
     const nav_path="/app";
     const [path, setPath] = useState(window.location.pathname);
@@ -17,11 +19,11 @@ const EducationView = () => {
              <Routes>
              <Route
                     path="/profile"
-                    element={<>2</>}
+                    element={<ProfileView/>}
                 />
                 <Route
                     path="/settings"
-                    element={<>3</>}
+                    element={<SettingsView/>}
                 />
               <Route
                 path="/home"
@@ -92,7 +94,7 @@ const EducationView = () => {
                             color: path.includes("profile")?primaryColor:quinaryColor,
                         }}
                     >
-                        Eğitim
+                        Profil
                     </Text>
                     </Link>
                 </Container>
@@ -114,7 +116,7 @@ const EducationView = () => {
                             color: path.includes("settings")?primaryColor:quinaryColor,
                         }}
                     >
-                        Eğitim
+                        Ayarlar
                     </Text>
                     </Link>
                 </Container>
