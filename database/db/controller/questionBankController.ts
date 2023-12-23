@@ -6,8 +6,15 @@ return data;
 }
 
 const create= async (data:any) => {
+   try{
+
     const result = await new QuestionBankModel().create(data);
-    return result;
+    return {
+      success:"Soru bankası başarıyla oluşturuldu",
+      result};
+  }catch(error){
+    return {error:"Yüklenirken bir hata oluştu"};
+  }
 }
 
 

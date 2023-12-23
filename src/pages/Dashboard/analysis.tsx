@@ -81,7 +81,7 @@ const AnalysisView = () => {
                             borderRadius: 2,
                         }}
                     >
-                        {<Box sx={{ width: 64, height: 64 }}>{<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}</Box>}
+                        {<Box sx={{ width: 64, height: 64 }}>{<img alt="icon" src="/assets/icons/glass/contents.png"  style={{maxWidth:"100%"}}/>}</Box>}
 
                         <Stack spacing={0.5}>
                             <Typography variant="h4">{animatedData.contents.toFixed(0)}</Typography>
@@ -147,7 +147,7 @@ const AnalysisView = () => {
                             borderRadius: 2,
                         }}
                     >
-                        {<Box sx={{ width: 64, height: 64 }}>{<img alt="icon" src="/assets/icons/glass/ic_glass_message.png" />}</Box>}
+                        {<Box sx={{ width: 64, height: 64 }}>{<img alt="icon" src="/assets/icons/glass/questionbank.png"  style={{maxWidth:"100%"}}/>}</Box>}
 
                         <Stack spacing={0.5}>
                             <Typography variant="h4">{animatedData.questions.toFixed(0)}</Typography>
