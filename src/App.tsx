@@ -17,6 +17,7 @@ import EducationView from "./pages/Users/mobile/Education";
 import SubjectsView from "./pages/Users/mobile/subjects";
 import UserDashBoard from "./pages/Users/web";
 import UserSubjectView from "./pages/Users/web/user_rsubject_view";
+import UserSubjectDetailView from "./pages/Users/web/user_subject_detail";
 
 export default function App() {
   const login = useAuthentication();
@@ -59,6 +60,7 @@ export default function App() {
                   <Route path="/dashboard" element={<UsersView />} />
                   <Route path="/user_dashboard" element={<UserDashBoard />} />
                   <Route path="/user_dashboard/subject/:id" element={<UserSubjectView />} />
+                  <Route path="/user_dashboard/subject/detail/:id" element={<UserSubjectDetailView />} />
 
                   <Route path={"/app/*"} element={<EducationView />} />
                   <Route

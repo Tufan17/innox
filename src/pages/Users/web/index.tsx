@@ -10,6 +10,7 @@ import { MdChangeCircle } from "react-icons/md";
 import { IoIosArrowForward } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";
 import { Link } from "react-router-dom";
+import userController from "../../../../database/db/controller/userController";
 
 const UserDashBoard = () => {
     const user = JSON.parse(localStorage.getItem("user") || "{}");
@@ -141,7 +142,7 @@ const UserDashBoard = () => {
                                 border: "1px solid #eaeaea",
                             }}>
                                 <Group  
-                                onClick={()=>{setChange(true);
+                                onClick={()=>{setChange(!change);
                                     getAllData();
                                 }}>
                                     <Container style={{
@@ -253,7 +254,7 @@ const UserDashBoard = () => {
                         type="never"
                             style={{
                                 width: '100%',
-                                height: window.innerHeight - 140,
+                                height: window.innerHeight - 135,
                                 overflow: 'auto',
                             }}
                         >
@@ -341,11 +342,19 @@ const UserDashBoard = () => {
                                         {
                                             homeData?.map((content: any, index: number) => (
                                                 <Grid.Col span={4}>
-                                                    <Link to={"subject/" + content.id} style={{
+                                                    <Link to={"#"} style={{
                                                     textDecoration: 'none',
                                                     color: 'black',
 
-                                                }} key={index}>
+                                                }}
+                                                onClick={()=>{
+                                                    user.education=content.id;
+                                                    window.localStorage.setItem("user",JSON.stringify(user));
+                                                    userController.update(user.id,{education:content.id}).then(()=>{
+                                                    window.location.reload();
+                                                    });
+                                                }}
+                                                key={index}>
                                                     <Grid
                                                         key={index}
                                                         style={{
