@@ -80,8 +80,7 @@ const ProfileView = () => {
             </Group>
       </Modal>
 
-        <Center>
-            </Center>
+        
             <Container style={{
             textAlign: "center",
             margin: "10px",

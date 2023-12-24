@@ -16,9 +16,9 @@ import UsersView from "./pages/Users/mobile";
 import EducationView from "./pages/Users/mobile/Education";
 import SubjectsView from "./pages/Users/mobile/subjects";
 import UserDashBoard from "./pages/Users/web";
+import UserSubjectView from "./pages/Users/web/user_rsubject_view";
 
 export default function App() {
-
   const login = useAuthentication();
   const user = JSON.parse(window.localStorage.getItem("user")!);
 
@@ -58,6 +58,7 @@ export default function App() {
                 <>
                   <Route path="/dashboard" element={<UsersView />} />
                   <Route path="/user_dashboard" element={<UserDashBoard />} />
+                  <Route path="/user_dashboard/subject/:id" element={<UserSubjectView />} />
 
                   <Route path={"/app/*"} element={<EducationView />} />
                   <Route
