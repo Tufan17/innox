@@ -86,6 +86,30 @@ class BaseModel {
       throw error;
     }
   }
+  async getByIds(ids: string[]): Promise<any> {
+    try {
+      const data: DocumentData[] = [];
+      for (const id of ids) {
+        const docRef: DocumentReference<DocumentData> = doc(
+          db,
+          this.moduleName,
+          id
+        );
+        const docSnap = await getDoc(docRef);
+
+        if (!docSnap.exists()) {
+          console.log("No such document!");
+          return null;
+        }
+
+        data.push(docSnap.data());
+      }
+      return data;
+    } catch (error) {
+      console.error("Error getting document:", error);
+      throw error;
+    }
+  }
 
   async getAll(): Promise<any> {
     try {

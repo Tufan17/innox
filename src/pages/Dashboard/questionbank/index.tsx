@@ -65,18 +65,23 @@ const QuestionBankView = () => {
 
                         </Center>
                       </Link>
-                      <Link to={``}>
+                      <Link to={`show/${item.id}`}>
                         <Center>
 
                           <MdOutlineContentPaste className="icon" />
 
                         </Center>
                       </Link>
-                      <Link to={``}>
                         <Center>
+                          <Group>
+                          <Title className="icon" order={2} p={0} m={0}>
+                            {item?.questions?.length}
+                          </Title>
                           <FaRegQuestionCircle className="icon" />
+
+                          </Group>
+
                         </Center>
-                      </Link>
                     </Group>
                   </Container>
                 </Grid.Col>
