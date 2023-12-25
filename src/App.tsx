@@ -18,6 +18,9 @@ import SubjectsView from "./pages/Users/mobile/subjects";
 import UserDashBoard from "./pages/Users/web";
 import UserSubjectView from "./pages/Users/web/user_rsubject_view";
 import UserSubjectDetailView from "./pages/Users/web/user_subject_detail";
+import WebExamView from "./pages/Users/web/web_exam_view";
+import ExamMobileView from "./pages/Users/mobile/exam";
+import ResultExamView from "./pages/Users/mobile/exam/result_exam";
 
 export default function App() {
   const login = useAuthentication();
@@ -59,10 +62,19 @@ export default function App() {
                 <>
                   <Route path="/dashboard" element={<UsersView />} />
                   <Route path="/user_dashboard" element={<UserDashBoard />} />
+                  <Route path="/user_dashboard/exam/:id" element={<WebExamView />} />
                   <Route path="/user_dashboard/subject/:id" element={<UserSubjectView />} />
                   <Route path="/user_dashboard/subject/detail/:id" element={<UserSubjectDetailView />} />
 
                   <Route path={"/app/*"} element={<EducationView />} />
+                  <Route
+                    path="mobile/exam/:id"
+                    element={<ExamMobileView />}
+                  />
+                  <Route
+                    path="mobile/result/*"
+                    element={<ResultExamView />}
+                  />
                   <Route
                     path="mobile/subject/*"
                     element={<SubjectsView />}

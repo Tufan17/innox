@@ -58,7 +58,7 @@ const QuestionBankView = () => {
                     </Title>
                     <Divider />
                     <Group grow m={"md"}>
-                      <Link to={``}
+                      <Link to={`${item.id}`}
                       >
                         <Center>
                           <FaEdit className="icon" />

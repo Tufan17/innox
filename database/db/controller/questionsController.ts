@@ -17,4 +17,8 @@ const create = async (data: any) => {
   }
 };
 
-export default { index, create };
+const getQuestions=(ids:any)=>{
+  return new QuestionsModel().getByIds(ids);
+}
+
+export default { index, create ,getQuestions};

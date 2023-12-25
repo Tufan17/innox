@@ -5,10 +5,10 @@ const MobileBackButton = () => {
     const navigate = useNavigate();
 
     return (   <div style={{
-        paddingLeft: "10px",
-        paddingRight: "15px",
-        paddingTop: "12px",
-        paddingBottom: "5px",
+        paddingLeft: "8px",
+        paddingRight: "13px",
+        paddingTop: "10px",
+        paddingBottom: "3px",
         border: "1px solid #ccc",
         borderRadius: "100%",
         }}

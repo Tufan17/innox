@@ -21,6 +21,7 @@ import AllSubject from "./subject/all_subjects.tsx";
 import QuestionBankAddView from "./questionbank/add_question_bank.tsx";
 import ShowQuestionBankView from "./questionbank/show_questionbank.tsx";
 import AddQuestionView from "./questionbank/questions/add_question.tsx";
+import EditQuestionBank from "./questionbank/edit_question_bank.tsx";
 const Dashboard = () => {
   const [openNav, setOpenNav] = useState<boolean>(true);
   const [mobile, setMobile] = useState<boolean>(false);
@@ -70,6 +71,10 @@ const Dashboard = () => {
               <Route
                 path="/questionbank"
                 element={<Main children={<QuestionBankView />} mobile={mobile} />}
+              />
+              <Route
+                path="/questionbank/:id"
+                element={<Main children={<EditQuestionBank />} mobile={mobile} />}
               />
               <Route
                 path="/questionbank/add"

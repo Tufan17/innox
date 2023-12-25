@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Loader from "../../../Loader";
-import { AppShell, Button, Center, Container, Group, Modal, Text, Title } from "@mantine/core";
-import { Avatar } from "antd";
+import { AppShell, Button, Center, Container, Group, Modal, Text, Title,Avatar, Space } from "@mantine/core";
 import { primaryColor, secondaryColor } from "../../../../constants/color";
 import contentsController from "../../../../../database/db/controller/contentsController";
 import { MdChangeCircle } from "react-icons/md";
@@ -88,7 +87,9 @@ const ProfileView = () => {
             border: "1px solid #eaeaea",
             padding: "10px",
         }}>
+            <Center>
             <Avatar size={75} src={user.avatar} />
+            </Center>
 
          <Title order={3} c={primaryColor}>{user.nickname}</Title>
             <Title order={5}>{user.email}</Title>
@@ -140,6 +141,7 @@ const ProfileView = () => {
             <IoIosLogOut  size={30} color={primaryColor}/>
            </Group>
         </Container>
+        <Space h={100}/>
       </AppShell.Main>
     
     </AppShell> 

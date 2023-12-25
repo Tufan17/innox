@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import contentsController from "../../../../../database/db/controller/contentsController";
-import { Avatar, Center, Container, Group, Image, Slider, Text, Title } from "@mantine/core";
+import { Avatar, Center, Container, Flex, Group, Image, Slider, Space, Text, Title } from "@mantine/core";
 import MobileBackButton from "../../../../components/Button/MobileBackButton";
 import Loader from "../../../Loader";
 import subjectController from "../../../../../database/db/controller/subjectController";
@@ -30,11 +30,13 @@ const SubjectView = () => {
     }}>
         <Group>
             <MobileBackButton />
-            <Center style={{
+            <Center 
+
+            style={{
 
                 maxWidth: "75%",
             }}>
-                <Title>
+                <Title order={3}>
                     {lesson.title}
                 </Title>
             </Center>
@@ -85,14 +87,14 @@ const SubjectView = () => {
                             padding: "20px",
                         }}
                     >
-                        <Group>
+                        <Flex direction={"row"}>
 
                             <Avatar src={subject.icon} alt={subject.title}
                                 radius={"xs"}
                             />
-                            <Center>
+                            <Center ml={"sm"}>
                                 <Title
-                                    order={3}
+                                    order={4}
                                     style={{
                                         display: "flex",
                                         alignItems: "center",
@@ -103,7 +105,7 @@ const SubjectView = () => {
                                 </Title>
                             </Center>
 
-                        </Group>
+                        </Flex>
                         <Slider
                         
       showLabelOnHover={false}
@@ -114,6 +116,7 @@ const SubjectView = () => {
                     </Link>
                 ))
         }
+        <Space h={"10px"} />
     </div> : <Loader />);
 }
 

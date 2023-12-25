@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 import subjectController from "../../../../database/db/controller/subjectController";
 import { Center, Container, Grid, Group, Text, Title } from "@mantine/core";
@@ -69,11 +69,12 @@ const UserSubjectDetailView = () => {
                 <div dangerouslySetInnerHTML={{ __html: subject.content }} /> :
                 <Grid p={"md"} gutter="lg">
                     {
-                        subject?.tests &&
-                        subject?.tests?.map((index: number) => {
+                        subject?.tests ?
+                        subject?.tests?.map((test:string,index: number) => {
                             return <Grid.Col
 
                             >
+                                <Link to={`/user_dashboard/exam/${test}`}>
                                 <Container style={{
                                     border: "1px solid #ccc",
                                     borderRadius: "10px",
@@ -93,11 +94,22 @@ const UserSubjectDetailView = () => {
                                         <IoIosArrowForward size={30} />
                                     </Group>
 
-                                </Container>
+                                </Container></Link>
 
                             </Grid.Col>
                         }
-                        )
+                        ):<Center
+                        
+                        style={{
+                            height: "500px",
+                        width: "100%",
+
+                        }}>
+
+                        <Text>
+                            Bu Konuda Henüz Test Bulunmamaktadır.
+                        </Text>
+                        </Center>
                     }
                 </Grid>
         }

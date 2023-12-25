@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import subjectController from "../../../../../database/db/controller/subjectController";
 import MobileBackButton from "../../../../components/Button/MobileBackButton";
 import { Center, Container, Grid, Group, Text, Title } from "@mantine/core";
@@ -29,12 +29,13 @@ const SubjectDetailView = () => {
 
                 maxWidth: "75%",
             }}>
-                <Title>
+                <Title order={3}>
                     {subject.title}
                 </Title>
             </Center>
         </Group>
-        <Group grow mt={"md"}>
+        <Group grow mt={"md"}
+        >
             <Center>
                 <Text fw="bold" color={
                     type === "subject" ? secondaryColor : "#ccc"
@@ -69,12 +70,19 @@ const SubjectDetailView = () => {
                 <div dangerouslySetInnerHTML={{ __html: subject.content }} /> :
                 <Grid p={"md"} gutter="lg">
                     {
-                        subject?.tests &&
-                        subject?.tests?.map((index: number) => {
+                        subject?.questionbank ?
+                        subject?.questionbank?.map((value:any,index: number) => {
                             return <Grid.Col
 
                             >
-                                <Container style={{
+                               <Link to={`/mobile/exam/${value}`}
+                                style={{
+                                    textDecoration:"none",
+                                    color:"inherit"
+                                
+                                }}
+                               >
+                               <Container style={{
                                     border: "1px solid #ccc",
                                     borderRadius: "10px",
                                     padding: "10px",
@@ -87,7 +95,7 @@ const SubjectDetailView = () => {
 
                                             }}>
                                             <Text fw={"bold"}>
-                                                {index}. {"Test"}
+                                                {index+1}. {"Test"}
                                             </Text>
                                         </Container>
                                         <IoIosArrowForward size={30} />
@@ -95,9 +103,18 @@ const SubjectDetailView = () => {
 
                                 </Container>
 
+                                </Link>
                             </Grid.Col>
                         }
-                        )
+                        ):<Center 
+                        style={{
+                            width:"100%",
+                            marginTop:"200px"
+                        
+                        }}
+                        >
+                            <Text>Henüz test eklenmemiş.</Text>
+                        </Center>
                     }
                 </Grid>
         }

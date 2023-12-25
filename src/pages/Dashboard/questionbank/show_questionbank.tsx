@@ -16,9 +16,14 @@ const ShowQuestionBankView = () => {
     useEffect(() => {
         questionBankController.getById(id ?? "").then((res) => {
             setQuestionBank(res);
-            questionBankController.getQuestions(res.questions ?? [""]).then((res) => {
-                setQuestions(res);
-            });
+            if(res?.questions){
+                questionBankController.getQuestions(res.questions ?? [""]).then((res) => {
+                    setQuestions(res);
+                });
+            }else{
+                setQuestions([]);
+            
+            }
         }
         );
     }, []);
