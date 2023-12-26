@@ -1,4 +1,4 @@
-import { Avatar, Center, Container, Grid, Group, Image, Title } from "@mantine/core";
+import { Avatar, Center, Container, Flex, Grid, Group, Image, Title } from "@mantine/core";
 import { useEffect, useState } from "react";
 import subjectController from "../../../../database/db/controller/subjectController";
 import Loader from "../../Loader";
@@ -34,14 +34,16 @@ const AllSubject = () => {
                 <h3>Henüz hiç konu eklenmemiş.</h3>
             </Container>
 
-            : (<Container
+            : (<div
                 style={{
                     margin: 0,
                     width: "100%",
                 }}
             >
                 <Title order={2}>Bütün Konular</Title>
-                <Grid mt={"md"}>
+                <Grid mt={"md"} style={{
+                    width: "100%",
+                }}>
                     {
                         subjects.map((subject: any) => {
                             return (
@@ -55,11 +57,27 @@ const AllSubject = () => {
 
                                         }}
                                         >
-                                        <Group>
-                                            <Avatar size="md" src={subject.icon} radius="sm" />
-                                            <Title order={3}>{subject.title}</Title>
-                                        </Group>
-                                        <Group mt={"sm"} grow>
+                                        <Flex
+                                            direction={"row"}
+                                            style={{
+                                                height: "100%",
+                                                justifyContent: "space-between"
+                                            }}
+                                        >
+                                            <Avatar size="md" src={subject.icon} radius="sm" mr={"sm"}/>
+                                            <Container 
+                                                style={{
+                                                    height: "50px",
+                                                    display: "flex",
+                                                    justifyContent: "center",
+                                                    alignItems: "center",
+                                                    marginLeft: "0px",
+
+                                                }}
+                                            >{subject.title}
+                                         
+                                            </Container>
+                                            <Group mt={"sm"} grow>
                                             <Center>
                                             <Link to={`#`}>
                                                 <FaEdit className="icon" />
@@ -75,6 +93,8 @@ const AllSubject = () => {
                                             
 
                                         </Group>
+                                        </Flex>
+                                       
                                     </Container>
                                 </Grid.Col>
                             );
@@ -83,7 +103,7 @@ const AllSubject = () => {
                     }
 
                 </Grid>
-            </Container>);
+            </div>);
 }
 
 export default AllSubject;
