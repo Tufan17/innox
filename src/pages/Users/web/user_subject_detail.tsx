@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 import subjectController from "../../../../database/db/controller/subjectController";
 import { Center, Container, Grid, Group, Text, Title } from "@mantine/core";
-import { secondaryColor } from "../../../constants/color";
+import { primaryColor, secondaryColor } from "../../../constants/color";
 import Loader from "../../Loader";
 import BackButton from "../../../components/Button/BackButton";
 
@@ -69,12 +69,17 @@ const UserSubjectDetailView = () => {
                 <div dangerouslySetInnerHTML={{ __html: subject.content }} /> :
                 <Grid p={"md"} gutter="lg">
                     {
-                        subject?.tests ?
-                        subject?.tests?.map((test:string,index: number) => {
+                        subject?.questionbank ?
+                        subject?.questionbank?.map((test:string,index: number) => {
                             return <Grid.Col
 
                             >
-                                <Link to={`/user_dashboard/exam/${test}`}>
+                                <Link to={`/user_dashboard/exam/${test}`}
+                                style={{
+                                    textDecoration:"none",
+                                    color:primaryColor
+                                }}
+                                >
                                 <Container style={{
                                     border: "1px solid #ccc",
                                     borderRadius: "10px",
@@ -88,7 +93,7 @@ const UserSubjectDetailView = () => {
 
                                             }}>
                                             <Text fw={"bold"}>
-                                                {index}. {"Test"}
+                                                {index+1}. {"Test"}
                                             </Text>
                                         </Container>
                                         <IoIosArrowForward size={30} />

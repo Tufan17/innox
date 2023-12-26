@@ -11,22 +11,25 @@ import { IoIosArrowForward } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import userController from "../../../../database/db/controller/userController";
+import NotificationsPopover from "../../Dashboard/common/notification";
+import { Stack } from "@mui/material";
+import { RiNotification2Line } from "react-icons/ri";
 
 const UserDashBoard = () => {
     const user = JSON.parse(localStorage.getItem("user") || "{}");
     const [education, setEducation] = useState<any>(null);
     const [value, setValue] = useState("");
     const [lessons, setLessons] = useState<any[]>([]);
-  const [change, setChange] = useState<boolean>(false);
-  const [homeData, setHomeData] = useState<any| null>(null);
+    const [change, setChange] = useState<boolean>(false);
+    const [homeData, setHomeData] = useState<any | null>(null);
 
-  const getAllData = async () => {
-      const contents = await contentsController.index("main");
-      setHomeData(contents);
-  };
+    const getAllData = async () => {
+        const contents = await contentsController.index("main");
+        setHomeData(contents);
+    };
 
     useEffect(() => {
-        if(user.education === undefined){
+        if (user.education === undefined) {
             getAllData();
         }
         contentsController.getById(user.education).then(async (res: any) => {
@@ -66,14 +69,33 @@ const UserDashBoard = () => {
                     <Center ml={"sm"}>
                         <SvgIcon src="logo.svg" height="120px" width="120px" />
                     </Center>
-                    <div
-                        style={{
-                            marginTop: "-20px",
-                            marginRight: "20px"
-                        }}
-                    >
-                        <AccountPopover />
+                    <Group>
+
+                    <div style={{
+                        borderRadius: '100%',
+                        width: '60px',
+                        height: '60px',
+                        border: '2px solid ' + senaryColor,
+                        padding: '10px',
+                        marginTop: '5p x',
+                    }}>
+                        <RiNotification2Line
+                            style={{
+                                width: '100%',
+                                height: '100%',
+                                color: senaryColor,
+                            }}
+                        />
                     </div>
+                        <div
+                            style={{
+                                marginRight: "20px"
+                            }}
+                        >
+
+                            <AccountPopover />
+                        </div>
+                    </Group>
                 </Group>
             </Flex>
 
@@ -141,10 +163,11 @@ const UserDashBoard = () => {
                                 margin: "10px",
                                 border: "1px solid #eaeaea",
                             }}>
-                                <Group  
-                                onClick={()=>{setChange(!change);
-                                    getAllData();
-                                }}>
+                                <Group
+                                    onClick={() => {
+                                        setChange(!change);
+                                        getAllData();
+                                    }}>
                                     <Container style={{
                                         paddingLeft: "0px",
                                         marginLeft: "0px",
@@ -251,7 +274,7 @@ const UserDashBoard = () => {
                     </Grid.Col>
                     <Grid.Col span={8}>
                         <ScrollArea
-                        type="never"
+                            type="never"
                             style={{
                                 width: '100%',
                                 height: window.innerHeight - 135,
@@ -291,50 +314,50 @@ const UserDashBoard = () => {
                                             {lessons.map((content, index) => (
                                                 <Grid.Col span={4}>
                                                     <Link to={"subject/" + content.id} style={{
-                                                    textDecoration: 'none',
-                                                    color: 'black',
+                                                        textDecoration: 'none',
+                                                        color: 'black',
 
-                                                }} key={index}>
-                                                    <Grid
-                                                        key={index}
-                                                        style={{
-                                                            borderRadius: '15px',
-                                                            backgroundColor: 'white',
-                                                            border: '1px solid' + senaryColor,
-                                                            padding: '20px',
-                                                            margin: '10px',
-                                                            maxHeight: '250px',
-                                                            height: '250px',
-                                                        
-                                                        }}>
-                                                        <Grid.Col span={
-                                                          12
-                                                        }>
-                                                            <img
-                                                                src={content.icon}
-                                                                style={{
-                                                                    width: '100%',
-                                                                    maxHeight: '100px',
-                                                                    borderRadius: '15px',
-                                                                }}
-                                                            />
-                                                        </Grid.Col>
-                                                        <Grid.Col span={
-12
-}>
-                                                            <Title
-                                                                order={4}
-                                                            >
-                                                                {content.title}
-                                                            </Title>
-                                                            <Text
-                                                            >
-                                                                {content.subtitle}
-                                                            </Text>
-                                                            
-                                                        </Grid.Col>
-                                                    </Grid>
-                                                </Link>
+                                                    }} key={index}>
+                                                        <Grid
+                                                            key={index}
+                                                            style={{
+                                                                borderRadius: '15px',
+                                                                backgroundColor: 'white',
+                                                                border: '1px solid' + senaryColor,
+                                                                padding: '20px',
+                                                                margin: '10px',
+                                                                maxHeight: '250px',
+                                                                height: '250px',
+
+                                                            }}>
+                                                            <Grid.Col span={
+                                                                12
+                                                            }>
+                                                                <img
+                                                                    src={content.icon}
+                                                                    style={{
+                                                                        width: '100%',
+                                                                        maxHeight: '100px',
+                                                                        borderRadius: '15px',
+                                                                    }}
+                                                                />
+                                                            </Grid.Col>
+                                                            <Grid.Col span={
+                                                                12
+                                                            }>
+                                                                <Title
+                                                                    order={4}
+                                                                >
+                                                                    {content.title}
+                                                                </Title>
+                                                                <Text
+                                                                >
+                                                                    {content.subtitle}
+                                                                </Text>
+
+                                                            </Grid.Col>
+                                                        </Grid>
+                                                    </Link>
                                                 </Grid.Col>
                                             ))}
                                         </Grid>
@@ -343,62 +366,62 @@ const UserDashBoard = () => {
                                             homeData?.map((content: any, index: number) => (
                                                 <Grid.Col span={4}>
                                                     <Link to={"#"} style={{
-                                                    textDecoration: 'none',
-                                                    color: 'black',
+                                                        textDecoration: 'none',
+                                                        color: 'black',
 
-                                                }}
-                                                onClick={()=>{
-                                                    user.education=content.id;
-                                                    window.localStorage.setItem("user",JSON.stringify(user));
-                                                    userController.update(user.id,{education:content.id}).then(()=>{
-                                                    window.location.reload();
-                                                    });
-                                                }}
-                                                key={index}>
-                                                    <Grid
-                                                        key={index}
-                                                        style={{
-                                                            borderRadius: '15px',
-                                                            backgroundColor: 'white',
-                                                            border: '1px solid' + senaryColor,
-                                                            padding: '20px',
-                                                            margin: '10px',
-                                                            maxHeight: '200px',
-                                                            height: '250px',
-                                                        
-                                                        }}>
-                                                        <Grid.Col span={
-                                                          12
-                                                        }>
-                                                            <img
-                                                                src={content.icon}
-                                                                style={{
-                                                                    width: '100%',
-                                                                    maxHeight: '100px',
-                                                                    borderRadius: '15px',
-                                                                }}
-                                                            />
-                                                        </Grid.Col>
-                                                        <Grid.Col span={
-12
-}>
-                                                            <Title
-                                                                order={4}
+                                                    }}
+                                                        onClick={() => {
+                                                            user.education = content.id;
+                                                            window.localStorage.setItem("user", JSON.stringify(user));
+                                                            userController.update(user.id, { education: content.id }).then(() => {
+                                                                window.location.reload();
+                                                            });
+                                                        }}
+                                                        key={index}>
+                                                        <Grid
+                                                            key={index}
+                                                            style={{
+                                                                borderRadius: '15px',
+                                                                backgroundColor: 'white',
+                                                                border: '1px solid' + senaryColor,
+                                                                padding: '20px',
+                                                                margin: '10px',
+                                                                maxHeight: '200px',
+                                                                height: '250px',
 
-                                                            >
-                                                                {content.title}
-                                                            </Title>
-                                                            <Text
-                                                            >
-                                                                {content.subtitle}
-                                                            </Text>
-                                                            
-                                                        </Grid.Col>
-                                                    </Grid>
-                                                </Link>
+                                                            }}>
+                                                            <Grid.Col span={
+                                                                12
+                                                            }>
+                                                                <img
+                                                                    src={content.icon}
+                                                                    style={{
+                                                                        width: '100%',
+                                                                        maxHeight: '100px',
+                                                                        borderRadius: '15px',
+                                                                    }}
+                                                                />
+                                                            </Grid.Col>
+                                                            <Grid.Col span={
+                                                                12
+                                                            }>
+                                                                <Title
+                                                                    order={4}
+
+                                                                >
+                                                                    {content.title}
+                                                                </Title>
+                                                                <Text
+                                                                >
+                                                                    {content.subtitle}
+                                                                </Text>
+
+                                                            </Grid.Col>
+                                                        </Grid>
+                                                    </Link>
                                                 </Grid.Col>
                                             ))
-                                        
+
 
                                         }
                                     </Grid>

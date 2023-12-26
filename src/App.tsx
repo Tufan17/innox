@@ -21,6 +21,7 @@ import UserSubjectDetailView from "./pages/Users/web/user_subject_detail";
 import WebExamView from "./pages/Users/web/web_exam_view";
 import ExamMobileView from "./pages/Users/mobile/exam";
 import ResultExamView from "./pages/Users/mobile/exam/result_exam";
+import ResultExamWebView from "./pages/Users/web/result_exam";
 
 export default function App() {
   const login = useAuthentication();
@@ -65,6 +66,7 @@ export default function App() {
                   <Route path="/user_dashboard/exam/:id" element={<WebExamView />} />
                   <Route path="/user_dashboard/subject/:id" element={<UserSubjectView />} />
                   <Route path="/user_dashboard/subject/detail/:id" element={<UserSubjectDetailView />} />
+                  <Route path="/user_dashboard/result/:id" element={<ResultExamWebView />} />
 
                   <Route path={"/app/*"} element={<EducationView />} />
                   <Route
