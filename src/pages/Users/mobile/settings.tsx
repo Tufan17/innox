@@ -6,7 +6,8 @@ const SettingsView = () => {
         <div
             style={{
                 width: "100%",
-                height: window.innerHeight,
+                height: "100%",
+                overflowY: "hidden",
             }}
         >
            
@@ -17,6 +18,7 @@ const SettingsView = () => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+                overflowY: "hidden",
             }}>
             <Title order={2} >
                 Ayarlar

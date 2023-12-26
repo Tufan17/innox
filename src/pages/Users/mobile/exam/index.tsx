@@ -32,6 +32,8 @@ const ExamMobileView = () => {
         mih={window.innerHeight}
         justify={"space-between"}
     >
+       
+        <Container>
         <Flex m={"sm"} direction={"row"}>
             <MobileBackButton />
             <Container
@@ -68,8 +70,8 @@ const ExamMobileView = () => {
                             direction={"row"}
                             style={{
                                 border: selected == index ? "2px solid " + secondaryColor : "1px solid #ccc",
-                                paddingLeft: "5px",
-                                paddingRight: "5px",
+                                paddingLeft: "15px",
+                                paddingRight: "15px",
                                 margin: "10px",
                                 backgroundColor: selected === index ? `${secondaryColor}20` : "white",
 
@@ -82,6 +84,7 @@ const ExamMobileView = () => {
                             <Center>
                                 <Title order={2} ml={"5px"}
                                     fw={300}
+                                    mr={"10px"}
                                 >
                                     {alphabet[index] + "- "}
                                 </Title>
@@ -106,6 +109,7 @@ const ExamMobileView = () => {
 
         </Flex>
 
+        </Container>
 
         <Button
             m={"md"}
