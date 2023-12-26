@@ -57,7 +57,7 @@ const QuestionBankView = () => {
                       {item.title}
                     </Title>
                     <Divider />
-                    <Group grow m={"md"}>
+                    <Group grow mt={"sm"}>
                       <Link to={`${item.id}`}
                       >
                         <Center>
@@ -74,11 +74,36 @@ const QuestionBankView = () => {
                       </Link>
                         <Center>
                           {
-                            item?.questions?<Group>
-                          <Title className="icon" order={2} p={0} m={0}>
+                            item?.questions?<Group
+                            
+                            style={{
+                              borderRadius: "15px",
+                              cursor: "pointer",
+                              backgroundColor:secondaryColor,
+                              paddingLeft: "3px",
+                              paddingRight: "5px",
+                              width: "fit-content"
+                            
+                            }}
+                            >
+                         
+                         <FaRegQuestionCircle 
+                          
+                          size={20}
+                          style={
+                            {
+                              padding:"0",
+                              color:"white"
+                            }
+                          }
+                          
+                          />
+                           <Title style={{
+                            color:"white",
+                           }} order={3} pl={0} m={0} >
                             {item?.questions?.length}
                           </Title>
-                          <FaRegQuestionCircle className="icon" />
+                          
 
                           </Group>:
                           <FaTrash className="icon" 

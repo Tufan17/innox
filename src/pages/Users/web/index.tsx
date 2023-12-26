@@ -11,8 +11,6 @@ import { IoIosArrowForward } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import userController from "../../../../database/db/controller/userController";
-import NotificationsPopover from "../../Dashboard/common/notification";
-import { Stack } from "@mui/material";
 import { RiNotification2Line } from "react-icons/ri";
 
 const UserDashBoard = () => {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Avatar, Button, Container, Divider, Grid, Group, Title } from '@mantine/core';
+import { Avatar, Button, Center, Container, Divider, Flex, Grid, Group, Title } from '@mantine/core';
 import BackButton from '../../../components/Button/BackButton';
 import contentsController from '../../../../database/db/controller/contentsController';
 import Loader from '../../Loader';
@@ -64,39 +64,61 @@ const SubjectDetail: React.FC<SubjectDetailProps> = () => {
       </Group>
       <Divider mt="sm" mb="xl" />
       <Grid>
-        {subjects.map((item) => (
-          <Grid.Col span={4}>
-            <div style={{
-              width: "100%",
-              padding: "10px",
-              border: "1px solid #ccc",
-              borderRadius: "15px",
-            }}>
-              <Group justify="space-between">
-                <Avatar size="xl" radius={"sm"} src={item.icon} />
-                <Container style={{
-                  paddingLeft: "0px",
-                  marginLeft: "0px",
-                }}>
-                  <Title order={3}>{item.title}</Title>
-                </Container>
-                <Group>
-                <Link to={`#`}>
-                  <FaEdit className="icon" />
-                </Link>
-                
-                <Link to={`#`}>
-                  <FaEye className="icon" />
-                </Link>
-                
-                
-                </Group>
-              </Group>
+        {  subjects.map((subject: any) => {
+                            return (
+                                <Grid.Col span={4} key={subject.id}>
+                                    <Container 
+                                        style={{
+                                            maxHeight: "200px",
+                                            borderRadius: "10px",
+                                            border: "1px solid #ccc",
+                                            padding: "10px",
 
+                                        }}
+                                        >
+                                        <Flex
+                                            direction={"row"}
+                                            style={{
+                                                height: "100%",
+                                                justifyContent: "space-between"
+                                            }}
+                                        >
+                                            <Avatar size="md" src={subject.icon} radius="sm" mr={"sm"}/>
+                                            <Container 
+                                                style={{
+                                                    height: "50px",
+                                                    display: "flex",
+                                                    justifyContent: "center",
+                                                    alignItems: "center",
+                                                    marginLeft: "0px",
 
-            </div>
-          </Grid.Col>
-        ))}
+                                                }}
+                                            >{subject.title}
+                                         
+                                            </Container>
+                                            <Group mt={"sm"} grow>
+                                            <Center>
+                                            <Link to={`/dashboard/contents/show/${subject.id}`}>
+                                                <FaEdit className="icon" />
+                                            </Link>
+                                            </Center>
+                                            <Center>
+                                            <Link to={`#`}>
+                                                <FaEye className="icon" />
+                                            </Link>
+
+                                            </Center>
+
+                                            
+
+                                        </Group>
+                                        </Flex>
+                                       
+                                    </Container>
+                                </Grid.Col>
+                            );
+                        }
+                        )}
 
       </Grid>
 

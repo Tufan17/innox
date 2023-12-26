@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import questionBankController from "../../../../database/db/controller/questionBankController";
 import questionsController from "../../../../database/db/controller/questionsController";
 import { Button, Center, Container, Flex, Grid, Title } from "@mantine/core";
-import MobileBackButton from "../../../components/Button/MobileBackButton";
 import { primaryColor, secondaryColor } from "../../../constants/color";
 import Loader from "../../Loader";
 
