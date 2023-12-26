@@ -1,3 +1,4 @@
+import { arrayRemove } from "firebase/firestore";
 import QuestionBankModel from "../model/QuestionBankModel";
 import QuestionsModel from "../model/QuestionsModel";
 
@@ -35,5 +36,20 @@ const create= async (data:any) => {
   }
 }
 
+const remove= async (qb:string,id:string) => {
+  const data = await new QuestionsModel().delete(id);
+  update(
+    qb,
+    {
+    questions: (arrayRemove(id))
+  
+  });
+  return data;
+}
 
-export default  {update,index,getById,getQuestions,create};
+const deleteQuestionBank= async (id:string) => {
+  const data = await new QuestionBankModel().delete(id);
+  return data;
+}
+
+export default  {update,index,getById,getQuestions,create,remove,deleteQuestionBank};

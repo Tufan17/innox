@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
 
-const QuestionView = () => {
+const EditQuestionView = () => {
     const { id } = useParams<{ id: string }>();
     return ( <>
         {id}
     </> );
 }
  
-export default QuestionView;
+export default EditQuestionView;

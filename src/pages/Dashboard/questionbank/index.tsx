@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { primaryColor, secondaryColor } from "../../../constants/color";
 import questionBankController from "../../../../database/db/controller/questionBankController";
 import Loader from "../../Loader";
-import { FaEdit, FaRegQuestionCircle } from "react-icons/fa";
+import { FaEdit, FaRegQuestionCircle, FaTrash } from "react-icons/fa";
 import { MdOutlineContentPaste } from "react-icons/md";
 
 const QuestionBankView = () => {
@@ -73,13 +73,23 @@ const QuestionBankView = () => {
                         </Center>
                       </Link>
                         <Center>
-                          <Group>
+                          {
+                            item?.questions?<Group>
                           <Title className="icon" order={2} p={0} m={0}>
                             {item?.questions?.length}
                           </Title>
                           <FaRegQuestionCircle className="icon" />
 
-                          </Group>
+                          </Group>:
+                          <FaTrash className="icon" 
+                            onClick={() => {
+                              questionBankController.deleteQuestionBank(item.id).finally(() => {
+                                setData(data.filter((res: any) => item.id !== res.id));
+                              });
+                            }}
+                          
+                          />
+                          }
 
                         </Center>
                     </Group>

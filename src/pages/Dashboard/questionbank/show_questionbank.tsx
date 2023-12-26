@@ -28,6 +28,13 @@ const ShowQuestionBankView = () => {
         );
     }, []);
 
+    const deleteQuestion = async (qID: string) => {
+        const res = await questionBankController.remove(id??"",qID);
+        if (res) {
+            setQuestions(questions.filter((question: any) => question.id !== qID));
+        }
+    }
+
     return questions ? (<>
         <Group justify="space-between">
             <Title order={2}>{questionBank.title}</Title>
@@ -83,7 +90,7 @@ const ShowQuestionBankView = () => {
                         color={secondaryColor}
                         />
                         <FaTrash
-                            
+                            onClick={() => deleteQuestion(question.id)}
                             style={{
                                 cursor: "pointer",
                                 color: "red",

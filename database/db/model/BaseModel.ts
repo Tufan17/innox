@@ -3,7 +3,6 @@ import {
   where,
   doc,
   getDocs,
-  setDoc,
   addDoc,
   DocumentReference,
   DocumentData,
@@ -57,7 +56,7 @@ class BaseModel {
 
   async delete(id: string): Promise<boolean> {
     try {
-      await setDoc(doc(db, this.moduleName, id), { created_at: new Date() });
+      await updateDoc(doc(db, this.moduleName, id), { deleted_at: new Date() });
       return true;
     } catch (error) {
       console.error("Error deleting document:", error);
@@ -113,12 +112,16 @@ class BaseModel {
 
   async getAll(): Promise<any> {
     try {
-      const querySnapshot = await getDocs(collection(db, this.moduleName));
-      const data: DocumentData[] = [];
-      querySnapshot.forEach((doc) => {
-        data.push(doc.data());
-      });
-      return data;
+      const q = await query(
+        collection(db, this.moduleName),
+        where("deleted_at", "==", null)
+      );
+      const querySnapshot = await getDocs(q);
+    const data: DocumentData[] = [];
+    querySnapshot.forEach((doc) => {
+      data.push(doc.data());
+    });
+    return data;
     } catch (error) {
       console.error("Error getting document:", error);
       throw error;
