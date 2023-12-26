@@ -98,12 +98,12 @@ const SubjectDetail: React.FC<SubjectDetailProps> = () => {
                                             </Container>
                                             <Group mt={"sm"} grow>
                                             <Center>
-                                            <Link to={`/dashboard/contents/show/${subject.id}`}>
+                                            <Link to={`/dashboard/subjects/edit/${subject.id}`}>
                                                 <FaEdit className="icon" />
                                             </Link>
                                             </Center>
                                             <Center>
-                                            <Link to={`#`}>
+                                            <Link to={`/dashboard/subjects/show/${subject.id}`}>
                                                 <FaEye className="icon" />
                                             </Link>
 

@@ -84,7 +84,7 @@ const AllSubject = () => {
                                             </Link>
                                             </Center>
                                             <Center>
-                                            <Link to={`#`}>
+                                            <Link to={`/dashboard/subjects/show/${subject.id}`}>
                                                 <FaEye className="icon" />
                                             </Link>
 

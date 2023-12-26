@@ -1,0 +1,145 @@
+import  { useState, useRef, useMemo, useEffect } from 'react';
+import JoditEditor from 'jodit-react';
+
+import {  useParams } from 'react-router-dom';
+import {  Center, Divider, FileInput, Group, Space, TextInput, Title } from '@mantine/core';
+import BackButton from '../../../components/Button/BackButton';
+import Loader from '../../Loader';
+import { Button } from '../../../common/Button';
+import { Bars } from 'react-loader-spinner';
+import subjectController from '../../../../database/db/controller/subjectController';
+import { toast } from 'react-toastify';
+
+const SubjectEditView = () => {
+    const { id } = useParams<{ id: string }>();
+    const [data, setData] = useState<any>();
+    const [loading, setLoading] = useState<boolean>(true);
+    const editor = useRef<any>(null);
+    const [content, setContent] = useState<string>('');
+    const [icon, setIcon] = useState<File | null>(null);
+    const [iconUrl, setIconUrl] = useState<string>('');
+  
+    const config = useMemo(() => ({
+      readonly: false,
+      placeholder: 'içerik ekleyin...',
+      image: {
+          maxWidth: 350,
+          insertImageWithLink: true,
+      },
+      video: {
+          // Video gömme işlemi için kullanılacak iframe etiketi
+          iframe: '<iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" ></iframe>',
+          
+          // Diğer video ayarları...
+        },
+      
+      
+    }), []);
+    const [title, setTitle] = useState<string>('');
+  
+  
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const res = await subjectController.getById(id ?? '');
+          setData(res);
+            setTitle(res.title);
+            setContent(res.content);
+            setIconUrl(res.icon);
+
+        } finally {
+          setLoading(false);
+        }
+      };
+  
+      fetchData();
+  
+    }, [id]);
+  
+    const addContent=async()=>{
+      setLoading(true);
+          await subjectController.create({
+              icon,
+              title:title,
+              content:content,
+              sub_id:id
+          }).then((res)=>{
+              if(res){
+                  if(res.success){
+                      toast.success(res.success);
+                  }
+                  else{
+                      toast.error(res.error);
+                  }
+              }
+              setTitle("");
+              setContent("");
+              setLoading(false);
+          }).catch((err)=>{
+              toast.error(err.message);
+              setLoading(false);
+          })
+    }
+  
+  
+    if (loading) {
+      return <Loader />;
+    }
+  
+    return (
+      <div style={{ padding: '10px' }}>
+        <Group justify="space-between">
+          <Title order={2}>{data.title}</Title>
+          <Group>
+            <BackButton />
+          </Group>
+        </Group>
+        <Divider mt="sm" mb="xl" />
+         <Group grow>
+         <FileInput
+                      label="İcon"
+                      placeholder={iconUrl}
+                      accept="image/*"
+                      value={icon}
+                      onChange={(e) => {
+                          setIcon(e);
+                      }}
+                  />
+          <TextInput
+              label="Başlık Ekleyin"
+              placeholder="Başlık Ekleyin"
+              onChange={(e) => setTitle(e.currentTarget.value)}
+              value={title}
+              
+            />   </Group>
+         
+            <Space h="xl" />
+          <JoditEditor
+              
+              ref={editor}
+              value={content}
+              config={config}
+              onChange={(newContent) => {
+                setContent(newContent);
+              }}
+            />
+        <Center>
+        <Button onClick={addContent}>
+                          {
+                              loading ? <Bars
+                                  height="20"
+                                  width="80"
+                                  color="white"
+                                  ariaLabel="bars-loading"
+                                  wrapperStyle={{}}
+                                  wrapperClass=""
+                                  visible={true}
+                              /> : "Kaydet"
+                          }
+                      </Button>
+        </Center>
+      </div>
+    );
+}
+
+export default SubjectEditView;

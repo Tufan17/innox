@@ -52,4 +52,9 @@ const deleteQuestionBank= async (id:string) => {
   return data;
 }
 
-export default  {update,index,getById,getQuestions,create,remove,deleteQuestionBank};
+const getByIds = async (ids:[]) => {
+  const data = await new QuestionBankModel().getByIds(ids);
+  return data;
+}
+
+export default  {update,index,getById,getQuestions,create,remove,deleteQuestionBank,getByIds};
