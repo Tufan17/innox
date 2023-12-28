@@ -4,6 +4,10 @@ const index = async () => {
   const data = await new QuestionsModel().getAll();
   return data;
 };
+const getById = async (id: any) => {
+  const data = await new QuestionsModel().getById(id);
+  return data;
+}
 
 const create = async (data: any) => {
   try {
@@ -21,4 +25,4 @@ const getQuestions=(ids:any)=>{
   return new QuestionsModel().getByIds(ids);
 }
 
-export default { index, create ,getQuestions};
+export default { index,getById, create ,getQuestions};

@@ -18,26 +18,34 @@ const UserDashBoard = () => {
     const [education, setEducation] = useState<any>(null);
     const [value, setValue] = useState("");
     const [lessons, setLessons] = useState<any[]>([]);
-    const [change, setChange] = useState<boolean>(false);
+    const [change, setChange] = useState<boolean>(true);
     const [homeData, setHomeData] = useState<any | null>(null);
+    const [loading, setLoading] = useState<boolean>(false);
 
+    useEffect(() => {
+        if (!user?.education) {
+            console.log("object");
+            getAllData().then(() => {
+                setLoading(true);
+            });
+        }else{
+            setChange(false);
+        contentsController.getById(user.education).then(async (res: any) => {
+            setEducation(res);
+            const data: any[] = await contentsController.subIndex(user.education);
+            setLessons(data);
+            setLoading(true);
+        }
+        );
+        }
+    }, []);
     const getAllData = async () => {
         const contents = await contentsController.index("main");
         setHomeData(contents);
     };
 
-    useEffect(() => {
-        if (user.education === undefined) {
-            getAllData();
-        }
-        contentsController.getById(user.education).then(async (res: any) => {
-            setEducation(res);
-            const data: any[] = await contentsController.subIndex(user.education);
-            setLessons(data);
-        }
-        );
-    }, []);
-    return education === null ? (
+
+    return loading === null ? (
         <Loader />
     ) : (
         <div
@@ -135,11 +143,11 @@ const UserDashBoard = () => {
                                 padding: "10px",
                             }}>
                                 <Center>
-                                    <Avatar size={75} src={user.avatar} />
+                                    <Avatar size={75} src={user?.avatar} />
                                 </Center>
 
-                                <Title order={3} c={primaryColor}>{user.nickname}</Title>
-                                <Title order={5}>{user.email}</Title>
+                                <Title order={3} c={primaryColor}>{user?.nickname}</Title>
+                                <Title order={5}>{user?.email}</Title>
                             </Container>
                             <Container style={{
                                 textAlign: "center",
@@ -151,8 +159,8 @@ const UserDashBoard = () => {
                                 <Title order={5} c={secondaryColor} style={{
                                     textAlign: "left",
                                 }}>Eğitiminiz</Title>
-                                <Title order={3} c={primaryColor}>{education.title}</Title>
-                                <Title order={5}>{education.subtitle}</Title>
+                                <Title order={3} c={primaryColor}>{education?.title}</Title>
+                                <Title order={5}>{education?.subtitle}</Title>
                             </Container>
                             <Container style={{
                                 textAlign: "center",

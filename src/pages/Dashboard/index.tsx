@@ -24,6 +24,7 @@ import AddQuestionView from "./questionbank/questions/add_question.tsx";
 import EditQuestionBank from "./questionbank/edit_question_bank.tsx";
 import SubjectEditView from "./subject/edit_subject.tsx";
 import SubjectShowView from "./subject/show_subject.tsx";
+import EditQuestionView from "./questionbank/questions/edit_question.tsx";
 const Dashboard = () => {
   const [openNav, setOpenNav] = useState<boolean>(true);
   const [mobile, setMobile] = useState<boolean>(false);
@@ -59,85 +60,89 @@ const Dashboard = () => {
             path="/"
             element={
               <Main
-                children={<AnalysisView/>}
+                children={<AnalysisView />}
                 mobile={mobile}
               />
             }
           />
-          
-            
-              <Route
-                path="/users"
-                element={<Main children={<UsersView />} mobile={mobile} />}
-              />
-              <Route
-                path="/questionbank"
-                element={<Main children={<QuestionBankView />} mobile={mobile} />}
-              />
-              <Route
-                path="/questionbank/:id"
-                element={<Main children={<EditQuestionBank />} mobile={mobile} />}
-              />
-              <Route
-                path="/questionbank/add"
-                element={<Main children={<QuestionBankAddView />} mobile={mobile} />}
-              />
-              <Route
-                path="/questionbank/show/:id"
-                element={<Main children={<ShowQuestionBankView />} mobile={mobile} />}
-              />
-              <Route
-                path="/questionbank/question/add/:id"
-                element={<Main children={<AddQuestionView />} mobile={mobile} />}
-              />
-              <Route
-                path="/subjects"
-                element={<Main children={<AllSubject />} mobile={mobile} />}
-              />
-              <Route
-                path="/subjects/edit/:id"
-                element={<Main children={<SubjectEditView />} mobile={mobile} />}
-              />
-              <Route
-                path="/subjects/show/:id"
-                element={<Main children={<SubjectShowView />} mobile={mobile} />}
-              />
-              <Route
-                path="/settings"
-                element={<Main children={<SettingView />} mobile={mobile} />}
-              />
-              <Route
-                path="/contents"
-                element={<Main children={<ContentsView />} mobile={mobile} />}
-              />
-              <Route
-                path="/contents/add"
-                element={<Main children={<AddContentView />} mobile={mobile} />}
-              />
-              <Route
-                path="/contents/edit/:id"
-                element={<Main children={<EditContentView />} mobile={mobile} />}
-              />
-              <Route
-                path="/contents/show/:id"
-                element={<Main children={<ShowContentView />} mobile={mobile} />}
-              />
-               <Route
-                path="/contents/show/:id/add"
-                element={<Main children={<SubContentAddView />} mobile={mobile} />}
-              />
-              <Route
-                path="/contents/show/:id/edit/:sub_id"
-                element={<Main children={<SubContentEditView />} mobile={mobile} />}
-              />
-             <Route
-                path="/contents/subject/:id"
-                element={<Main children={<SubjectDetail />} mobile={mobile} />}
-              />
-              <Route
-                path="/contents/subject/:id/add"
-                element={<Main children={<SubjectAddView />} mobile={mobile} />}
-              />
+
+
+          <Route
+            path="/users"
+            element={<Main children={<UsersView />} mobile={mobile} />}
+          />
+          <Route
+            path="/questionbank"
+            element={<Main children={<QuestionBankView />} mobile={mobile} />}
+          />
+          <Route
+            path="/questionbank/:id"
+            element={<Main children={<EditQuestionBank />} mobile={mobile} />}
+          />
+          <Route
+            path="/questionbank/add"
+            element={<Main children={<QuestionBankAddView />} mobile={mobile} />}
+          />
+          <Route
+            path="/questionbank/show/:id"
+            element={<Main children={<ShowQuestionBankView />} mobile={mobile} />}
+          />
+          <Route
+            path="/questionbank/question/add/:id"
+            element={<Main children={<AddQuestionView />} mobile={mobile} />}
+          />
+          <Route
+            path="/questionbank/question/edit/:id"
+            element={<Main children={<EditQuestionView />} mobile={mobile} />}
+          />
+          <Route
+            path="/subjects"
+            element={<Main children={<AllSubject />} mobile={mobile} />}
+          />
+          <Route
+            path="/subjects/edit/:id"
+            element={<Main children={<SubjectEditView />} mobile={mobile} />}
+          />
+          <Route
+            path="/subjects/show/:id"
+            element={<Main children={<SubjectShowView />} mobile={mobile} />}
+          />
+          <Route
+            path="/settings"
+            element={<Main children={<SettingView />} mobile={mobile} />}
+          />
+          <Route
+            path="/contents"
+            element={<Main children={<ContentsView />} mobile={mobile} />}
+          />
+          <Route
+            path="/contents/add"
+            element={<Main children={<AddContentView />} mobile={mobile} />}
+          />
+          <Route
+            path="/contents/edit/:id"
+            element={<Main children={<EditContentView />} mobile={mobile} />}
+          />
+          <Route
+            path="/contents/show/:id"
+            element={<Main children={<ShowContentView />} mobile={mobile} />}
+          />
+          <Route
+            path="/contents/show/:id/add"
+            element={<Main children={<SubContentAddView />} mobile={mobile} />}
+          />
+          <Route
+            path="/contents/show/:id/edit/:sub_id"
+            element={<Main children={<SubContentEditView />} mobile={mobile} />}
+          />
+          <Route
+            path="/contents/subject/:id"
+            element={<Main children={<SubjectDetail />} mobile={mobile} />}
+          />
+          <Route
+            path="/contents/subject/:id/add"
+            element={<Main children={<SubjectAddView />} mobile={mobile} />}
+          />
 
           <Route
             path="*"
