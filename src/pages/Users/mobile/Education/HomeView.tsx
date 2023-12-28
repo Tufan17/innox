@@ -27,7 +27,7 @@ const HomeView = () => {
         <div
             style={{
                 width: '100%',
-                height: window.innerHeight - 110,
+                height: window.innerHeight - 90,
                 padding: '15px',
             }}>
             <div
@@ -89,7 +89,7 @@ const HomeView = () => {
                     top: 140,
                     left: 0,
                     right: 0,
-                    bottom: 110,
+                    bottom: 85,
                     
                 }}
 

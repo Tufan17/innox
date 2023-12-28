@@ -19,9 +19,14 @@ const ProfileView = () => {
         const localUser:any = localStorage.getItem('user');
         setUser(JSON.parse(localUser));
         contentsController.getById(JSON.parse(localUser).education).then((res:any)=>{
-            setEducation(res);
+            if(res){
+                setEducation(res);
+            }else{
+                setEducation({});
+            }
+
         });        
-    });
+    },[]);
 
     return education==null?
     (<Loader/>)
@@ -36,7 +41,11 @@ const ProfileView = () => {
         <Center style={{width:"100%"}}><Title order={2}>Profil</Title></Center>
         </Group>
       </AppShell.Header>
-      <AppShell.Main>
+      <AppShell.Main 
+        style={{
+            backgroundColor:"white"
+        }}
+      >
       <Modal opened={opened} onClose={close} withCloseButton={false} centered>
          <Title order={5} c={primaryColor} mt={"md"} style={{
             textAlign: "center",

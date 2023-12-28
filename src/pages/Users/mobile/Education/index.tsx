@@ -15,6 +15,8 @@ const EducationView = () => {
         <div style={{
             width: "100%",
             height: window.innerHeight,
+            overflow: "hidden",
+
         }}>
              <Routes>
              <Route
@@ -39,7 +41,7 @@ const EducationView = () => {
                     bottom: 0,
                     left: 0,
                     right: 0,
-                    height: 110,
+                    height: 90,
                     borderTopRightRadius: 30,
                     borderTopLeftRadius: 30,
                     boxShadow: "0px 0px 5px 0px " + quinaryColor,

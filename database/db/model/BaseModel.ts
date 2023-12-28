@@ -82,7 +82,7 @@ class BaseModel {
       return data;
     } catch (error) {
       console.error("Error getting document:", error);
-      throw error;
+      return null;
     }
   }
   async getByIds(ids: string[]): Promise<any> {

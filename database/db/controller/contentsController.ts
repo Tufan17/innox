@@ -63,8 +63,12 @@ const update = async (id: string, data: any) => {
 };
 
 const getById = async (id: string) => {
-  const result = await new ContentsModel().getById(id);
-  return result;
+  try{
+    const result = await new ContentsModel().getById(id);
+    return result;
+  }catch(e){
+    return { error: "İçerik bulunamadı." };
+  }
 };
 
 const remove = async (id: string) => {

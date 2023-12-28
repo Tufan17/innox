@@ -17,7 +17,7 @@ const useAuthentication = () => {
 
     const handleAuthStateChange = (user: any) => {
       if (user) {
-
+       
         userController.getUser(user.uid!).then((res) => {
           window.localStorage.setItem("user", JSON.stringify(res));
           if(res.role === "admin"){
@@ -30,7 +30,7 @@ const useAuthentication = () => {
           }
         });
 
-        if (window.location.pathname === "/login") {
+        if (window.location.pathname === "/login"||window.location.pathname === "/") {
           const data= JSON.parse(window.localStorage.getItem("user")!);          
           if(data.role=== "user"){
             const userAgent = navigator.userAgent;
