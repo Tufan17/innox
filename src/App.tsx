@@ -22,6 +22,7 @@ import WebExamView from "./pages/Users/web/web_exam_view";
 import ExamMobileView from "./pages/Users/mobile/exam";
 import ResultExamView from "./pages/Users/mobile/exam/result_exam";
 import ResultExamWebView from "./pages/Users/web/result_exam";
+import InfoView from "./pages/info";
 
 export default function App() {
   const login = useAuthentication();
@@ -51,6 +52,7 @@ export default function App() {
           !login ? (<>
             <Route path="/login" element={<LoginView />} />
             <Route path="/register" element={<RegisterView />} />
+            <Route path="/info" element={<InfoView />} />
           </>
           ) :
 

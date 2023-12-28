@@ -50,7 +50,15 @@ const useAuthentication = () => {
           window.location.pathname !== "/register" &&
           window.location.pathname !== "/"
         ) {
-          window.location.href = "/";
+          if(window.location.pathname==="/info"){
+            const userAgent = navigator.userAgent;
+            if (!/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent)) {
+              window.location.href = "/";
+            }
+          }else{
+            window.location.href = "/";
+
+          }
         }
         setLogin(false);
       }
