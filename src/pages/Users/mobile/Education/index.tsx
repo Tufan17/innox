@@ -16,6 +16,7 @@ const EducationView = () => {
             width: "100%",
             height: window.innerHeight,
             overflow: "hidden",
+            backgroundColor: "white",
 
         }}>
              <Routes>
