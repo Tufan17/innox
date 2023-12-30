@@ -7,6 +7,7 @@ import BackButton from "../../../../components/Button/BackButton";
 import JoditEditor from "jodit-react";
 import { CiTrash } from "react-icons/ci";
 import { primaryColor, secondaryColor } from "../../../../constants/color";
+import { toast } from "react-toastify";
 
 const EditQuestionView = () => {
 
@@ -42,6 +43,18 @@ const EditQuestionView = () => {
 
 
     }, []);
+    const editQuestion = () => {
+        if(question.options!==options || question.content!==content || question.correctAnswer!==correctAnswer){
+         const data = {
+             content,
+             options,
+             correctAnswer,
+         };
+         questionsController.update(id, data).then((res) => {
+             toast.success("Soru Düzenlendi.");
+         });
+        }
+       };
 
     const addOption = () => {
         if (options.length < 6) {
@@ -123,7 +136,7 @@ const EditQuestionView = () => {
             <Group mt={"md"} justify="center">
                 <Button
                     onClick={() => {
-                        
+                        editQuestion();
                     }}
                     bg={primaryColor}
                 >

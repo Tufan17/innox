@@ -25,4 +25,16 @@ const getQuestions=(ids:any)=>{
   return new QuestionsModel().getByIds(ids);
 }
 
-export default { index,getById, create ,getQuestions};
+const update = async (id: any, data: any) => {
+  try {
+    const result = await new QuestionsModel().update(id, data);
+    return {
+      success: "Soru başarıyla güncellendi",
+      result,
+    };
+  } catch (error) {
+    return { error: "Güncellenirken bir hata oluştu" };
+  }
+}
+
+export default { index,getById, create ,getQuestions,update};

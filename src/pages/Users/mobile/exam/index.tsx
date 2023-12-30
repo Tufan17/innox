@@ -33,7 +33,11 @@ const ExamMobileView = () => {
         justify={"space-between"}
     >
        
-        <Container>
+        <Container
+        style={{
+            margin: "0px",
+        }}
+        >
         <Flex m={"sm"} direction={"row"}>
             <MobileBackButton />
             <Container
