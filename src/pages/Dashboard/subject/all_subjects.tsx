@@ -79,7 +79,7 @@ const AllSubject = () => {
                                             </Container>
                                             <Group mt={"sm"} grow>
                                             <Center>
-                                            <Link to={`/dashboard/contents/show/${subject.id}`}>
+                                            <Link to={`/dashboard/subjects/edit/${subject.id}`}>
                                                 <FaEdit className="icon" />
                                             </Link>
                                             </Center>

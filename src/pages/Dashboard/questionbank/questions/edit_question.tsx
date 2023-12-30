@@ -50,7 +50,7 @@ const EditQuestionView = () => {
              options,
              correctAnswer,
          };
-         questionsController.update(id, data).then((res) => {
+         questionsController.update(id, data).finally(() => {
              toast.success("Soru Düzenlendi.");
          });
         }
