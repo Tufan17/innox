@@ -2,6 +2,10 @@
 
 # dependencies
 /node_modules
+/node_modules/*
+/node_modules*
+*/node_modules
+*/*node_modules
 /.pnp
 .pnp.js
 
@@ -10,7 +14,25 @@
 
 # production
 /build
-node_modules/*
+*/*dist
+/dist
+*node_modules/*
+# dependencies
+/node_modules
+/node_modules/
+*/node_modules/
+*/*node_modules/
+node_modules/
+
+# testing
+/coverage
+
+# production
+/build
+/dist
+*dist/
+/build/
+
 
 # misc
 .DS_Store
