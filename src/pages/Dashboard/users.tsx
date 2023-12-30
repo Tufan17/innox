@@ -9,6 +9,7 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import UserController from '../../../database/db/controller/userController';
 import { Avatar, Center, Loader } from '@mantine/core';
+import contentsController from '../../../database/db/controller/contentsController';
 
 interface Column {
   id: string;
@@ -31,8 +32,18 @@ const UsersView: React.FC = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [loader, setLoader] = useState(true);
   const [users, setUsers] = useState([]);
+  const [contents, setContents] = useState<any>(null);
+  const getContents = async () => {
+    const data: any[] = await contentsController.index("main");
+    const val:any={};
+    data.forEach((item)=>{
+      val[item.id]=item;
+    });
+    setContents(val);
+  }
 
   useEffect(() => {
+    getContents();
     UserController.index().then((res) => {
       setUsers(res);
       setLoader(false);
@@ -82,11 +93,19 @@ const UsersView: React.FC = () => {
                 return (
                   <TableRow hover role="checkbox" tabIndex={-1} key={row?.id}>
                     {columns.map((column) => {
+                      console.log(column);
                       if (column.id === 'avatar') {
                         const avatarUrl = row.avatar;
                         return (
                           <TableCell key={column.id} align={column.align || 'left'}>
                             <Avatar src={avatarUrl} alt="Avatar" />
+                          </TableCell>
+                        );
+                      }else if (column.id === 'education') {
+                        const value = row[column.id];
+                        return (
+                          <TableCell key={column.id} align={column.align || 'left'}>
+                           { contents[value]?.title || "Bilinmiyor"}
                           </TableCell>
                         );
                       } else {
