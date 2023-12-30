@@ -74,7 +74,7 @@ const QuestionBankView = () => {
                       </Link>
                         <Center>
                           {
-                            item?.questions?<Group
+                            item?.questions?.length!==0?<Group
                             
                             style={{
                               borderRadius: "15px",
