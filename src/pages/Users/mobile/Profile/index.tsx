@@ -31,6 +31,9 @@ const ProfileView = () => {
     return education==null?
     (<Loader/>)
     :( <AppShell
+    style={{
+        overflow: "hidden",
+    }}
         header={{ height: 80 }}>
          <AppShell.Header style={{
             borderBottom: "none",

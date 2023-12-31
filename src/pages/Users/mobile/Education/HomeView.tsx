@@ -29,6 +29,8 @@ const HomeView = () => {
                 width: '100%',
                 height: window.innerHeight - 90,
                 padding: '15px',
+                overflow: "hidden",
+    
             }}>
             <div
                 style={{

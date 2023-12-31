@@ -75,6 +75,7 @@ const login = async (email: string, password: string) => {
   }
 };
 const signout = () => {
+  window.localStorage.removeItem("user");
   return signOut(auth);
 };
 export { nicknameAndEmail, createUser, login, signout };

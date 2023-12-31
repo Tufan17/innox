@@ -23,6 +23,7 @@ import ExamMobileView from "./pages/Users/mobile/exam";
 import ResultExamView from "./pages/Users/mobile/exam/result_exam";
 import ResultExamWebView from "./pages/Users/web/result_exam";
 import InfoView from "./pages/info";
+import { ScrollArea } from "@mantine/core";
 
 export default function App() {
   const login = useAuthentication();
@@ -41,12 +42,23 @@ export default function App() {
       <Routes>
         <Route path="/" element={
 
-          <Suspense fallback={null}>
+          <ScrollArea
+          type="never"
+          style={{
+            width: window.innerWidth,
+            height: window.innerHeight,
+          }}>
+             <Suspense fallback={null}>
             <Styles />
             <Header />
             <Index />
             <Footer />
-          </Suspense>} />
+          </Suspense>
+          </ScrollArea>
+          
+        } 
+          
+          />
         {
 
           !login ? (<>
