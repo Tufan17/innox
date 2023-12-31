@@ -5,7 +5,7 @@ import questionsController from "../../../../database/db/controller/questionsCon
 import { Button, Center, Container, Flex, Grid, Title } from "@mantine/core";
 import { primaryColor, secondaryColor } from "../../../constants/color";
 import Loader from "../../Loader";
-
+import solvedTestController from "../../../../database/db/controller/solvedTestController";
 const WebExamView = () => {
     const { id } = useParams<{ id: string }>();
 
@@ -13,9 +13,15 @@ const WebExamView = () => {
     const [count, setCount] = useState<number>(0);
     const [selected, setSelected] = useState<any| null>(null);
     const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H"];
+    const [subject, setSubject] = useState("");
+    const [correct, setCorrect] = useState(0);
+    const [wrong, setWrong] = useState(0);
+    const [empty, setEmpty] = useState(0);
+    
     useEffect(() => {
         questionBankController.getById(id ?? "").then((res) => {
             console.log(res);
+            setSubject(res?.subject);
             if (res?.questions) {
                 questionsController.getQuestions(res.questions ?? [""]).then((res) => {
                     setQuestions(res);
@@ -26,6 +32,21 @@ const WebExamView = () => {
         }
         );
     }, []);
+
+    const save=()=>{
+        
+        solvedTestController.create({
+            sub_id:subject,
+            qb_id:id,
+            correct,
+            wrong,
+            empty,
+            size:questions.length,
+        });
+    
+    
+    };
+
     return questions ? (<Flex
         direction={"column"}
         mih={window.innerHeight}
@@ -146,11 +167,19 @@ const WebExamView = () => {
             disabled={selected === null}
             color={primaryColor}
             onClick={() => {
+                if (selected === null) {
+                    setEmpty(empty + 1);
+                } else if (selected === questions[count]?.correct) {
+                    setCorrect(correct + 1);
+                } else {
+                    setWrong(wrong + 1);
+                }
+
                 if (count < questions.length - 1) {
                     setCount(count + 1);
                     setSelected(null);
                 } else {
-
+                    save();
                     window.location.href = "/user_dashboard/result/" + id;
                 }
             }}>{count + 1===questions.length?"Kaydet":"Devam"}</Button>

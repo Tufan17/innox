@@ -26,8 +26,9 @@ const UserSubjectView = () => {
     return ( lesson ? <Container style={{
         padding: "20px",
         width: "100%",
-        height: "100%",
-    }}>
+        height: window.innerHeight,
+        overflowY: "scroll",
+}}>
         <Group justify="space-between">
             <Center style={{
 
