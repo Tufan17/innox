@@ -5,6 +5,7 @@ import Popover from '@mui/material/Popover';
 import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
 import userController from '../../../../database/db/controller/userController';
+import { useSelector } from 'react-redux';
 
 // ----------------------------------------------------------------------
 
@@ -17,7 +18,7 @@ interface Language {
 
 export default function LanguagePopover() {
   const [open, setOpen] = useState<HTMLElement | null>(null);
-  const user = JSON.parse(window.localStorage.getItem("user")!);
+  const user = useSelector((state:any) => state.user.value);
   const LANGS: Language[] | null = JSON.parse(window.localStorage.getItem("languages")!);
   const userLang = LANGS!.filter((lang) => lang.value === user.language)[0];
 

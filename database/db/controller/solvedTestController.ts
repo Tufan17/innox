@@ -2,10 +2,9 @@ import SolvedTestModel from "../model/SolvedTestModel";
 
 const create = async (data: any) => {
     try{
-        const user=JSON.parse(window.localStorage.getItem("user")!);  
         await new SolvedTestModel().create({
             sub_id: data.sub_id,
-            user_id: user.id,
+            user_id: data.user_id,
             qb_id: data.qb_id,
             correct: data.correct,
             wrong: data.wrong,
@@ -21,5 +20,15 @@ const create = async (data: any) => {
     }
 };
 
-export default {
-    create};
+const getLessons = async (user_id:string) => {
+    try{
+        const solvedTests = await new SolvedTestModel().getSub(user_id);
+        return solvedTests;
+    }catch(error){
+        console.log(error);
+        return false;
+    }
+
+};
+
+export default {create, getLessons};

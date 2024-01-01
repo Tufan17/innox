@@ -1,6 +1,7 @@
 import { arrayRemove } from "firebase/firestore";
 import QuestionBankModel from "../model/QuestionBankModel";
 import QuestionsModel from "../model/QuestionsModel";
+import SubjectModel from "../model/SubjectModel";
 
 const index = async () => {
   const data = await new QuestionBankModel().getAll();
@@ -17,7 +18,16 @@ return data;
 
 const update = async (id:string,data:any) => {
   try{
+    if(data.subject){
+      await getById(id).then(async (val)=>{
+        await new SubjectModel().update(val.subject,  {
+           questionbank: (arrayRemove(id))
+         
+         });
+     });
+    }
     await new QuestionBankModel().update(id,data);
+
     return {success:"Soru bankası başarıyla güncellendi"};
   }catch(error){
     return {error:"Güncellenirken bir hata oluştu"};
@@ -48,6 +58,12 @@ const remove= async (qb:string,id:string) => {
 }
 
 const deleteQuestionBank= async (id:string) => {
+   await getById(id).then(async (val)=>{
+     await new SubjectModel().update(val.subject,  {
+        questionbank: (arrayRemove(id))
+      
+      });
+  });
   const data = await new QuestionBankModel().delete(id);
   return data;
 }

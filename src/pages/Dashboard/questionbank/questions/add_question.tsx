@@ -104,6 +104,7 @@ const AddQuestionView = () => {
           config={config}
           onChange={(newContent) => {
             setContent(newContent);
+            console.log(newContent);
           }}
         />
         {options.map((option, index) => (

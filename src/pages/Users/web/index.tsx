@@ -12,9 +12,11 @@ import { CiSearch } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import userController from "../../../../database/db/controller/userController";
 import { RiNotification2Line } from "react-icons/ri";
+import { useSelector } from "react-redux";
 
 const UserDashBoard = () => {
-    const user = JSON.parse(localStorage.getItem("user") || "{}");
+    const user = useSelector((state:any) => state.user.value);
+
     const [education, setEducation] = useState<any>(null);
     const [value, setValue] = useState("");
     const [lessons, setLessons] = useState<any[]>([]);

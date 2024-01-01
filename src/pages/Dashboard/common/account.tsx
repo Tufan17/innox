@@ -8,11 +8,14 @@ import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import { signout } from '../../../../database/service/auth_service';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../../redux/features/user';
 
 
 export default function AccountPopover() {
   const [open, setOpen] = useState<HTMLElement | null>(null);
-  const user=JSON.parse(window.localStorage.getItem("user")!);
+  const user=useSelector((state:any) => state.user.value);
+  const dispatch = useDispatch();
   const account = {
     displayName: 'user',
     email: 'user@gmail.com',
@@ -94,7 +97,9 @@ export default function AccountPopover() {
           onClick={() => {
             setOpen(null);
             window.location.href = '/login';
+
             signout();
+            dispatch(logout());
             localStorage.clear();
             }}
           sx={{ typography: 'body2', color: 'error.main', py: 1.5 }}

@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import subjectController from "../../../../../database/db/controller/subjectController";
 import MobileBackButton from "../../../../components/Button/MobileBackButton";
-import { Center, Container, Grid, Group, Text, Title } from "@mantine/core";
+import { Center, Container, Grid, Group, ScrollArea, Text, Title } from "@mantine/core";
 import Loader from "../../../Loader";
 import { secondaryColor } from "../../../../constants/color";
 import { IoIosArrowForward } from "react-icons/io";
-
 const SubjectDetailView = () => {
     const { id } = useParams();
     const [type, setType] = useState<"subject" | "test" | "lesson">("subject");
@@ -18,10 +17,10 @@ const SubjectDetailView = () => {
 
     }
         , [id]);
-    return (subject ? <div style={{
+    return (subject ? <ScrollArea style={{
         padding: "20px",
-        width: "100%",
-        height: "100%",
+        width: window.innerWidth,
+        height: window.innerHeight,
     }}>
         <Group>
             <MobileBackButton />
@@ -68,9 +67,11 @@ const SubjectDetailView = () => {
         {
             type === "subject" ?
                 <div dangerouslySetInnerHTML={{ __html: subject.content }} /> :
-                <Grid p={"md"} gutter="lg">
+                <Grid p={"md"} gutter="lg"
+               
+                >
                     {
-                        subject?.questionbank ?
+                        subject?.questionbank?.length>0 ?
                         subject?.questionbank?.map((value:any,index: number) => {
                             return <Grid.Col
 
@@ -118,7 +119,7 @@ const SubjectDetailView = () => {
                     }
                 </Grid>
         }
-    </div> : <Loader />);
+    </ScrollArea> : <Loader />);
 }
 
 export default SubjectDetailView;

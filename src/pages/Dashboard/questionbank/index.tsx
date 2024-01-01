@@ -74,7 +74,17 @@ const QuestionBankView = () => {
                       </Link>
                         <Center>
                           {
-                            item?.questions?.length!==0?<Group
+                            !item?.questions||item?.questions?.length===0?
+                            <FaTrash className="icon" 
+                            onClick={() => {
+                              questionBankController.deleteQuestionBank(item.id).finally(() => {
+                                setData(data.filter((res: any) => item.id !== res.id));
+                              });
+                            }}
+                          
+                          />
+                            
+                            :<Group
                             
                             style={{
                               borderRadius: "15px",
@@ -105,15 +115,8 @@ const QuestionBankView = () => {
                           </Title>
                           
 
-                          </Group>:
-                          <FaTrash className="icon" 
-                            onClick={() => {
-                              questionBankController.deleteQuestionBank(item.id).finally(() => {
-                                setData(data.filter((res: any) => item.id !== res.id));
-                              });
-                            }}
+                          </Group>
                           
-                          />
                           }
 
                         </Center>

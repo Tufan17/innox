@@ -13,11 +13,11 @@ const EducationView = () => {
     const [path, setPath] = useState(window.location.pathname);
     return (
         <div style={{
-            width: "100%",
+            width: window.innerWidth,
             height: window.innerHeight,
             overflow: "hidden",
-            backgroundColor: "white",
-
+            position: "fixed",
+            
         }}>
              <Routes>
              <Route

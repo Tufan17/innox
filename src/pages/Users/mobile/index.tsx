@@ -10,9 +10,10 @@ import contentsController from "../../../../database/db/controller/contentsContr
 import AccountPopover from "../../Dashboard/common/account";
 import { Link } from "react-router-dom";
 import userController from "../../../../database/db/controller/userController";
+import { useSelector } from "react-redux";
 type ContentType = /*unresolved*/ any
 const UsersView = () => {
-    const user = JSON.parse(window.localStorage.getItem("user")!);
+    const user = useSelector((state:any) => state.user.value);
     const [homeData, setHomeData] = useState<{ banner: any, contents: ContentType[] } | null>(null);
 
     const getAllData = async () => {

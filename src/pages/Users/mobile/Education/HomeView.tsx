@@ -5,9 +5,10 @@ import { CiSearch } from "react-icons/ci";
 import { useEffect, useState } from "react";
 import contentsController from "../../../../../database/db/controller/contentsController";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const HomeView = () => {
-    const user = JSON.parse(window.localStorage.getItem("user")!);
+    const user = useSelector((state:any) => state.user.value);
     const [value, setValue] = useState("");
     const [contents, setContents] = useState<any[]>([]);
     const getAllData = async () => {

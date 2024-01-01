@@ -24,11 +24,11 @@ import ResultExamView from "./pages/Users/mobile/exam/result_exam";
 import ResultExamWebView from "./pages/Users/web/result_exam";
 import InfoView from "./pages/info";
 import { ScrollArea } from "@mantine/core";
+import { useSelector } from "react-redux";
 
 export default function App() {
   const login = useAuthentication();
-  const user = JSON.parse(window.localStorage.getItem("user")!);
-
+  const user = useSelector((state:any) => state.user.value);
 
   if (login === null) {
     return (<Loader />);

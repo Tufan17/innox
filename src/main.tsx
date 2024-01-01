@@ -7,15 +7,19 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '@mantine/core/styles.css';
 import '@mantine/dates/styles.css';
-
+import store from './redux/app/store'
+import { Provider } from 'react-redux'
 const theme = createTheme({
   /** Your theme override here */
 });
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <BrowserRouter>
-   <MantineProvider theme={theme}>
-   <ToastContainer />
-      <App />
-    </MantineProvider>
-  </BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>
+      <MantineProvider theme={theme}>
+        <ToastContainer />
+        <App />
+      </MantineProvider>
+    </BrowserRouter>
+
+  </Provider>
 );

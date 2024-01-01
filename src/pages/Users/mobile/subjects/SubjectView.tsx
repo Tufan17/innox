@@ -1,20 +1,39 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import contentsController from "../../../../../database/db/controller/contentsController";
-import { Avatar, Center, Container, Flex, Group, Image, Slider, Space, Text, Title } from "@mantine/core";
+import { Avatar, Center, Container, Flex, Group, Image, ScrollArea, Slider, Space, Text, Title } from "@mantine/core";
 import MobileBackButton from "../../../../components/Button/MobileBackButton";
 import Loader from "../../../Loader";
 import subjectController from "../../../../../database/db/controller/subjectController";
+import solvedTestController from "../../../../../database/db/controller/solvedTestController";
 import { primaryColor } from "../../../../constants/color";
+import { useSelector } from "react-redux";
 
 const SubjectView = () => {
+    const user=useSelector((state:any)=>state.user.value);
     const { id } = useParams<{ id: string }>();
     const [lesson, setLesson] = useState<any>(null);
     const [subjects, setSubjects] = useState<any[]>([]);
+    const [solved, setSolved] = useState<any[]>([]);
     useEffect(() => {
+
+        solvedTestController.getLessons(user.id).then((res: any) => {
+            const qbIdMap = res.reduce((acc:any, item:any) => {
+              const key = item.qb_id;
+              if (!acc[key]) {
+                acc[key] = [];
+              }
+              acc[key].push(item);
+              return acc;
+            }, {});
+            const uniqueSolved = Object.values(qbIdMap).map((group:any) => group[0]);
+            setSolved(uniqueSolved);
+          });
+          
+
+
         subjectController.index(id ?? "").then((res) => {
             setSubjects(res);
-            console.log(res);
         }
         );
         contentsController.getById(id ?? "").then((res) => {
@@ -23,10 +42,28 @@ const SubjectView = () => {
         )
     }
         , [id]);
-    return (lesson ? <div style={{
+
+        
+        const match=(qbs:any[])=>{
+            if(qbs){
+                let count=0;
+                qbs.forEach((qb)=>{
+                    solved.forEach((s)=>{
+                        if(qb===s.qb_id){
+                            count++;
+                        }
+                    });
+                });
+                return count/qbs.length;
+            }else return 0;
+        };
+
+
+
+    return (lesson ? <ScrollArea style={{
         padding: "20px",
-        width: "100%",
-        height: "100%",
+        width: window.innerWidth,
+        height: window.innerHeight,
     }}>
         <Group>
             <MobileBackButton />
@@ -107,17 +144,17 @@ const SubjectView = () => {
 
                         </Flex>
                         <Slider
-                        
-      showLabelOnHover={false}
+                        className="slider"
+                        showLabelOnHover={false}
                         mt={"md"} color={primaryColor}
-                            size="xs" value={(0/subject?.tests?.length)*100} />
+                            size="xs" value={(match(subject?.questionbank))*100} />
                     </Container>
                     
                     </Link>
                 ))
         }
         <Space h={"10px"} />
-    </div> : <Loader />);
+    </ScrollArea> : <Loader />);
 }
 
 export default SubjectView;
