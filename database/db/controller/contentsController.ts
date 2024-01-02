@@ -30,6 +30,7 @@ const create = async (data: any) => {
         icon: downloadURL,
         width: data.width,
         height: data.height,
+        type:"main"
       });
       return { success: "İçerik başarıyla eklendi." };
     } catch (e) {

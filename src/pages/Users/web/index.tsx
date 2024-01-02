@@ -26,7 +26,6 @@ const UserDashBoard = () => {
 
     useEffect(() => {
         if (!user?.education) {
-            console.log("object");
             getAllData().then(() => {
                 setLoading(true);
             });
@@ -373,16 +372,10 @@ const UserDashBoard = () => {
                                         {
                                             homeData?.map((content: any, index: number) => (
                                                 <Grid.Col span={4}>
-                                                    <Link to={"#"} style={{
-                                                        textDecoration: 'none',
-                                                        color: 'black',
-
-                                                    }}
+                                                    <div 
                                                         onClick={() => {
-                                                            user.education = content.id;
-                                                            window.localStorage.setItem("user", JSON.stringify(user));
                                                             userController.update(user.id, { education: content.id }).then(() => {
-                                                                window.location.reload();
+                                                                 window.location.reload();
                                                             });
                                                         }}
                                                         key={index}>
@@ -426,7 +419,7 @@ const UserDashBoard = () => {
 
                                                             </Grid.Col>
                                                         </Grid>
-                                                    </Link>
+                                                    </div>
                                                 </Grid.Col>
                                             ))
 

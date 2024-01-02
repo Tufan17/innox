@@ -24,7 +24,7 @@ const columns: Column[] = [
   { id: 'nickname', label: 'Nickname', minWidth: 170 },
   { id: 'education', label: 'Eğitim', minWidth: 170 },
   { id: 'status', label: 'Durum', minWidth: 100, align: 'right', format: (value) => value.toLocaleString('en-US') },
-  { id: 'role', label: 'Role', minWidth: 170, align: 'right', format: (value) => value.toFixed(2) },
+  { id: 'email', label: 'Mail', minWidth: 170, align: 'right', format: (value) => value.toFixed(2) },
 ];
 
 const UsersView: React.FC = () => {
