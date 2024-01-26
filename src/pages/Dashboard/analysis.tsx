@@ -182,7 +182,8 @@ const AnalysisView = () => {
                                     {
                                         curve: "linear",
                                         showMark: false,
-                                        label: 'Example', data: [6, 3, 7, 9.5, 4, 2, 2, 3, 4, 5, 11, 16, 30]
+                                        label: 'Example', 
+                                        data: [6, 3, 7, 9.5, 4, 2, 2, 3, 4, 5, 11, 16, 30]
                                     },
                                 ]}
                             />
